@@ -46,9 +46,9 @@ const PatientDashboard = () => {
         
         // Fetch all data in parallel
         const [apptsRes, reportsRes, presRes] = await Promise.allSettled([
-          axios.get('http://localhost:5000/api/appointments', config),
-          axios.get('http://localhost:5000/api/reports', config),
-          axios.get('http://localhost:5000/api/prescriptions', config)
+          axios.get('/api/appointments', config),
+          axios.get('/api/reports', config),
+          axios.get('/api/prescriptions', config)
         ]);
 
         if (apptsRes.status === 'fulfilled') setAppointments(apptsRes.value.data.data || []);

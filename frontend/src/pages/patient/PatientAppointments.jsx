@@ -43,7 +43,7 @@ const PatientAppointments = () => {
   const fetchAppointments = async () => {
     try {
       const config = { headers: { Authorization: `Bearer ${user.token}` } };
-      const { data } = await axios.get('http://localhost:5000/api/appointments', config);
+      const { data } = await axios.get('/api/appointments', config);
       setAppointments(data.data || []);
     } catch (error) {
       console.error('Error fetching appointments', error);
@@ -56,7 +56,7 @@ const PatientAppointments = () => {
   const fetchDoctors = async () => {
     try {
       const config = { headers: { Authorization: `Bearer ${user.token}` } };
-      const { data } = await axios.get('http://localhost:5000/api/doctors', config);
+      const { data } = await axios.get('/api/doctors', config);
       setDoctors(data.data || []);
     } catch (error) {
       console.error('Error fetching doctors', error);
@@ -158,7 +158,7 @@ const PatientAppointments = () => {
       };
 
       // Persist in backend API
-      const response = await axios.post('http://localhost:5000/api/appointments', payload, config);
+      const response = await axios.post('/api/appointments', payload, config);
       const newApt = response.data.data;
       
       // Create a proper appointment object with matching field names used by the UI cards
@@ -192,7 +192,7 @@ const PatientAppointments = () => {
   const updateStatus = async (id, status) => {
     try {
       const config = { headers: { Authorization: `Bearer ${user.token}` } };
-      await axios.put(`http://localhost:5000/api/appointments/${id}/status`, { status, cancellationReason: 'Cancelled by patient' }, config);
+      await axios.put(`/api/appointments/${id}/status`, { status, cancellationReason: 'Cancelled by patient' }, config);
       fetchAppointments();
       toast.success(`Appointment ${status}`);
     } catch (error) {
@@ -205,7 +205,7 @@ const PatientAppointments = () => {
     e.preventDefault();
     try {
       const config = { headers: { Authorization: `Bearer ${user.token}` } };
-      await axios.put(`http://localhost:5000/api/appointments/${rescheduleData.id}/reschedule`, {
+      await axios.put(`/api/appointments/${rescheduleData.id}/reschedule`, {
         appointmentDate: rescheduleData.newDate,
         appointmentTime: rescheduleData.newTime
       }, config);

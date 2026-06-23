@@ -32,7 +32,7 @@ const VideoConsultation = () => {
       try {
         // Fetch all appointments and find the one matching this room ID
         const config = { headers: { Authorization: `Bearer ${user.token}` } };
-        const res = await axios.get('http://localhost:5000/api/appointments', config);
+        const res = await axios.get('/api/appointments', config);
         const apts = res.data.data || res.data || [];
         const currentApt = apts.find(a => a.meetingLink && a.meetingLink.includes(roomId));
         
@@ -75,7 +75,7 @@ const VideoConsultation = () => {
     if (isDoctor) {
       try {
         const config = { headers: { Authorization: `Bearer ${user.token}` } };
-        await axios.post('http://localhost:5000/api/consultations/end', {
+        await axios.post('/api/consultations/end', {
           appointmentId: appointment._id,
           doctorNotes,
           diagnosis,

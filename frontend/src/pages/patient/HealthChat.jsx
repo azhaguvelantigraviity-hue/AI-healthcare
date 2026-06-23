@@ -43,7 +43,7 @@ const HealthChat = () => {
         message: text,
         chatHistory: messages.filter(m => m.id !== 1).map(m => ({ role: m.role, content: m.text }))
       };
-      const { data } = await axios.post('http://localhost:5000/api/ai/chat', requestData, config);
+      const { data } = await axios.post('/api/ai/chat', requestData, config);
       
       const responseText = data.data.message || "I couldn't process your request.";
       

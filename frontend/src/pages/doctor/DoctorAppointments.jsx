@@ -25,7 +25,7 @@ const DoctorAppointments = () => {
   const fetchAppointments = async () => {
     try {
       const config = { headers: { Authorization: `Bearer ${user.token}` } };
-      const { data } = await axios.get('http://localhost:5000/api/appointments', config);
+      const { data } = await axios.get('/api/appointments', config);
       setAppointments(data.data || []);
     } catch (error) {
       console.error('Error fetching appointments', error);
@@ -38,7 +38,7 @@ const DoctorAppointments = () => {
   const fetchPatients = async () => {
     try {
       const config = { headers: { Authorization: `Bearer ${user.token}` } };
-      const { data } = await axios.get('http://localhost:5000/api/patients?limit=100', config);
+      const { data } = await axios.get('/api/patients?limit=100', config);
       setPatients(data.data || []);
     } catch (error) {
       console.error('Error fetching patients', error);
@@ -49,7 +49,7 @@ const DoctorAppointments = () => {
   const fetchDoctors = async () => {
     try {
       const config = { headers: { Authorization: `Bearer ${user.token}` } };
-      const { data } = await axios.get('http://localhost:5000/api/doctors', config);
+      const { data } = await axios.get('/api/doctors', config);
       setDoctors(data.data || []);
     } catch (error) {
       console.error('Error fetching doctors', error);
@@ -84,7 +84,7 @@ const DoctorAppointments = () => {
   const updateStatus = async (id, status) => {
     try {
       const config = { headers: { Authorization: `Bearer ${user.token}` } };
-      await axios.put(`http://localhost:5000/api/appointments/${id}/status`, { status }, config);
+      await axios.put(`/api/appointments/${id}/status`, { status }, config);
       fetchAppointments();
       toast.success(`Appointment marked as ${status}`);
     } catch (error) {
@@ -113,7 +113,7 @@ const DoctorAppointments = () => {
         roomNumber: bookingData.roomNumber
       };
 
-      await axios.post('http://localhost:5000/api/appointments', payload, config);
+      await axios.post('/api/appointments', payload, config);
       toast.success('Appointment Booked Successfully!');
       setBookingModalOpen(false);
       setBookingData({ patient: '', doctor: '', date: '', time: '', type: 'general', mode: 'video', reason: '', roomNumber: '' });

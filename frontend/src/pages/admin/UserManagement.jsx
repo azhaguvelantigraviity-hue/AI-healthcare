@@ -13,7 +13,7 @@ const UserManagement = () => {
   const fetchUsers = async () => {
     try {
       const config = { headers: { Authorization: `Bearer ${user.token}` } };
-      const { data } = await axios.get('http://localhost:5000/api/admin/users', config);
+      const { data } = await axios.get('/api/admin/users', config);
       setUsersList(data.data || []);
     } catch (error) {
       console.error("Error fetching users:", error);
@@ -36,7 +36,7 @@ const UserManagement = () => {
     }
     try {
       const config = { headers: { Authorization: `Bearer ${user.token}` } };
-      await axios.put(`http://localhost:5000/api/admin/users/${id}/status`, {}, config);
+      await axios.put(`/api/admin/users/${id}/status`, {}, config);
       toast.success(`User status updated successfully`);
       fetchUsers(); // Refresh the list
     } catch (error) {
@@ -53,7 +53,7 @@ const UserManagement = () => {
     if (window.confirm("Are you sure you want to delete this user? This action cannot be undone.")) {
       try {
         const config = { headers: { Authorization: `Bearer ${user.token}` } };
-        await axios.delete(`http://localhost:5000/api/admin/users/${id}`, config);
+        await axios.delete(`/api/admin/users/${id}`, config);
         toast.success("User deleted successfully");
         fetchUsers(); // Refresh the list
       } catch (error) {

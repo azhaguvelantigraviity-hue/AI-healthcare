@@ -19,7 +19,7 @@ const PatientManagement = () => {
     const fetchPatients = async () => {
       try {
         const config = { headers: { Authorization: `Bearer ${user.token}` } };
-        const { data } = await axios.get('http://localhost:5000/api/appointments', config);
+        const { data } = await axios.get('/api/appointments', config);
         
         const appointmentsData = data.data || [];
         const uniquePatientsMap = new Map();

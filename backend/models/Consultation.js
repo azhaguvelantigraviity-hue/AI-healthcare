@@ -18,7 +18,7 @@ const consultationSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
-consultationSchema.index({ appointment: 1 });
+
 consultationSchema.index({ patient: 1 });
 consultationSchema.index({ doctor: 1 });
 

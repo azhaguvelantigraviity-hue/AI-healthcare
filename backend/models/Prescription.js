@@ -58,6 +58,6 @@ prescriptionSchema.pre('save', async function (next) {
 
 prescriptionSchema.index({ patient: 1, createdAt: -1 });
 prescriptionSchema.index({ doctor: 1, createdAt: -1 });
-prescriptionSchema.index({ prescriptionNumber: 1 });
+
 
 module.exports = mongoose.model('Prescription', prescriptionSchema);

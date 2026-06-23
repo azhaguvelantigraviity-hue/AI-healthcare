@@ -1,0 +1,842 @@
+2026-06-19 16:38:10 [info]: ✅ MongoDB Connected: 127.0.0.1
+2026-06-19 16:38:10 [info]: ⏰ Starting scheduler service...
+2026-06-19 16:38:10 [info]: ✅ Scheduler service started
+2026-06-19 16:38:10 [info]: 
+==================================================
+2026-06-19 16:38:10 [info]: 🏥 HealthCare AI Backend
+2026-06-19 16:38:10 [info]: 🚀 Server: http://localhost:5000
+2026-06-19 16:38:10 [info]: 📡 Environment: development
+2026-06-19 16:38:10 [info]: ==================================================
+
+2026-06-19 16:43:58 [info]: ✅ MongoDB Connected: 127.0.0.1
+2026-06-19 16:43:58 [info]: ⏰ Starting scheduler service...
+2026-06-19 16:43:58 [info]: ✅ Scheduler service started
+2026-06-19 16:43:58 [info]: 
+==================================================
+2026-06-19 16:43:58 [info]: 🏥 HealthCare AI Backend
+2026-06-19 16:43:58 [info]: 🚀 Server: http://localhost:5000
+2026-06-19 16:43:58 [info]: 📡 Environment: development
+2026-06-19 16:43:58 [info]: ==================================================
+
+2026-06-19 16:47:23 [info]: ✅ MongoDB Connected: 127.0.0.1
+2026-06-19 16:47:23 [info]: ⏰ Starting scheduler service...
+2026-06-19 16:47:23 [info]: ✅ Scheduler service started
+2026-06-19 16:47:23 [info]: 
+==================================================
+2026-06-19 16:47:23 [info]: 🏥 HealthCare AI Backend
+2026-06-19 16:47:23 [info]: 🚀 Server: http://localhost:5000
+2026-06-19 16:47:23 [info]: 📡 Environment: development
+2026-06-19 16:47:23 [info]: ==================================================
+
+2026-06-19 16:50:32 [error]: Invalid credentials | POST /api/auth/login | IP: ::1
+2026-06-19 16:50:32 [error]: Error: Invalid credentials
+    at C:\Users\Admin\Desktop\AI healthcare\backend\controllers\authController.js:92:17
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+2026-06-19 16:54:52 [info]: User logged in: james@email.com
+2026-06-19 16:59:17 [error]: Invalid credentials | POST /api/auth/login | IP: ::1
+2026-06-19 16:59:17 [error]: Error: Invalid credentials
+    at C:\Users\Admin\Desktop\AI healthcare\backend\controllers\authController.js:92:17
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+2026-06-19 16:59:26 [info]: User logged in: james@email.com
+2026-06-19 16:59:49 [info]: User logged in: sarah@healthsys.com
+2026-06-19 16:59:56 [info]: User logged in: admin@healthsys.com
+2026-06-19 17:02:21 [info]: User logged in: james@email.com
+2026-06-19 17:02:42 [error]: Cast to ObjectId failed for value "doctors" (type string) at path "_id" for model "Appointment" | GET /api/appointments/doctors | IP: ::1
+2026-06-19 17:02:42 [error]: CastError: Cast to ObjectId failed for value "doctors" (type string) at path "_id" for model "Appointment"
+    at SchemaObjectId.cast (C:\Users\Admin\Desktop\AI healthcare\backend\node_modules\mongoose\lib\schema\objectId.js:253:11)
+    at SchemaType.applySetters (C:\Users\Admin\Desktop\AI healthcare\backend\node_modules\mongoose\lib\schemaType.js:1288:12)
+    at SchemaType.castForQuery (C:\Users\Admin\Desktop\AI healthcare\backend\node_modules\mongoose\lib\schemaType.js:1718:17)
+    at cast (C:\Users\Admin\Desktop\AI healthcare\backend\node_modules\mongoose\lib\cast.js:390:32)
+    at Query.cast (C:\Users\Admin\Desktop\AI healthcare\backend\node_modules\mongoose\lib\query.js:5060:12)
+    at Query._castConditions (C:\Users\Admin\Desktop\AI healthcare\backend\node_modules\mongoose\lib\query.js:2374:10)
+    at model.Query._findOne (C:\Users\Admin\Desktop\AI healthcare\backend\node_modules\mongoose\lib\query.js:2697:8)
+    at model.Query.exec (C:\Users\Admin\Desktop\AI healthcare\backend\node_modules\mongoose\lib\query.js:4627:80)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async C:\Users\Admin\Desktop\AI healthcare\backend\controllers\appointmentController.js:68:23
+2026-06-19 17:02:42 [error]: Cast to ObjectId failed for value "doctors" (type string) at path "_id" for model "Appointment" | GET /api/appointments/doctors | IP: ::1
+2026-06-19 17:02:42 [error]: CastError: Cast to ObjectId failed for value "doctors" (type string) at path "_id" for model "Appointment"
+    at SchemaObjectId.cast (C:\Users\Admin\Desktop\AI healthcare\backend\node_modules\mongoose\lib\schema\objectId.js:253:11)
+    at SchemaType.applySetters (C:\Users\Admin\Desktop\AI healthcare\backend\node_modules\mongoose\lib\schemaType.js:1288:12)
+    at SchemaType.castForQuery (C:\Users\Admin\Desktop\AI healthcare\backend\node_modules\mongoose\lib\schemaType.js:1718:17)
+    at cast (C:\Users\Admin\Desktop\AI healthcare\backend\node_modules\mongoose\lib\cast.js:390:32)
+    at Query.cast (C:\Users\Admin\Desktop\AI healthcare\backend\node_modules\mongoose\lib\query.js:5060:12)
+    at Query._castConditions (C:\Users\Admin\Desktop\AI healthcare\backend\node_modules\mongoose\lib\query.js:2374:10)
+    at model.Query._findOne (C:\Users\Admin\Desktop\AI healthcare\backend\node_modules\mongoose\lib\query.js:2697:8)
+    at model.Query.exec (C:\Users\Admin\Desktop\AI healthcare\backend\node_modules\mongoose\lib\query.js:4627:80)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async C:\Users\Admin\Desktop\AI healthcare\backend\controllers\appointmentController.js:68:23
+2026-06-19 17:05:50 [info]: ✅ MongoDB Connected: 127.0.0.1
+2026-06-19 17:05:50 [info]: ✅ MongoDB Connected: 127.0.0.1
+2026-06-19 17:07:41 [error]: Cannot read properties of undefined (reading 'role') | POST /api/ai/symptom-check | IP: ::1
+2026-06-19 17:07:41 [error]: TypeError: Cannot read properties of undefined (reading 'role')
+    at C:\Users\Admin\Desktop\AI healthcare\backend\controllers\aiController.js:78:16
+    at C:\Users\Admin\Desktop\AI healthcare\backend\middleware\asyncHandler.js:2:19
+    at Layer.handle [as handle_request] (C:\Users\Admin\Desktop\AI healthcare\backend\node_modules\express\lib\router\layer.js:95:5)
+    at next (C:\Users\Admin\Desktop\AI healthcare\backend\node_modules\express\lib\router\route.js:149:13)
+    at Route.dispatch (C:\Users\Admin\Desktop\AI healthcare\backend\node_modules\express\lib\router\route.js:119:3)
+    at Layer.handle [as handle_request] (C:\Users\Admin\Desktop\AI healthcare\backend\node_modules\express\lib\router\layer.js:95:5)
+    at C:\Users\Admin\Desktop\AI healthcare\backend\node_modules\express\lib\router\index.js:284:15
+    at router.process_params (C:\Users\Admin\Desktop\AI healthcare\backend\node_modules\express\lib\router\index.js:346:12)
+    at next (C:\Users\Admin\Desktop\AI healthcare\backend\node_modules\express\lib\router\index.js:280:10)
+    at router.handle (C:\Users\Admin\Desktop\AI healthcare\backend\node_modules\express\lib\router\index.js:175:3)
+2026-06-19 17:07:50 [error]: Cannot read properties of undefined (reading 'role') | POST /api/ai/symptom-check | IP: ::1
+2026-06-19 17:07:50 [error]: TypeError: Cannot read properties of undefined (reading 'role')
+    at C:\Users\Admin\Desktop\AI healthcare\backend\controllers\aiController.js:78:16
+    at C:\Users\Admin\Desktop\AI healthcare\backend\middleware\asyncHandler.js:2:19
+    at Layer.handle [as handle_request] (C:\Users\Admin\Desktop\AI healthcare\backend\node_modules\express\lib\router\layer.js:95:5)
+    at next (C:\Users\Admin\Desktop\AI healthcare\backend\node_modules\express\lib\router\route.js:149:13)
+    at Route.dispatch (C:\Users\Admin\Desktop\AI healthcare\backend\node_modules\express\lib\router\route.js:119:3)
+    at Layer.handle [as handle_request] (C:\Users\Admin\Desktop\AI healthcare\backend\node_modules\express\lib\router\layer.js:95:5)
+    at C:\Users\Admin\Desktop\AI healthcare\backend\node_modules\express\lib\router\index.js:284:15
+    at router.process_params (C:\Users\Admin\Desktop\AI healthcare\backend\node_modules\express\lib\router\index.js:346:12)
+    at next (C:\Users\Admin\Desktop\AI healthcare\backend\node_modules\express\lib\router\index.js:280:10)
+    at router.handle (C:\Users\Admin\Desktop\AI healthcare\backend\node_modules\express\lib\router\index.js:175:3)
+2026-06-19 17:09:22 [info]: ✅ MongoDB Connected: 127.0.0.1
+2026-06-19 17:09:22 [info]: ✅ MongoDB Connected: 127.0.0.1
+2026-06-19 17:10:21 [error]: Cannot read properties of undefined (reading 'role') | POST /api/ai/symptom-check | IP: ::1
+2026-06-19 17:10:21 [error]: TypeError: Cannot read properties of undefined (reading 'role')
+    at C:\Users\Admin\Desktop\AI healthcare\backend\controllers\aiController.js:78:16
+    at C:\Users\Admin\Desktop\AI healthcare\backend\middleware\asyncHandler.js:2:19
+    at Layer.handle [as handle_request] (C:\Users\Admin\Desktop\AI healthcare\backend\node_modules\express\lib\router\layer.js:95:5)
+    at next (C:\Users\Admin\Desktop\AI healthcare\backend\node_modules\express\lib\router\route.js:149:13)
+    at Route.dispatch (C:\Users\Admin\Desktop\AI healthcare\backend\node_modules\express\lib\router\route.js:119:3)
+    at Layer.handle [as handle_request] (C:\Users\Admin\Desktop\AI healthcare\backend\node_modules\express\lib\router\layer.js:95:5)
+    at C:\Users\Admin\Desktop\AI healthcare\backend\node_modules\express\lib\router\index.js:284:15
+    at router.process_params (C:\Users\Admin\Desktop\AI healthcare\backend\node_modules\express\lib\router\index.js:346:12)
+    at next (C:\Users\Admin\Desktop\AI healthcare\backend\node_modules\express\lib\router\index.js:280:10)
+    at router.handle (C:\Users\Admin\Desktop\AI healthcare\backend\node_modules\express\lib\router\index.js:175:3)
+2026-06-19 17:14:56 [info]: ✅ MongoDB Connected: 127.0.0.1
+2026-06-19 17:14:56 [info]: ✅ MongoDB Connected: 127.0.0.1
+2026-06-19 17:17:12 [info]: ✅ MongoDB Connected: 127.0.0.1
+2026-06-19 17:17:12 [info]: ✅ MongoDB Connected: 127.0.0.1
+2026-06-19 17:17:12 [info]: ⏰ Starting scheduler service...
+2026-06-19 17:17:12 [info]: ✅ Scheduler service started
+2026-06-19 17:17:12 [info]: 
+==================================================
+2026-06-19 17:17:12 [info]: 🏥 HealthCare AI Backend
+2026-06-19 17:17:12 [info]: 🚀 Server: http://localhost:5000
+2026-06-19 17:17:12 [info]: 📡 Environment: development
+2026-06-19 17:17:12 [info]: ==================================================
+
+2026-06-19 17:17:23 [info]: ✅ MongoDB Connected: 127.0.0.1
+2026-06-19 17:17:23 [info]: ⏰ Starting scheduler service...
+2026-06-19 17:17:23 [info]: ✅ Scheduler service started
+2026-06-19 17:17:23 [info]: 
+==================================================
+2026-06-19 17:17:23 [info]: 🏥 HealthCare AI Backend
+2026-06-19 17:17:23 [info]: 🚀 Server: http://localhost:5000
+2026-06-19 17:17:23 [info]: 📡 Environment: development
+2026-06-19 17:17:23 [info]: ==================================================
+
+2026-06-19 17:17:23 [info]: ✅ MongoDB Connected: 127.0.0.1
+2026-06-19 17:17:33 [info]: ✅ MongoDB Connected: 127.0.0.1
+2026-06-19 17:17:33 [info]: ⏰ Starting scheduler service...
+2026-06-19 17:17:33 [info]: ✅ Scheduler service started
+2026-06-19 17:17:33 [info]: 
+==================================================
+2026-06-19 17:17:33 [info]: 🏥 HealthCare AI Backend
+2026-06-19 17:17:33 [info]: 🚀 Server: http://localhost:5000
+2026-06-19 17:17:33 [info]: 📡 Environment: development
+2026-06-19 17:17:33 [info]: ==================================================
+
+2026-06-19 17:17:33 [info]: ✅ MongoDB Connected: 127.0.0.1
+2026-06-19 17:23:04 [error]: symptoms.join is not a function | POST /api/ai/symptom-check | IP: ::1
+2026-06-19 17:23:04 [error]: TypeError: symptoms.join is not a function
+    at C:\Users\Admin\Desktop\AI healthcare\backend\controllers\aiController.js:105:54
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+2026-06-19 17:23:10 [error]: symptoms.join is not a function | POST /api/ai/symptom-check | IP: ::1
+2026-06-19 17:23:10 [error]: TypeError: symptoms.join is not a function
+    at C:\Users\Admin\Desktop\AI healthcare\backend\controllers\aiController.js:105:54
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+2026-06-19 17:23:13 [error]: symptoms.join is not a function | POST /api/ai/symptom-check | IP: ::1
+2026-06-19 17:23:13 [error]: TypeError: symptoms.join is not a function
+    at C:\Users\Admin\Desktop\AI healthcare\backend\controllers\aiController.js:105:54
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+2026-06-19 17:24:06 [info]: User logged in: sarah@healthsys.com
+2026-06-19 17:43:53 [info]: User logged in: admin@healthsys.com
+2026-06-19 17:51:16 [info]: User logged in: james@email.com
+2026-06-19 17:57:29 [info]: ✅ MongoDB Connected: 127.0.0.1
+2026-06-19 17:57:29 [info]: ⏰ Starting scheduler service...
+2026-06-19 17:57:29 [info]: ✅ Scheduler service started
+2026-06-19 17:57:29 [info]: 
+==================================================
+2026-06-19 17:57:29 [info]: 🏥 HealthCare AI Backend
+2026-06-19 17:57:29 [info]: 🚀 Server: http://localhost:5000
+2026-06-19 17:57:29 [info]: 📡 Environment: development
+2026-06-19 17:57:29 [info]: ==================================================
+
+2026-06-19 18:06:08 [info]: ✅ MongoDB Connected: 127.0.0.1
+2026-06-19 18:06:08 [info]: ⏰ Starting scheduler service...
+2026-06-19 18:06:08 [info]: ✅ Scheduler service started
+2026-06-19 18:06:08 [info]: 
+==================================================
+2026-06-19 18:06:08 [info]: 🏥 HealthCare AI Backend
+2026-06-19 18:06:08 [info]: 🚀 Server: http://localhost:5000
+2026-06-19 18:06:08 [info]: 📡 Environment: development
+2026-06-19 18:06:08 [info]: ==================================================
+
+2026-06-19 18:16:32 [info]: ✅ MongoDB Connected: 127.0.0.1
+2026-06-19 18:16:32 [info]: ⏰ Starting scheduler service...
+2026-06-19 18:16:32 [info]: ✅ Scheduler service started
+2026-06-19 18:16:32 [info]: 
+==================================================
+2026-06-19 18:16:32 [info]: 🏥 HealthCare AI Backend
+2026-06-19 18:16:32 [info]: 🚀 Server: http://localhost:5000
+2026-06-19 18:16:32 [info]: 📡 Environment: development
+2026-06-19 18:16:32 [info]: ==================================================
+
+2026-06-19 18:17:49 [error]: Invalid credentials | POST /api/auth/login | IP: ::1
+2026-06-19 18:17:49 [error]: Error: Invalid credentials
+    at C:\Users\Admin\Desktop\AI healthcare\backend\controllers\authController.js:92:17
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+2026-06-19 18:20:16 [info]: User logged in: james@email.com
+2026-06-19 18:20:30 [info]: User logged in: sarah@healthsys.com
+2026-06-19 18:20:38 [info]: User logged in: admin@healthsys.com
+2026-06-19 18:22:19 [info]: User logged in: sarah@healthsys.com
+2026-06-19 18:23:19 [info]: User logged in: james@email.com
+2026-06-19 18:23:35 [info]: User logged in: admin@healthsys.com
+2026-06-22 10:06:20 [info]: ✅ MongoDB Connected: 127.0.0.1
+2026-06-22 10:06:20 [info]: ⏰ Starting scheduler service...
+2026-06-22 10:06:20 [info]: ✅ Scheduler service started
+2026-06-22 10:06:20 [info]: 
+==================================================
+2026-06-22 10:06:20 [info]: 🏥 HealthCare AI Backend
+2026-06-22 10:06:20 [info]: 🚀 Server: http://localhost:5000
+2026-06-22 10:06:20 [info]: 📡 Environment: development
+2026-06-22 10:06:20 [info]: ==================================================
+
+2026-06-22 10:07:24 [info]: User logged in: james@email.com
+2026-06-22 10:14:48 [info]: User logged in: sarah@healthsys.com
+2026-06-22 10:17:31 [info]: User logged in: admin@healthsys.com
+2026-06-22 10:30:00 [info]: Marked 1 appointments as no-show
+2026-06-22 10:33:15 [warn]: MongoDB disconnected. Attempting to reconnect...
+2026-06-22 10:33:17 [info]: MongoDB reconnected
+2026-06-22 10:38:51 [info]: User logged in: sarah@healthsys.com
+2026-06-22 11:37:53 [info]: ✅ MongoDB Connected: 127.0.0.1
+2026-06-22 11:37:53 [info]: ⏰ Starting scheduler service...
+2026-06-22 11:37:53 [info]: ✅ Scheduler service started
+2026-06-22 11:37:53 [info]: 
+==================================================
+2026-06-22 11:37:53 [info]: 🏥 HealthCare AI Backend
+2026-06-22 11:37:53 [info]: 🚀 Server: http://localhost:5000
+2026-06-22 11:37:53 [info]: 📡 Environment: development
+2026-06-22 11:37:53 [info]: ==================================================
+
+2026-06-22 11:54:23 [info]: User logged in: james@email.com
+2026-06-22 12:03:02 [info]: User logged in: sarah@healthsys.com
+2026-06-22 14:01:34 [info]: User logged in: james@email.com
+2026-06-22 14:41:38 [error]: symptoms.join is not a function | POST /api/ai/symptom-check | IP: ::1
+2026-06-22 14:41:38 [error]: TypeError: symptoms.join is not a function
+    at C:\Users\Admin\Desktop\AI healthcare\backend\controllers\aiController.js:105:54
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+2026-06-22 14:44:04 [error]: symptoms.join is not a function | POST /api/ai/symptom-check | IP: ::1
+2026-06-22 14:44:04 [error]: TypeError: symptoms.join is not a function
+    at C:\Users\Admin\Desktop\AI healthcare\backend\controllers\aiController.js:105:54
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+2026-06-22 14:44:55 [info]: ✅ MongoDB Connected: 127.0.0.1
+2026-06-22 14:44:55 [info]: ⏰ Starting scheduler service...
+2026-06-22 14:44:55 [info]: ✅ Scheduler service started
+2026-06-22 14:44:55 [info]: 
+==================================================
+2026-06-22 14:44:55 [info]: 🏥 HealthCare AI Backend
+2026-06-22 14:44:55 [info]: 🚀 Server: http://localhost:5000
+2026-06-22 14:44:55 [info]: 📡 Environment: development
+2026-06-22 14:44:55 [info]: ==================================================
+
+2026-06-22 14:50:19 [info]: ✅ MongoDB Connected: 127.0.0.1
+2026-06-22 14:50:19 [info]: ⏰ Starting scheduler service...
+2026-06-22 14:50:19 [info]: ✅ Scheduler service started
+2026-06-22 14:50:19 [info]: 
+==================================================
+2026-06-22 14:50:19 [info]: 🏥 HealthCare AI Backend
+2026-06-22 14:50:19 [info]: 🚀 Server: http://localhost:5000
+2026-06-22 14:50:19 [info]: 📡 Environment: development
+2026-06-22 14:50:19 [info]: ==================================================
+
+2026-06-22 14:51:20 [error]: Gemini analyzeSymptoms error: [GoogleGenerativeAI Error]: Error fetching from https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent: [404 Not Found] models/gemini-1.5-flash is not found for API version v1beta, or is not supported for generateContent. Call ModelService.ListModels to see the list of available models and their supported methods.
+2026-06-22 14:53:26 [info]: ✅ MongoDB Connected: 127.0.0.1
+2026-06-22 14:53:26 [info]: ⏰ Starting scheduler service...
+2026-06-22 14:53:26 [info]: ✅ Scheduler service started
+2026-06-22 14:53:26 [info]: 
+==================================================
+2026-06-22 14:53:26 [info]: 🏥 HealthCare AI Backend
+2026-06-22 14:53:26 [info]: 🚀 Server: http://localhost:5000
+2026-06-22 14:53:26 [info]: 📡 Environment: development
+2026-06-22 14:53:26 [info]: ==================================================
+
+2026-06-22 14:53:34 [info]: ✅ MongoDB Connected: 127.0.0.1
+2026-06-22 14:53:34 [info]: ⏰ Starting scheduler service...
+2026-06-22 14:53:35 [info]: ✅ Scheduler service started
+2026-06-22 14:53:35 [info]: 
+==================================================
+2026-06-22 14:53:35 [info]: 🏥 HealthCare AI Backend
+2026-06-22 14:53:35 [info]: 🚀 Server: http://localhost:5000
+2026-06-22 14:53:35 [info]: 📡 Environment: development
+2026-06-22 14:53:35 [info]: ==================================================
+
+2026-06-22 14:55:09 [error]: Gemini analyzeSymptoms error: [GoogleGenerativeAI Error]: Error fetching from https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent: [404 Not Found] models/gemini-pro is not found for API version v1beta, or is not supported for generateContent. Call ModelService.ListModels to see the list of available models and their supported methods.
+2026-06-22 14:57:15 [info]: ✅ MongoDB Connected: 127.0.0.1
+2026-06-22 14:57:15 [info]: ⏰ Starting scheduler service...
+2026-06-22 14:57:15 [info]: ✅ Scheduler service started
+2026-06-22 14:57:15 [info]: 
+==================================================
+2026-06-22 14:57:15 [info]: 🏥 HealthCare AI Backend
+2026-06-22 14:57:15 [info]: 🚀 Server: http://localhost:5000
+2026-06-22 14:57:15 [info]: 📡 Environment: development
+2026-06-22 14:57:15 [info]: ==================================================
+
+2026-06-22 14:57:37 [info]: ✅ MongoDB Connected: 127.0.0.1
+2026-06-22 14:57:37 [info]: ⏰ Starting scheduler service...
+2026-06-22 14:57:37 [info]: ✅ Scheduler service started
+2026-06-22 14:57:37 [info]: 
+==================================================
+2026-06-22 14:57:37 [info]: 🏥 HealthCare AI Backend
+2026-06-22 14:57:37 [info]: 🚀 Server: http://localhost:5000
+2026-06-22 14:57:37 [info]: 📡 Environment: development
+2026-06-22 14:57:37 [info]: ==================================================
+
+2026-06-22 14:57:46 [info]: ✅ MongoDB Connected: 127.0.0.1
+2026-06-22 14:57:46 [info]: ⏰ Starting scheduler service...
+2026-06-22 14:57:46 [info]: ✅ Scheduler service started
+2026-06-22 14:57:46 [info]: 
+==================================================
+2026-06-22 14:57:46 [info]: 🏥 HealthCare AI Backend
+2026-06-22 14:57:46 [info]: 🚀 Server: http://localhost:5000
+2026-06-22 14:57:46 [info]: 📡 Environment: development
+2026-06-22 14:57:46 [info]: ==================================================
+
+2026-06-22 15:07:36 [error]: undefined | POST /api/reports/upload | IP: ::1
+2026-06-22 15:07:36 [error]: undefined
+2026-06-22 15:08:36 [info]: ✅ MongoDB Connected: 127.0.0.1
+2026-06-22 15:08:36 [info]: ⏰ Starting scheduler service...
+2026-06-22 15:08:36 [info]: ✅ Scheduler service started
+2026-06-22 15:08:36 [info]: 
+==================================================
+2026-06-22 15:08:36 [info]: 🏥 HealthCare AI Backend
+2026-06-22 15:08:36 [info]: 🚀 Server: http://localhost:5000
+2026-06-22 15:08:36 [info]: 📡 Environment: development
+2026-06-22 15:08:36 [info]: ==================================================
+
+2026-06-22 15:08:49 [info]: ✅ MongoDB Connected: 127.0.0.1
+2026-06-22 15:08:49 [info]: ⏰ Starting scheduler service...
+2026-06-22 15:08:49 [info]: ✅ Scheduler service started
+2026-06-22 15:08:49 [info]: 
+==================================================
+2026-06-22 15:08:49 [info]: 🏥 HealthCare AI Backend
+2026-06-22 15:08:49 [info]: 🚀 Server: http://localhost:5000
+2026-06-22 15:08:49 [info]: 📡 Environment: development
+2026-06-22 15:08:49 [info]: ==================================================
+
+2026-06-22 15:10:50 [error]: MedicalReport validation failed: reportType: `Blood Test` is not a valid enum value for path `reportType`. | POST /api/reports/upload | IP: ::1
+2026-06-22 15:10:50 [error]: ValidationError: MedicalReport validation failed: reportType: `Blood Test` is not a valid enum value for path `reportType`.
+    at Document.invalidate (C:\Users\Admin\Desktop\AI healthcare\backend\node_modules\mongoose\lib\document.js:3381:32)
+    at C:\Users\Admin\Desktop\AI healthcare\backend\node_modules\mongoose\lib\document.js:3142:17
+    at C:\Users\Admin\Desktop\AI healthcare\backend\node_modules\mongoose\lib\schemaType.js:1443:9
+    at process.processTicksAndRejections (node:internal/process/task_queues:85:11)
+2026-06-22 15:17:37 [info]: ✅ MongoDB Connected: 127.0.0.1
+2026-06-22 15:17:37 [info]: ⏰ Starting scheduler service...
+2026-06-22 15:17:37 [info]: ✅ Scheduler service started
+2026-06-22 15:17:37 [info]: 
+==================================================
+2026-06-22 15:17:37 [info]: 🏥 HealthCare AI Backend
+2026-06-22 15:17:37 [info]: 🚀 Server: http://localhost:5000
+2026-06-22 15:17:37 [info]: 📡 Environment: development
+2026-06-22 15:17:37 [info]: ==================================================
+
+2026-06-22 15:22:40 [info]: ✅ MongoDB Connected: 127.0.0.1
+2026-06-22 15:22:40 [info]: ⏰ Starting scheduler service...
+2026-06-22 15:22:40 [info]: ✅ Scheduler service started
+2026-06-22 15:22:40 [info]: 
+==================================================
+2026-06-22 15:22:40 [info]: 🏥 HealthCare AI Backend
+2026-06-22 15:22:40 [info]: 🚀 Server: http://localhost:5000
+2026-06-22 15:22:40 [info]: 📡 Environment: development
+2026-06-22 15:22:40 [info]: ==================================================
+
+2026-06-22 15:22:54 [info]: ✅ MongoDB Connected: 127.0.0.1
+2026-06-22 15:22:54 [info]: ⏰ Starting scheduler service...
+2026-06-22 15:22:54 [info]: ✅ Scheduler service started
+2026-06-22 15:22:54 [info]: 
+==================================================
+2026-06-22 15:22:54 [info]: 🏥 HealthCare AI Backend
+2026-06-22 15:22:54 [info]: 🚀 Server: http://localhost:5000
+2026-06-22 15:22:54 [info]: 📡 Environment: development
+2026-06-22 15:22:54 [info]: ==================================================
+
+2026-06-22 15:27:33 [error]: Invalid file type. Only JPG, PNG, WEBP, and PDF are allowed. | POST /api/reports/upload | IP: ::1
+2026-06-22 15:27:33 [error]: Error: Invalid file type. Only JPG, PNG, WEBP, and PDF are allowed.
+    at fileFilter (C:\Users\Admin\Desktop\AI healthcare\backend\config\cloudinary.js:80:10)
+    at wrappedFileFilter (C:\Users\Admin\Desktop\AI healthcare\backend\node_modules\multer\index.js:44:7)
+    at Multipart.<anonymous> (C:\Users\Admin\Desktop\AI healthcare\backend\node_modules\multer\lib\make-middleware.js:109:7)
+    at Multipart.emit (node:events:509:28)
+    at HeaderParser.cb (C:\Users\Admin\Desktop\AI healthcare\backend\node_modules\busboy\lib\types\multipart.js:358:14)
+    at HeaderParser.push (C:\Users\Admin\Desktop\AI healthcare\backend\node_modules\busboy\lib\types\multipart.js:162:20)
+    at SBMH.ssCb [as _cb] (C:\Users\Admin\Desktop\AI healthcare\backend\node_modules\busboy\lib\types\multipart.js:394:37)
+    at feed (C:\Users\Admin\Desktop\AI healthcare\backend\node_modules\streamsearch\lib\sbmh.js:219:14)
+    at SBMH.push (C:\Users\Admin\Desktop\AI healthcare\backend\node_modules\streamsearch\lib\sbmh.js:104:16)
+    at Multipart._write (C:\Users\Admin\Desktop\AI healthcare\backend\node_modules\busboy\lib\types\multipart.js:567:19)
+2026-06-22 15:27:39 [error]: Invalid file type. Only JPG, PNG, WEBP, and PDF are allowed. | POST /api/reports/upload | IP: ::1
+2026-06-22 15:27:39 [error]: Error: Invalid file type. Only JPG, PNG, WEBP, and PDF are allowed.
+    at fileFilter (C:\Users\Admin\Desktop\AI healthcare\backend\config\cloudinary.js:80:10)
+    at wrappedFileFilter (C:\Users\Admin\Desktop\AI healthcare\backend\node_modules\multer\index.js:44:7)
+    at Multipart.<anonymous> (C:\Users\Admin\Desktop\AI healthcare\backend\node_modules\multer\lib\make-middleware.js:109:7)
+    at Multipart.emit (node:events:509:28)
+    at HeaderParser.cb (C:\Users\Admin\Desktop\AI healthcare\backend\node_modules\busboy\lib\types\multipart.js:358:14)
+    at HeaderParser.push (C:\Users\Admin\Desktop\AI healthcare\backend\node_modules\busboy\lib\types\multipart.js:162:20)
+    at SBMH.ssCb [as _cb] (C:\Users\Admin\Desktop\AI healthcare\backend\node_modules\busboy\lib\types\multipart.js:394:37)
+    at feed (C:\Users\Admin\Desktop\AI healthcare\backend\node_modules\streamsearch\lib\sbmh.js:219:14)
+    at SBMH.push (C:\Users\Admin\Desktop\AI healthcare\backend\node_modules\streamsearch\lib\sbmh.js:104:16)
+    at Multipart._write (C:\Users\Admin\Desktop\AI healthcare\backend\node_modules\busboy\lib\types\multipart.js:567:19)
+2026-06-22 15:28:20 [info]: ✅ MongoDB Connected: 127.0.0.1
+2026-06-22 15:28:20 [info]: ⏰ Starting scheduler service...
+2026-06-22 15:28:20 [info]: ✅ Scheduler service started
+2026-06-22 15:28:20 [info]: 
+==================================================
+2026-06-22 15:28:20 [info]: 🏥 HealthCare AI Backend
+2026-06-22 15:28:20 [info]: 🚀 Server: http://localhost:5000
+2026-06-22 15:28:20 [info]: 📡 Environment: development
+2026-06-22 15:28:20 [info]: ==================================================
+
+2026-06-22 15:29:19 [error]: Invalid file type. Only JPG, PNG, WEBP, and PDF are allowed. | POST /api/reports/upload | IP: ::1
+2026-06-22 15:29:19 [error]: Error: Invalid file type. Only JPG, PNG, WEBP, and PDF are allowed.
+    at fileFilter (C:\Users\Admin\Desktop\AI healthcare\backend\config\cloudinary.js:81:10)
+    at wrappedFileFilter (C:\Users\Admin\Desktop\AI healthcare\backend\node_modules\multer\index.js:44:7)
+    at Multipart.<anonymous> (C:\Users\Admin\Desktop\AI healthcare\backend\node_modules\multer\lib\make-middleware.js:109:7)
+    at Multipart.emit (node:events:509:28)
+    at HeaderParser.cb (C:\Users\Admin\Desktop\AI healthcare\backend\node_modules\busboy\lib\types\multipart.js:358:14)
+    at HeaderParser.push (C:\Users\Admin\Desktop\AI healthcare\backend\node_modules\busboy\lib\types\multipart.js:162:20)
+    at SBMH.ssCb [as _cb] (C:\Users\Admin\Desktop\AI healthcare\backend\node_modules\busboy\lib\types\multipart.js:394:37)
+    at feed (C:\Users\Admin\Desktop\AI healthcare\backend\node_modules\streamsearch\lib\sbmh.js:219:14)
+    at SBMH.push (C:\Users\Admin\Desktop\AI healthcare\backend\node_modules\streamsearch\lib\sbmh.js:104:16)
+    at Multipart._write (C:\Users\Admin\Desktop\AI healthcare\backend\node_modules\busboy\lib\types\multipart.js:567:19)
+2026-06-22 15:30:36 [info]: ✅ MongoDB Connected: 127.0.0.1
+2026-06-22 15:30:36 [info]: ⏰ Starting scheduler service...
+2026-06-22 15:30:36 [info]: ✅ Scheduler service started
+2026-06-22 15:30:36 [info]: 
+==================================================
+2026-06-22 15:30:36 [info]: 🏥 HealthCare AI Backend
+2026-06-22 15:30:36 [info]: 🚀 Server: http://localhost:5000
+2026-06-22 15:30:36 [info]: 📡 Environment: development
+2026-06-22 15:30:36 [info]: ==================================================
+
+2026-06-22 16:27:28 [info]: User logged in: sarah@healthsys.com
+2026-06-22 17:05:44 [info]: User logged in: james@email.com
+2026-06-22 17:28:09 [error]: Invalid credentials | POST /api/auth/login | IP: ::1
+2026-06-22 17:28:09 [error]: Error: Invalid credentials
+    at C:\Users\Admin\Desktop\AI healthcare\backend\controllers\authController.js:92:17
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+2026-06-22 17:28:17 [info]: User logged in: sarah@healthsys.com
+2026-06-22 18:24:43 [info]: User logged in: james@email.com
+2026-06-23 10:01:20 [info]: ✅ MongoDB Connected: 127.0.0.1
+2026-06-23 10:01:20 [info]: ⏰ Starting scheduler service...
+2026-06-23 10:01:20 [info]: ✅ Scheduler service started
+2026-06-23 10:01:20 [info]: 
+==================================================
+2026-06-23 10:01:20 [info]: 🏥 HealthCare AI Backend
+2026-06-23 10:01:20 [info]: 🚀 Server: http://localhost:5000
+2026-06-23 10:01:20 [info]: 📡 Environment: development
+2026-06-23 10:01:20 [info]: ==================================================
+
+2026-06-23 10:07:36 [info]: User logged in: sarah@healthsys.com
+2026-06-23 10:27:14 [info]: User logged in: james@email.com
+2026-06-23 10:43:56 [info]: User logged in: sarah@healthsys.com
+2026-06-23 10:47:47 [error]: Invalid credentials | POST /api/auth/login | IP: ::1
+2026-06-23 10:47:47 [error]: Error: Invalid credentials
+    at C:\Users\Admin\Desktop\AI healthcare\backend\controllers\authController.js:92:17
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+2026-06-23 10:47:51 [info]: User logged in: james@email.com
+2026-06-23 11:02:06 [info]: User logged in: sarah@healthsys.com
+2026-06-23 11:04:27 [info]: ✅ MongoDB Connected: 127.0.0.1
+2026-06-23 11:04:27 [info]: ⏰ Starting scheduler service...
+2026-06-23 11:04:27 [info]: ✅ Scheduler service started
+2026-06-23 11:04:27 [info]: 
+==================================================
+2026-06-23 11:04:27 [info]: 🏥 HealthCare AI Backend
+2026-06-23 11:04:27 [info]: 🚀 Server: http://localhost:5000
+2026-06-23 11:04:27 [info]: 📡 Environment: development
+2026-06-23 11:04:27 [info]: ==================================================
+
+2026-06-23 11:04:47 [info]: ✅ MongoDB Connected: 127.0.0.1
+2026-06-23 11:04:47 [info]: ⏰ Starting scheduler service...
+2026-06-23 11:04:47 [info]: ✅ Scheduler service started
+2026-06-23 11:04:47 [info]: 
+==================================================
+2026-06-23 11:04:47 [info]: 🏥 HealthCare AI Backend
+2026-06-23 11:04:47 [info]: 🚀 Server: http://localhost:5000
+2026-06-23 11:04:47 [info]: 📡 Environment: development
+2026-06-23 11:04:47 [info]: ==================================================
+
+2026-06-23 11:09:22 [error]: Role 'doctor' is not authorized to access this route | POST /api/appointments | IP: ::1
+2026-06-23 11:09:22 [error]: Error: Role 'doctor' is not authorized to access this route
+    at C:\Users\Admin\Desktop\AI healthcare\backend\middleware\auth.js:52:9
+    at Layer.handle [as handle_request] (C:\Users\Admin\Desktop\AI healthcare\backend\node_modules\express\lib\router\layer.js:95:5)
+    at next (C:\Users\Admin\Desktop\AI healthcare\backend\node_modules\express\lib\router\route.js:149:13)
+    at Route.dispatch (C:\Users\Admin\Desktop\AI healthcare\backend\node_modules\express\lib\router\route.js:119:3)
+    at Layer.handle [as handle_request] (C:\Users\Admin\Desktop\AI healthcare\backend\node_modules\express\lib\router\layer.js:95:5)
+    at C:\Users\Admin\Desktop\AI healthcare\backend\node_modules\express\lib\router\index.js:284:15
+    at router.process_params (C:\Users\Admin\Desktop\AI healthcare\backend\node_modules\express\lib\router\index.js:346:12)
+    at next (C:\Users\Admin\Desktop\AI healthcare\backend\node_modules\express\lib\router\index.js:280:10)
+    at C:\Users\Admin\Desktop\AI healthcare\backend\middleware\auth.js:38:5
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+2026-06-23 11:10:49 [info]: ✅ MongoDB Connected: 127.0.0.1
+2026-06-23 11:10:49 [info]: ⏰ Starting scheduler service...
+2026-06-23 11:10:49 [info]: ✅ Scheduler service started
+2026-06-23 11:10:49 [info]: 
+==================================================
+2026-06-23 11:10:49 [info]: 🏥 HealthCare AI Backend
+2026-06-23 11:10:49 [info]: 🚀 Server: http://localhost:5000
+2026-06-23 11:10:49 [info]: 📡 Environment: development
+2026-06-23 11:10:49 [info]: ==================================================
+
+2026-06-23 11:27:20 [info]: User logged in: james@email.com
+2026-06-23 11:33:31 [error]: Doctor not found | POST /api/appointments | IP: ::1
+2026-06-23 11:33:31 [error]: Error: Doctor not found
+    at C:\Users\Admin\Desktop\AI healthcare\backend\controllers\appointmentController.js:103:28
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+2026-06-23 11:36:58 [error]: Email failed to james@email.com: connect ECONNREFUSED ::1:587
+2026-06-23 11:36:58 [error]: Appointment email error: connect ECONNREFUSED ::1:587
+2026-06-23 11:42:57 [info]: ✅ MongoDB Connected: 127.0.0.1
+2026-06-23 11:42:57 [info]: ⏰ Starting scheduler service...
+2026-06-23 11:42:57 [info]: ✅ Scheduler service started
+2026-06-23 11:42:57 [info]: 
+==================================================
+2026-06-23 11:42:57 [info]: 🏥 HealthCare AI Backend
+2026-06-23 11:42:57 [info]: 🚀 Server: http://localhost:5000
+2026-06-23 11:42:57 [info]: 📡 Environment: development
+2026-06-23 11:42:57 [info]: ==================================================
+
+2026-06-23 11:43:08 [info]: ✅ MongoDB Connected: 127.0.0.1
+2026-06-23 11:43:08 [info]: ⏰ Starting scheduler service...
+2026-06-23 11:43:08 [info]: ✅ Scheduler service started
+2026-06-23 11:43:08 [info]: 
+==================================================
+2026-06-23 11:43:08 [info]: 🏥 HealthCare AI Backend
+2026-06-23 11:43:08 [info]: 🚀 Server: http://localhost:5000
+2026-06-23 11:43:08 [info]: 📡 Environment: development
+2026-06-23 11:43:08 [info]: ==================================================
+
+2026-06-23 11:43:34 [info]: Socket connected: VYYxjJFmZCFJ3JvfAAAC
+2026-06-23 11:43:34 [info]: Socket connected: fFW74jPH-Q44t1cGAAAG
+2026-06-23 11:43:34 [info]: User 6a353eed2d45912906363a37 joined their room
+2026-06-23 11:43:34 [info]: Socket connected: _gGMlIo8g9kdmCCRAAAI
+2026-06-23 11:43:34 [info]: User 6a353eed2d45912906363a37 joined their room
+2026-06-23 11:43:35 [info]: Socket connected: _iLNw5cCF6OEm-uTAAAP
+2026-06-23 11:43:35 [info]: Socket connected: ZcEeEcYgJzd4IruQAAAQ
+2026-06-23 11:43:35 [info]: User 6a353eed2d45912906363a37 joined their room
+2026-06-23 11:43:35 [info]: Socket connected: fVdJBCbHkLB3LT5PAAAR
+2026-06-23 11:43:35 [info]: User 6a353eed2d45912906363a37 joined their room
+2026-06-23 11:43:35 [info]: User 6a353eed2d45912906363a37 joined their room
+2026-06-23 11:48:03 [info]: User logged in: sarah@healthsys.com
+2026-06-23 11:48:03 [info]: Socket connected: zDNnA2qZ0ApI4ixUAAAT
+2026-06-23 11:48:03 [info]: User 6a353eeb2d45912906363a24 joined their room
+2026-06-23 12:00:00 [info]: Marked 1 appointments as no-show
+2026-06-23 12:04:44 [info]: ✅ MongoDB Connected: 127.0.0.1
+2026-06-23 12:04:44 [info]: ⏰ Starting scheduler service...
+2026-06-23 12:04:44 [info]: ✅ Scheduler service started
+2026-06-23 12:04:44 [info]: 
+==================================================
+2026-06-23 12:04:44 [info]: 🏥 HealthCare AI Backend
+2026-06-23 12:04:44 [info]: 🚀 Server: http://localhost:5000
+2026-06-23 12:04:44 [info]: 📡 Environment: development
+2026-06-23 12:04:44 [info]: ==================================================
+
+2026-06-23 12:04:44 [info]: Socket connected: MEVk0LtG_f1MzVO-AAAD
+2026-06-23 12:04:44 [info]: Socket connected: Va4XgfIWEFj490UuAAAE
+2026-06-23 12:04:44 [info]: Socket connected: IuoNH0V1Lel-cjR7AAAF
+2026-06-23 12:04:44 [info]: User 6a353eed2d45912906363a37 joined their room
+2026-06-23 12:04:44 [info]: User 6a353eeb2d45912906363a24 joined their room
+2026-06-23 12:04:44 [info]: User 6a353eed2d45912906363a37 joined their room
+2026-06-23 12:05:03 [info]: ✅ MongoDB Connected: 127.0.0.1
+2026-06-23 12:05:03 [info]: ⏰ Starting scheduler service...
+2026-06-23 12:05:03 [info]: ✅ Scheduler service started
+2026-06-23 12:05:03 [info]: 
+==================================================
+2026-06-23 12:05:03 [info]: 🏥 HealthCare AI Backend
+2026-06-23 12:05:03 [info]: 🚀 Server: http://localhost:5000
+2026-06-23 12:05:03 [info]: 📡 Environment: development
+2026-06-23 12:05:03 [info]: ==================================================
+
+2026-06-23 12:05:03 [info]: Socket connected: UVvtPq53Ak0lHAjYAAAD
+2026-06-23 12:05:03 [info]: Socket connected: 6abDFKSyt6xB5PkeAAAE
+2026-06-23 12:05:03 [info]: Socket connected: Vn3ObJwWg9oHFMUIAAAF
+2026-06-23 12:05:03 [info]: User 6a353eed2d45912906363a37 joined their room
+2026-06-23 12:05:03 [info]: User 6a353eed2d45912906363a37 joined their room
+2026-06-23 12:05:03 [info]: User 6a353eeb2d45912906363a24 joined their room
+2026-06-23 12:10:11 [info]: ✅ MongoDB Connected: 127.0.0.1
+2026-06-23 12:10:11 [info]: ⏰ Starting scheduler service...
+2026-06-23 12:10:11 [info]: ✅ Scheduler service started
+2026-06-23 12:10:11 [info]: 
+==================================================
+2026-06-23 12:10:11 [info]: 🏥 HealthCare AI Backend
+2026-06-23 12:10:11 [info]: 🚀 Server: http://localhost:5000
+2026-06-23 12:10:11 [info]: 📡 Environment: development
+2026-06-23 12:10:11 [info]: ==================================================
+
+2026-06-23 12:10:12 [info]: Socket connected: ylBm27JJ46Y6hL-MAAAD
+2026-06-23 12:10:12 [info]: Socket connected: hfjJOHNQC8tlLlcVAAAE
+2026-06-23 12:10:12 [info]: Socket connected: kccXroeVHR7rbOTcAAAF
+2026-06-23 12:10:12 [info]: User 6a353eed2d45912906363a37 joined their room
+2026-06-23 12:10:12 [info]: User 6a353eed2d45912906363a37 joined their room
+2026-06-23 12:10:12 [info]: User 6a353eeb2d45912906363a24 joined their room
+2026-06-23 12:10:17 [info]: ✅ MongoDB Connected: 127.0.0.1
+2026-06-23 12:10:17 [info]: ⏰ Starting scheduler service...
+2026-06-23 12:10:18 [info]: ✅ Scheduler service started
+2026-06-23 12:10:18 [info]: 
+==================================================
+2026-06-23 12:10:18 [info]: 🏥 HealthCare AI Backend
+2026-06-23 12:10:18 [info]: 🚀 Server: http://localhost:5000
+2026-06-23 12:10:18 [info]: 📡 Environment: development
+2026-06-23 12:10:18 [info]: ==================================================
+
+2026-06-23 12:10:18 [info]: Socket connected: sjayBlgWL8orhVwoAAAD
+2026-06-23 12:10:18 [info]: Socket connected: CLDZi0TYn9bWSgyBAAAE
+2026-06-23 12:10:18 [info]: Socket connected: Sz6khblwIM7ncwhoAAAF
+2026-06-23 12:10:18 [info]: User 6a353eed2d45912906363a37 joined their room
+2026-06-23 12:10:18 [info]: User 6a353eed2d45912906363a37 joined their room
+2026-06-23 12:10:18 [info]: User 6a353eeb2d45912906363a24 joined their room
+2026-06-23 12:10:30 [info]: ✅ MongoDB Connected: 127.0.0.1
+2026-06-23 12:10:30 [info]: ⏰ Starting scheduler service...
+2026-06-23 12:10:30 [info]: ✅ Scheduler service started
+2026-06-23 12:10:30 [info]: 
+==================================================
+2026-06-23 12:10:30 [info]: 🏥 HealthCare AI Backend
+2026-06-23 12:10:30 [info]: 🚀 Server: http://localhost:5000
+2026-06-23 12:10:30 [info]: 📡 Environment: development
+2026-06-23 12:10:30 [info]: ==================================================
+
+2026-06-23 12:10:30 [info]: Socket connected: 10JX4vyW_u7XWflrAAAB
+2026-06-23 12:10:30 [info]: User 6a353eed2d45912906363a37 joined their room
+2026-06-23 12:10:30 [info]: Socket connected: 7XhsoPaEE4DDBR1SAAAE
+2026-06-23 12:10:30 [info]: Socket connected: OillwqC935KyWVlyAAAF
+2026-06-23 12:10:30 [info]: User 6a353eed2d45912906363a37 joined their room
+2026-06-23 12:10:30 [info]: User 6a353eeb2d45912906363a24 joined their room
+2026-06-23 12:10:47 [info]: ✅ MongoDB Connected: 127.0.0.1
+2026-06-23 12:10:47 [info]: ⏰ Starting scheduler service...
+2026-06-23 12:10:47 [info]: ✅ Scheduler service started
+2026-06-23 12:10:47 [info]: 
+==================================================
+2026-06-23 12:10:47 [info]: 🏥 HealthCare AI Backend
+2026-06-23 12:10:47 [info]: 🚀 Server: http://localhost:5000
+2026-06-23 12:10:47 [info]: 📡 Environment: development
+2026-06-23 12:10:47 [info]: ==================================================
+
+2026-06-23 12:10:47 [info]: Socket connected: b-ZXfsn2fMnOU9vcAAAB
+2026-06-23 12:10:47 [info]: User 6a353eed2d45912906363a37 joined their room
+2026-06-23 12:10:47 [info]: Socket connected: K2tJYswsmwtqqRH6AAAE
+2026-06-23 12:10:47 [info]: Socket connected: sqp3OVObEzzMln73AAAF
+2026-06-23 12:10:47 [info]: User 6a353eed2d45912906363a37 joined their room
+2026-06-23 12:10:48 [info]: User 6a353eeb2d45912906363a24 joined their room
+2026-06-23 12:16:13 [info]: ✅ MongoDB Connected: 127.0.0.1
+2026-06-23 12:16:13 [info]: ⏰ Starting scheduler service...
+2026-06-23 12:16:13 [info]: ✅ Scheduler service started
+2026-06-23 12:16:13 [info]: 
+==================================================
+2026-06-23 12:16:13 [info]: 🏥 HealthCare AI Backend
+2026-06-23 12:16:13 [info]: 🚀 Server: http://localhost:5000
+2026-06-23 12:16:13 [info]: 📡 Environment: development
+2026-06-23 12:16:13 [info]: ==================================================
+
+2026-06-23 12:16:16 [info]: Socket connected: gnMGUJo5U-qMbrTfAAAC
+2026-06-23 12:16:16 [info]: Socket connected: JzDzyPkuVToJtDYBAAAD
+2026-06-23 12:16:16 [info]: User 6a353eeb2d45912906363a24 joined their room
+2026-06-23 12:16:16 [info]: User 6a353eeb2d45912906363a24 joined their room
+2026-06-23 12:17:17 [error]: Invalid credentials | POST /api/auth/login | IP: ::1
+2026-06-23 12:17:17 [error]: Error: Invalid credentials
+    at C:\Users\Admin\Desktop\AI healthcare\backend\controllers\authController.js:92:17
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+2026-06-23 12:17:18 [error]: Invalid credentials | POST /api/auth/login | IP: ::1
+2026-06-23 12:17:18 [error]: Error: Invalid credentials
+    at C:\Users\Admin\Desktop\AI healthcare\backend\controllers\authController.js:92:17
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+2026-06-23 12:18:28 [info]: User logged in: james@email.com
+2026-06-23 12:18:28 [info]: Socket connected: Sv0hEcsEyFpzbtsuAAAF
+2026-06-23 12:18:28 [info]: User 6a353eed2d45912906363a37 joined their room
+2026-06-23 12:18:31 [info]: Socket connected: ZMWS8Z1EtkP9Znp5AAAI
+2026-06-23 12:18:31 [info]: User 6a353eed2d45912906363a37 joined their room
+2026-06-23 12:34:20 [info]: User logged in: admin@healthsys.com
+2026-06-23 12:34:20 [info]: Socket connected: vPQyKexJMVt_Nh0zAAAK
+2026-06-23 12:34:20 [info]: User 6a353eeb2d45912906363a19 joined their room
+2026-06-23 13:05:01 [info]: ✅ MongoDB Connected: 127.0.0.1
+2026-06-23 13:05:01 [info]: ⏰ Starting scheduler service...
+2026-06-23 13:05:01 [info]: ✅ Scheduler service started
+2026-06-23 13:05:01 [info]: 
+==================================================
+2026-06-23 13:05:01 [info]: 🏥 HealthCare AI Backend
+2026-06-23 13:05:01 [info]: 🚀 Server: http://localhost:5000
+2026-06-23 13:05:01 [info]: 📡 Environment: development
+2026-06-23 13:05:01 [info]: ==================================================
+
+2026-06-23 13:05:01 [info]: Socket connected: qvgrYEJT3dHDY77HAAAD
+2026-06-23 13:05:01 [info]: Socket connected: Lxw5TVpsH4LLoZA0AAAE
+2026-06-23 13:05:01 [info]: Socket connected: Es4p2oQaK_yj8EGYAAAF
+2026-06-23 13:05:01 [info]: User 6a353eeb2d45912906363a24 joined their room
+2026-06-23 13:05:01 [info]: User 6a353eed2d45912906363a37 joined their room
+2026-06-23 13:05:01 [info]: User 6a353eeb2d45912906363a19 joined their room
+2026-06-23 13:05:09 [info]: ✅ MongoDB Connected: 127.0.0.1
+2026-06-23 13:05:09 [info]: ⏰ Starting scheduler service...
+2026-06-23 13:05:09 [info]: ✅ Scheduler service started
+2026-06-23 13:05:09 [info]: 
+==================================================
+2026-06-23 13:05:09 [info]: 🏥 HealthCare AI Backend
+2026-06-23 13:05:09 [info]: 🚀 Server: http://localhost:5000
+2026-06-23 13:05:09 [info]: 📡 Environment: development
+2026-06-23 13:05:09 [info]: ==================================================
+
+2026-06-23 13:05:09 [info]: Socket connected: XHoWvWXDfmSKY3q-AAAD
+2026-06-23 13:05:09 [info]: Socket connected: jZFc73OuJMj3edc2AAAE
+2026-06-23 13:05:10 [info]: Socket connected: sNmLkhV7kQnyFwl_AAAF
+2026-06-23 13:05:10 [info]: User 6a353eeb2d45912906363a19 joined their room
+2026-06-23 13:05:10 [info]: User 6a353eed2d45912906363a37 joined their room
+2026-06-23 13:05:10 [info]: User 6a353eeb2d45912906363a24 joined their room
+2026-06-23 13:09:59 [info]: Socket connected: pHgkzxLjD4KbPQuVAAAI
+2026-06-23 13:10:00 [info]: User 6a353eed2d45912906363a37 joined their room
+2026-06-23 13:10:00 [info]: Socket connected: GoN8cDej3P_P-M6-AAAJ
+2026-06-23 13:10:00 [info]: User 6a353eeb2d45912906363a19 joined their room
+2026-06-23 13:10:01 [info]: Socket connected: xhaW87Mj1SfbZDDRAAAQ
+2026-06-23 13:10:01 [info]: Socket connected: kQvBWEoPQJqHEYcRAAAR
+2026-06-23 13:10:01 [info]: Socket connected: VEOyWJFzq6SMpkqiAAAS
+2026-06-23 13:10:01 [info]: User 6a353eeb2d45912906363a19 joined their room
+2026-06-23 13:10:02 [info]: User 6a353eeb2d45912906363a19 joined their room
+2026-06-23 13:10:02 [info]: User 6a353eeb2d45912906363a19 joined their room
+2026-06-23 13:11:43 [info]: Socket connected: WJ7W4tAhQVHZ6F9cAAAV
+2026-06-23 13:11:43 [info]: User 6a353eeb2d45912906363a19 joined their room
+2026-06-23 13:11:43 [info]: Socket connected: HJM-qm_oEpTBy1pVAAAY
+2026-06-23 13:11:43 [info]: User 6a353eeb2d45912906363a19 joined their room
+2026-06-23 13:11:43 [info]: Socket connected: Y88_iAPNfcBXRYaaAAAb
+2026-06-23 13:11:43 [info]: User 6a353eeb2d45912906363a19 joined their room
+2026-06-23 13:12:49 [info]: Socket connected: -piJYSJsnwP2UFQGAAAe
+2026-06-23 13:12:49 [info]: User 6a353eeb2d45912906363a19 joined their room
+2026-06-23 13:12:49 [info]: Socket connected: 2wiiGU-TrU2Mo3w7AAAj
+2026-06-23 13:12:49 [info]: Socket connected: _6eRGEieFF8vsiyrAAAk
+2026-06-23 13:12:49 [info]: User 6a353eeb2d45912906363a19 joined their room
+2026-06-23 13:12:49 [info]: User 6a353eeb2d45912906363a19 joined their room
+2026-06-23 14:02:58 [info]: Socket connected: pfhihZwhL9UF1TlwAAAm
+2026-06-23 14:02:58 [info]: User 6a353eeb2d45912906363a19 joined their room
+2026-06-23 14:02:59 [info]: Socket connected: eGgCeXYyD2rkqcmrAAAp
+2026-06-23 14:02:59 [info]: User 6a353eeb2d45912906363a19 joined their room
+2026-06-23 14:02:59 [info]: Socket connected: x0RZ2pog2EIZJ3CuAAAs
+2026-06-23 14:02:59 [info]: User 6a353eeb2d45912906363a19 joined their room
+2026-06-23 14:03:00 [info]: Socket connected: XhLK60kAc5Tvf2ESAAAv
+2026-06-23 14:03:00 [info]: User 6a353eeb2d45912906363a19 joined their room
+2026-06-23 14:04:52 [info]: Socket connected: 7b6S2hN459N5bKOtAAAy
+2026-06-23 14:04:52 [info]: User 6a353eeb2d45912906363a19 joined their room
+2026-06-23 14:04:53 [info]: Socket connected: iA--U5PM2OW69xPQAAA1
+2026-06-23 14:04:53 [info]: User 6a353eeb2d45912906363a19 joined their room
+2026-06-23 14:04:53 [info]: Socket connected: R8n5m_Iu4SESWGGxAAA4
+2026-06-23 14:04:53 [info]: User 6a353eeb2d45912906363a19 joined their room
+2026-06-23 14:19:39 [info]: Socket connected: PS-vfsKa8mpIz-r_AAA7
+2026-06-23 14:19:39 [info]: User 6a353eeb2d45912906363a19 joined their room
+2026-06-23 14:19:42 [info]: Socket connected: wnVwtGV-UVP-UJzrAAA-
+2026-06-23 14:19:42 [info]: User 6a353eeb2d45912906363a19 joined their room
+2026-06-23 14:19:43 [info]: Socket connected: 2Btz673-WZLg2QEeAABB
+2026-06-23 14:19:43 [info]: User 6a353eeb2d45912906363a19 joined their room
+2026-06-23 14:19:43 [info]: Socket connected: PAgs2poFLCYISIfdAABE
+2026-06-23 14:19:43 [info]: User 6a353eeb2d45912906363a19 joined their room
+2026-06-23 14:19:44 [info]: Socket connected: sTA05AiAH81sEg_VAABH
+2026-06-23 14:19:44 [info]: User 6a353eeb2d45912906363a19 joined their room
+2026-06-23 14:21:42 [info]: Socket connected: aGSxZ1gmR8wPTnQYAABK
+2026-06-23 14:21:42 [info]: User 6a353eeb2d45912906363a19 joined their room
+2026-06-23 14:23:05 [info]: User logged in: admin@healthsys.com
+2026-06-23 14:23:05 [info]: Socket connected: qaF1W4abRyZ7aYoCAABM
+2026-06-23 14:23:05 [info]: User 6a353eeb2d45912906363a19 joined their room
+2026-06-23 14:26:31 [info]: User logged in: james@email.com
+2026-06-23 14:26:31 [info]: Socket connected: I0ay5oqTrxrmMAC-AABO
+2026-06-23 14:26:31 [info]: User 6a353eed2d45912906363a37 joined their room
+2026-06-23 14:26:44 [info]: User logged in: sarah@healthsys.com
+2026-06-23 14:26:44 [info]: Socket connected: WgcvYW2foIPoqig_AABQ
+2026-06-23 14:26:44 [info]: User 6a353eeb2d45912906363a24 joined their room
+2026-06-23 14:54:17 [info]: Socket connected: ephwUWz6RzoSXnjaAABS
+2026-06-23 14:54:17 [info]: User 6a353eeb2d45912906363a24 joined their room
+2026-06-23 14:54:19 [error]: Role 'doctor' is not authorized to access this route | GET /api/admin/doctors | IP: ::1
+2026-06-23 14:54:19 [error]: Error: Role 'doctor' is not authorized to access this route
+    at C:\Users\Admin\Desktop\AI healthcare\backend\middleware\auth.js:52:9
+    at Layer.handle [as handle_request] (C:\Users\Admin\Desktop\AI healthcare\backend\node_modules\express\lib\router\layer.js:95:5)
+    at next (C:\Users\Admin\Desktop\AI healthcare\backend\node_modules\express\lib\router\route.js:149:13)
+    at C:\Users\Admin\Desktop\AI healthcare\backend\middleware\auth.js:38:5
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+2026-06-23 14:54:19 [error]: Role 'doctor' is not authorized to access this route | GET /api/admin/doctors | IP: ::1
+2026-06-23 14:54:19 [error]: Error: Role 'doctor' is not authorized to access this route
+    at C:\Users\Admin\Desktop\AI healthcare\backend\middleware\auth.js:52:9
+    at Layer.handle [as handle_request] (C:\Users\Admin\Desktop\AI healthcare\backend\node_modules\express\lib\router\layer.js:95:5)
+    at next (C:\Users\Admin\Desktop\AI healthcare\backend\node_modules\express\lib\router\route.js:149:13)
+    at C:\Users\Admin\Desktop\AI healthcare\backend\middleware\auth.js:38:5
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+2026-06-23 14:54:20 [info]: Socket connected: aq53F_muS1Kmj6yZAABY
+2026-06-23 14:54:20 [info]: Socket connected: vO4H5LNs1CN8s6yDAABZ
+2026-06-23 14:54:20 [info]: User 6a353eeb2d45912906363a24 joined their room
+2026-06-23 14:54:20 [info]: User 6a353eeb2d45912906363a24 joined their room
+2026-06-23 14:54:20 [info]: Socket connected: D9r3NKv4j5UwryG_AABc
+2026-06-23 14:54:20 [info]: User 6a353eeb2d45912906363a24 joined their room
+2026-06-23 14:58:09 [info]: Socket connected: rTfaHm-pwOjYiBiGAABf
+2026-06-23 14:58:09 [info]: User 6a353eeb2d45912906363a24 joined their room
+2026-06-23 15:03:16 [info]: Socket connected: jTSL3YZxWRaIuqd2AABh
+2026-06-23 15:03:16 [info]: User 6a353eeb2d45912906363a24 joined their room
+2026-06-23 15:03:17 [info]: Socket connected: h1Wh0icZtG6K06Z_AABj
+2026-06-23 15:03:17 [info]: User 6a353eeb2d45912906363a24 joined their room
+2026-06-23 15:03:17 [info]: Socket connected: ruBEZxUCtOMojvMAAABm
+2026-06-23 15:03:17 [info]: User 6a353eeb2d45912906363a24 joined their room
+2026-06-23 15:03:19 [info]: Socket connected: WiIpH-UySXRyq9NFAABq
+2026-06-23 15:03:19 [info]: User 6a353eeb2d45912906363a24 joined their room
+2026-06-23 15:03:19 [info]: Socket connected: A-QYKpeDLgu--xexAABs
+2026-06-23 15:03:19 [info]: User 6a353eeb2d45912906363a24 joined their room
+2026-06-23 15:05:36 [info]: User logged in: james@email.com
+2026-06-23 15:05:36 [info]: Socket connected: d0o_WGD5y5nI22owAABu
+2026-06-23 15:05:36 [info]: User 6a353eed2d45912906363a37 joined their room
+2026-06-23 15:15:11 [info]: User logged in: admin@healthsys.com
+2026-06-23 15:15:11 [info]: Socket connected: zylJWdCtAmSDl_zsAABw
+2026-06-23 15:15:11 [info]: User 6a353eeb2d45912906363a19 joined their room
+2026-06-23 15:20:48 [info]: Socket connected: pVEJ4x7aaxY6ZeFjAABz
+2026-06-23 15:20:48 [info]: User 6a353eeb2d45912906363a19 joined their room
+2026-06-23 15:30:53 [info]: Socket connected: vtKnloNKRF0NcrPfAAB2
+2026-06-23 15:30:53 [info]: User 6a353eeb2d45912906363a19 joined their room
+2026-06-23 15:36:56 [error]: Email failed to james@email.com: connect ECONNREFUSED ::1:587
+2026-06-23 15:36:56 [error]: Appointment email error: connect ECONNREFUSED ::1:587
+2026-06-23 15:37:11 [info]: Socket connected: Wjewzi09wA68GwjFAAB5
+2026-06-23 15:37:11 [info]: User 6a353eeb2d45912906363a19 joined their room
+2026-06-23 15:37:33 [info]: User logged in: sarah@healthsys.com
+2026-06-23 15:37:33 [info]: Socket connected: 5NlV9m8VqZxrhbipAAB7
+2026-06-23 15:37:33 [info]: User 6a353eeb2d45912906363a24 joined their room
+2026-06-23 15:37:53 [info]: Socket connected: Yxpnrl7Sk78xgeUpAAB-
+2026-06-23 15:37:53 [info]: User 6a353eeb2d45912906363a24 joined their room
+2026-06-23 15:38:24 [info]: Socket connected: csg5XSgx0_mpur7PAACB
+2026-06-23 15:38:24 [info]: User 6a353eeb2d45912906363a24 joined their room
+2026-06-23 15:38:33 [info]: Socket connected: h29yu3tblUMRtanyAACE
+2026-06-23 15:38:33 [info]: User 6a353eeb2d45912906363a24 joined their room
+2026-06-23 15:41:05 [info]: Socket connected: w4HutH4NiwFJrNPSAACH
+2026-06-23 15:41:05 [info]: User 6a353eeb2d45912906363a24 joined their room
+2026-06-23 15:41:12 [info]: Socket connected: RNr155T9EdPJh9AqAACK
+2026-06-23 15:41:12 [info]: User 6a353eeb2d45912906363a24 joined their room
+2026-06-23 15:41:51 [info]: User logged in: james@email.com
+2026-06-23 15:41:51 [info]: Socket connected: rwIg3uLkfYS6jyAMAACM
+2026-06-23 15:41:51 [info]: User 6a353eed2d45912906363a37 joined their room
+2026-06-23 15:43:47 [info]: User 6a353eeb2d45912906363a24 (doctor) joined consultation room 4fc9a718-8a59-4fc4-baba-158986dc7f6a
+2026-06-23 15:43:47 [info]: User 6a353eeb2d45912906363a24 (doctor) joined consultation room 4fc9a718-8a59-4fc4-baba-158986dc7f6a
+2026-06-23 15:45:30 [error]: E11000 duplicate key error collection: ai_healthcare.consultations index: appointment_1 dup key: { appointment: ObjectId('6a3a5ac04346bb777ac17e3a') } | POST /api/consultations/end | IP: ::1
+2026-06-23 15:45:30 [error]: MongoServerError: E11000 duplicate key error collection: ai_healthcare.consultations index: appointment_1 dup key: { appointment: ObjectId('6a3a5ac04346bb777ac17e3a') }
+    at InsertOneOperation.handleOk (C:\Users\Admin\Desktop\AI healthcare\backend\node_modules\mongodb\lib\operations\insert.js:51:19)
+    at tryOperation (C:\Users\Admin\Desktop\AI healthcare\backend\node_modules\mongodb\lib\operations\execute_operation.js:214:34)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async executeOperation (C:\Users\Admin\Desktop\AI healthcare\backend\node_modules\mongodb\lib\operations\execute_operation.js:78:16)
+    at async Collection.insertOne (C:\Users\Admin\Desktop\AI healthcare\backend\node_modules\mongodb\lib\collection.js:154:16)
+2026-06-23 15:47:13 [info]: Socket connected: 1a9qVK2Q8UKRSEDRAACP
+2026-06-23 15:47:13 [info]: User 6a353eeb2d45912906363a24 joined their room
+2026-06-23 15:54:16 [info]: ✅ MongoDB Connected: 127.0.0.1
+2026-06-23 15:54:16 [info]: ⏰ Starting scheduler service...
+2026-06-23 15:54:16 [info]: ✅ Scheduler service started
+2026-06-23 15:54:16 [info]: 
+==================================================
+2026-06-23 15:54:16 [info]: 🏥 HealthCare AI Backend
+2026-06-23 15:54:16 [info]: 🚀 Server: http://localhost:5000
+2026-06-23 15:54:16 [info]: 📡 Environment: development
+2026-06-23 15:54:16 [info]: ==================================================
+
+2026-06-23 15:54:16 [info]: Socket connected: Z_yhX1tKfjjdDAbpAAAF
+2026-06-23 15:54:16 [info]: Socket connected: k8AGfnfl9BNeXEsAAAAG
+2026-06-23 15:54:16 [info]: Socket connected: Hn0UU2wSPFa7GNE_AAAH
+2026-06-23 15:54:16 [info]: Socket connected: 3TPj2yPje_x0OSyUAAAI
+2026-06-23 15:54:16 [info]: Socket connected: N4XXWCqOETzSmwpvAAAJ
+2026-06-23 15:54:16 [info]: User 6a353eeb2d45912906363a24 joined their room
+2026-06-23 15:54:16 [info]: User 6a353eeb2d45912906363a24 joined their room
+2026-06-23 15:54:16 [info]: User 6a353eeb2d45912906363a24 joined their room
+2026-06-23 15:54:16 [info]: User 6a353eed2d45912906363a37 joined their room
+2026-06-23 15:54:16 [info]: User 6a353eeb2d45912906363a19 joined their room

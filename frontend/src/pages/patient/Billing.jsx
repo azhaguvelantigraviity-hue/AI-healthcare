@@ -31,7 +31,7 @@ const Billing = () => {
 
   // Forms State
   const [cardForm, setCardForm] = useState({ name: '', number: '', expiry: '', cvv: '', address: '', saveCard: false });
-  const [netBankingForm, setNetBankingForm] = useState({ bank: '', accountName: '' });
+  const [netBankingForm, setNetBankingForm] = useState({ bank: '', accountName: '', accountNumber: '' });
   const [upiForm, setUpiForm] = useState({ upiId: '' });
   const [insuranceForm, setInsuranceForm] = useState({ provider: 'BlueCross', policyNumber: 'ABC123456789' });
 
@@ -514,6 +514,10 @@ const Billing = () => {
                           <div>
                             <label className="block text-xs font-bold text-gray-500 uppercase tracking-wider mb-1">Account Holder Name *</label>
                             <input type="text" required value={netBankingForm.accountName} onChange={e => setNetBankingForm({...netBankingForm, accountName: e.target.value})} className="w-full px-4 py-3 bg-white border border-gray-300 rounded-xl focus:ring-2 focus:ring-indigo-500 outline-none transition-all font-medium" placeholder="John Doe" />
+                          </div>
+                          <div className="mt-4">
+                            <label className="block text-xs font-bold text-gray-500 uppercase tracking-wider mb-1">Account Number *</label>
+                            <input type="text" required value={netBankingForm.accountNumber} onChange={e => setNetBankingForm({...netBankingForm, accountNumber: e.target.value})} className="w-full px-4 py-3 bg-white border border-gray-300 rounded-xl focus:ring-2 focus:ring-indigo-500 outline-none transition-all font-medium" placeholder="1234567890" />
                           </div>
                           <div className="bg-indigo-50 border border-indigo-100 rounded-xl p-4 flex gap-3 mt-4">
                             <Building className="w-6 h-6 text-indigo-500 shrink-0" />

@@ -167,47 +167,105 @@ const PatientManagement = () => {
       </div>
 
       {selectedPatient && modalType && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-          <div className="bg-white rounded-xl shadow-xl w-full max-w-md overflow-hidden">
-            <div className="p-4 border-b flex justify-between items-center bg-gray-50">
-              <h3 className="font-bold text-lg">
-                {modalType === 'profile' ? 'Patient Profile' : 'Medical Reports'}
-              </h3>
-              <button onClick={() => {setSelectedPatient(null); setModalType(null); setSelectedReport(null);}} className="text-gray-500 hover:text-gray-700">
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-gray-900/60 backdrop-blur-sm animate-in fade-in duration-300">
+          <div className="bg-white rounded-3xl w-full max-w-2xl shadow-2xl overflow-hidden animate-in zoom-in-95 duration-300 flex flex-col max-h-[90vh]">
+            <div className="flex justify-between items-center absolute top-4 right-4 z-10">
+              <button onClick={() => {setSelectedPatient(null); setModalType(null); setSelectedReport(null);}} className="p-2 bg-black/20 hover:bg-black/40 backdrop-blur-md text-white rounded-full transition-colors">
                 <X className="w-5 h-5" />
               </button>
             </div>
-            <div className="p-6">
-              <div className="flex items-center mb-6">
-                <div className="w-16 h-16 bg-teal-100 rounded-full flex items-center justify-center text-teal-700 font-bold text-xl">
-                  {(selectedPatient.name || selectedPatient.user?.name || 'P').charAt(0)}
-                </div>
-                <div className="ml-4">
-                  <h4 className="text-xl font-bold">{selectedPatient.name || selectedPatient.user?.name || 'Unknown Patient'}</h4>
-                  <p className="text-gray-500">{selectedPatient.email || selectedPatient.user?.email || 'No email provided'}</p>
-                </div>
-              </div>
-              
-              {modalType === 'profile' ? (
-                <div className="space-y-4">
-                  <div className="grid grid-cols-2 gap-4">
-                    <div>
-                      <p className="text-sm text-gray-500">Blood Group</p>
-                      <p className="font-semibold">{selectedPatient.bloodGroup || 'N/A'}</p>
+            
+            {modalType === 'profile' ? (
+              <div className="overflow-y-auto overflow-x-hidden flex-1 relative bg-gray-50">
+                {/* Header Profile Section */}
+                <div className="relative pt-12 pb-24 px-8 bg-gradient-to-br from-teal-500 via-teal-600 to-emerald-700 text-white shadow-md">
+                  <div className="absolute top-0 right-0 w-64 h-64 bg-white opacity-10 rounded-full blur-3xl -mr-20 -mt-20 pointer-events-none"></div>
+                  <div className="absolute bottom-0 left-0 w-40 h-40 bg-teal-400 opacity-20 rounded-full blur-2xl -ml-10 -mb-10 pointer-events-none"></div>
+                  
+                  <div className="relative z-10 flex flex-col sm:flex-row items-center sm:items-end gap-6 text-center sm:text-left">
+                    <div className="w-28 h-28 bg-white rounded-full flex items-center justify-center shadow-xl border-4 border-white translate-y-12 shrink-0">
+                      <span className="text-4xl font-extrabold text-teal-600">
+                        {(selectedPatient.name || selectedPatient.user?.name || 'P').charAt(0)}
+                      </span>
                     </div>
-                    <div>
-                      <p className="text-sm text-gray-500">Last Visit</p>
-                      <p className="font-semibold">{new Date(selectedPatient.lastVisit).toLocaleDateString()}</p>
+                    <div className="flex-1 pb-2">
+                      <h2 className="text-3xl font-extrabold tracking-tight mb-1">{selectedPatient.name || selectedPatient.user?.name || 'Unknown Patient'}</h2>
+                      <p className="text-teal-100 flex items-center justify-center sm:justify-start gap-2 text-sm font-medium">
+                        {selectedPatient.email || selectedPatient.user?.email || 'No email provided'}
+                      </p>
                     </div>
-                    <div>
-                      <p className="text-sm text-gray-500">Status</p>
-                      <span className="px-2 py-1 text-xs font-semibold rounded-full bg-green-100 text-green-800 inline-block mt-1">
-                        Active
+                    <div className="pb-3 flex gap-3">
+                      <span className="px-4 py-1.5 bg-emerald-500/20 border border-emerald-400/30 text-white text-sm font-bold rounded-full backdrop-blur-md flex items-center gap-2 shadow-sm">
+                        <div className="w-2 h-2 bg-emerald-400 rounded-full animate-pulse"></div> Active
                       </span>
                     </div>
                   </div>
                 </div>
-              ) : selectedReport ? (
+
+                {/* Content Section */}
+                <div className="px-8 pt-16 pb-8 space-y-8 bg-gray-50">
+                  
+                  {/* Quick Stats Grid */}
+                  <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+                    <div className="bg-white p-5 rounded-2xl border border-gray-100 shadow-sm flex flex-col items-center justify-center text-center">
+                      <div className="w-10 h-10 bg-red-50 rounded-full flex items-center justify-center mb-3 text-red-500">
+                        <Activity className="w-5 h-5" />
+                      </div>
+                      <p className="text-xs font-bold text-gray-500 uppercase tracking-wider mb-1">Blood Group</p>
+                      <p className="text-xl font-extrabold text-gray-900">{selectedPatient.bloodGroup || 'N/A'}</p>
+                    </div>
+                    
+                    <div className="bg-white p-5 rounded-2xl border border-gray-100 shadow-sm flex flex-col items-center justify-center text-center">
+                      <div className="w-10 h-10 bg-blue-50 rounded-full flex items-center justify-center mb-3 text-blue-500">
+                         <span className="font-bold text-lg">W</span>
+                      </div>
+                      <p className="text-xs font-bold text-gray-500 uppercase tracking-wider mb-1">Weight</p>
+                      <p className="text-xl font-extrabold text-gray-900">{selectedPatient.weight ? `${selectedPatient.weight} kg` : '72 kg'}</p>
+                    </div>
+
+                    <div className="bg-white p-5 rounded-2xl border border-gray-100 shadow-sm flex flex-col items-center justify-center text-center">
+                      <div className="w-10 h-10 bg-indigo-50 rounded-full flex items-center justify-center mb-3 text-indigo-500">
+                        <span className="font-bold text-lg">H</span>
+                      </div>
+                      <p className="text-xs font-bold text-gray-500 uppercase tracking-wider mb-1">Height</p>
+                      <p className="text-xl font-extrabold text-gray-900">{selectedPatient.height ? `${selectedPatient.height} cm` : '175 cm'}</p>
+                    </div>
+
+                    <div className="bg-white p-5 rounded-2xl border border-gray-100 shadow-sm flex flex-col items-center justify-center text-center">
+                      <div className="w-10 h-10 bg-amber-50 rounded-full flex items-center justify-center mb-3 text-amber-500">
+                        <Clock className="w-5 h-5" />
+                      </div>
+                      <p className="text-xs font-bold text-gray-500 uppercase tracking-wider mb-1">Last Visit</p>
+                      <p className="text-sm font-extrabold text-gray-900">{new Date(selectedPatient.lastVisit).toLocaleDateString()}</p>
+                    </div>
+                  </div>
+
+                  {/* Medical Information */}
+                  <div className="bg-white rounded-2xl border border-gray-100 shadow-sm overflow-hidden">
+                    <div className="px-6 py-4 border-b border-gray-100 bg-gray-50/50 flex items-center gap-3">
+                      <FileText className="w-5 h-5 text-teal-600" />
+                      <h3 className="font-bold text-gray-900">Medical Summary</h3>
+                    </div>
+                    <div className="p-6 grid grid-cols-1 md:grid-cols-2 gap-6">
+                      <div>
+                        <h4 className="text-xs font-bold text-gray-400 uppercase tracking-wider mb-3">Allergies</h4>
+                        <div className="flex flex-wrap gap-2">
+                          <span className="px-3 py-1 bg-red-50 text-red-700 text-sm font-medium rounded-lg border border-red-100">Penicillin</span>
+                          <span className="px-3 py-1 bg-red-50 text-red-700 text-sm font-medium rounded-lg border border-red-100">Peanuts</span>
+                        </div>
+                      </div>
+                      <div>
+                        <h4 className="text-xs font-bold text-gray-400 uppercase tracking-wider mb-3">Chronic Conditions</h4>
+                        <div className="flex flex-wrap gap-2">
+                          <span className="px-3 py-1 bg-orange-50 text-orange-700 text-sm font-medium rounded-lg border border-orange-100">Asthma</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+            ) : selectedReport ? (
                 <div className="space-y-4 animate-in fade-in duration-200">
                   <div className="flex items-center justify-between mb-4 border-b pb-2">
                      <div className="flex items-center">

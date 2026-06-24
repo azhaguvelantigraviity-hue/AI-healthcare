@@ -3,7 +3,7 @@ import axios from 'axios';
 import { toast } from 'react-hot-toast';
 import { useAuth } from '../../context/AuthContext';
 import { colors } from '../../theme/colors';
-import { Card, Button, Input } from '../ui/SharedUI';
+import { Card, Button, Input } from '../../components/ui/SharedUI';
 import { Download, Search, Activity, Droplets, Clock, Calendar, CheckCircle } from 'lucide-react';
 import jsPDF from 'jspdf';
 import html2canvas from 'html2canvas';

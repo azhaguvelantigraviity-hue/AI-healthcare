@@ -7,7 +7,13 @@ const adminRouter = express.Router();
 const reportRouter = express.Router();
 const prescriptionRouter = express.Router();
 const aiRouter = express.Router();
-const notificationRouter = express.Router(); // Place holder if needed
+const notificationRouter = express.Router();
+
+const notificationController = require('../controllers/notificationController');
+notificationRouter.use(protect);
+notificationRouter.get('/', notificationController.getNotifications);
+notificationRouter.put('/read-all', notificationController.markAllAsRead);
+notificationRouter.put('/:id/read', notificationController.markAsRead);
 
 // ---------------- DOCTOR ROUTES ----------------
 const doctorController = require('../controllers/doctorController');

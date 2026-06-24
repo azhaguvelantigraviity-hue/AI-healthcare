@@ -4,6 +4,7 @@ import { useAuth } from '../../context/AuthContext';
 import { useSocket } from '../../context/SocketContext';
 import toast from 'react-hot-toast';
 import { Bell, Menu, CheckCircle2, XCircle, Info, CheckCheck } from 'lucide-react';
+import axios from 'axios';
 
 const Header = ({ onToggleSidebar }) => {
   const { user } = useAuth();
@@ -11,9 +12,7 @@ const Header = ({ onToggleSidebar }) => {
   const [showNotif, setShowNotif] = useState(false);
   const dropdownRef = useRef(null);
 
-  const [notifications, setNotifications] = useState([
-    { id: "n1", type: "info", message: "Welcome to HealthAI Dashboard!", time: "Just now", read: false }
-  ]);
+  const [notifications, setNotifications] = useState([]);
 
   // Close dropdown when clicking outside
   useEffect(() => {
@@ -25,6 +24,33 @@ const Header = ({ onToggleSidebar }) => {
     document.addEventListener("mousedown", handleClickOutside);
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, [dropdownRef]);
+
+  // Fetch notifications
+  useEffect(() => {
+    const fetchNotifications = async () => {
+      try {
+        if (!user || !user.token) return;
+        const config = { headers: { Authorization: `Bearer ${user.token}` } };
+        const { data } = await axios.get('/api/notifications', config);
+        
+        if (data.success && data.data) {
+          const formatted = data.data.map(n => ({
+            id: n._id,
+            type: n.type === 'ai_alert' ? 'info' : n.priority === 'high' ? 'warning' : 'success',
+            message: n.title,
+            detail: n.message, // full detail
+            time: new Date(n.createdAt).toLocaleDateString(),
+            read: n.isRead
+          }));
+          setNotifications(formatted);
+        }
+      } catch (error) {
+        console.error("Error fetching notifications", error);
+      }
+    };
+
+    fetchNotifications();
+  }, [user]);
 
   useEffect(() => {
     if (socket) {
@@ -69,8 +95,15 @@ const Header = ({ onToggleSidebar }) => {
 
   const unread = notifications.filter(n => !n.read).length;
 
-  const markAllAsRead = () => {
-    setNotifications(prev => prev.map(n => ({ ...n, read: true })));
+  const markAllAsRead = async () => {
+    try {
+      if (!user || !user.token) return;
+      const config = { headers: { Authorization: `Bearer ${user.token}` } };
+      await axios.put('/api/notifications/read-all', {}, config);
+      setNotifications(prev => prev.map(n => ({ ...n, read: true })));
+    } catch (error) {
+      console.error("Error marking all as read", error);
+    }
   };
 
   if (!user) return null;
@@ -137,6 +170,7 @@ const Header = ({ onToggleSidebar }) => {
                         <p className={`text-sm ${n.read ? 'text-gray-600 font-medium' : 'text-gray-900 font-bold'}`}>
                           {n.message}
                         </p>
+                        <p className="text-xs text-gray-500 mt-0.5">{n.detail}</p>
                         <p className="text-xs text-gray-400 mt-1.5 font-medium">{n.time}</p>
                       </div>
                       {!n.read && (

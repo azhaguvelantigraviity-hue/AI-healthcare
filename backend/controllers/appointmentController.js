@@ -23,10 +23,41 @@ const isSlotAvailable = async (doctorId, date, time, excludeId = null) => {
   return !existing;
 };
 
+// Helper: auto-update expired appointments to no-show
+const autoUpdateNoShows = async () => {
+  try {
+    const now = new Date();
+    // Find appointments that are pending or confirmed
+    const activeAppointments = await Appointment.find({
+      status: { $in: ['pending', 'confirmed'] }
+    });
+
+    for (let apt of activeAppointments) {
+      // Calculate end time
+      const [hours, minutes] = apt.appointmentTime.split(':').map(Number);
+      const appointmentStart = new Date(apt.appointmentDate);
+      appointmentStart.setHours(hours, minutes, 0, 0);
+      
+      const duration = apt.duration || 30;
+      const appointmentEnd = new Date(appointmentStart.getTime() + duration * 60000);
+
+      // If end time has passed and patient hasn't joined, mark as no-show
+      if (now > appointmentEnd && !apt.patientJoined) {
+        apt.status = 'no-show';
+        await apt.save();
+      }
+    }
+  } catch (error) {
+    console.error('Error auto-updating no-shows:', error);
+  }
+};
+
 // @desc    Get appointments (role-based)
 // @route   GET /api/appointments
 // @access  Private
 exports.getAppointments = asyncHandler(async (req, res) => {
+  await autoUpdateNoShows();
+
   const { page = 1, limit = 10, status, startDate, endDate, type } = req.query;
   const query = {};
 
@@ -309,6 +340,8 @@ exports.getAvailableSlots = asyncHandler(async (req, res, next) => {
 // @route   GET /api/appointments/today
 // @access  Private (doctor)
 exports.getTodayAppointments = asyncHandler(async (req, res) => {
+  await autoUpdateNoShows();
+
   const today = new Date();
   const appointments = await Appointment.find({
     doctor: req.user.id,

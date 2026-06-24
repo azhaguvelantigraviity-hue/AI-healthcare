@@ -223,8 +223,8 @@ const PatientAppointments = () => {
       case 'confirmed': return 'bg-blue-100 text-blue-800 border-blue-200';
       case 'completed': return 'bg-emerald-100 text-emerald-800 border-emerald-200';
       case 'cancelled':
-      case 'rejected':
-      case 'no-show': return 'bg-red-100 text-red-800 border-red-200';
+      case 'rejected': return 'bg-red-100 text-red-800 border-red-200';
+      case 'no-show': return 'bg-gray-200 text-gray-700 border-gray-300';
       case 'pending': return 'bg-amber-100 text-amber-800 border-amber-200';
       case 'rescheduled': return 'bg-orange-100 text-orange-800 border-orange-200';
       case 'live':
@@ -361,14 +361,16 @@ const PatientAppointments = () => {
                          </a>
                        </div>
                      ) : (
-                       <div className="bg-blue-50/50 p-3 rounded-xl border border-blue-100/50 flex items-start gap-3">
-                          <div className="p-2 bg-blue-100 text-blue-600 rounded-lg shrink-0"><Video className="w-4 h-4" /></div>
+                       <div className={`p-3 rounded-xl border flex items-start gap-3 ${apt.status === 'no-show' || apt.status === 'cancelled' ? 'bg-gray-50 border-gray-200 opacity-70' : 'bg-blue-50/50 border-blue-100/50'}`}>
+                          <div className={`p-2 rounded-lg shrink-0 ${apt.status === 'no-show' || apt.status === 'cancelled' ? 'bg-gray-200 text-gray-600' : 'bg-blue-100 text-blue-600'}`}><Video className="w-4 h-4" /></div>
                           <div>
-                            <p className="text-[10px] font-bold text-blue-500 uppercase tracking-wider mb-0.5">Meeting Link Generated</p>
-                            {apt.meetingLink ? (
+                            <p className={`text-[10px] font-bold uppercase tracking-wider mb-0.5 ${apt.status === 'no-show' || apt.status === 'cancelled' ? 'text-gray-500' : 'text-blue-500'}`}>Meeting Link Generated</p>
+                            {apt.meetingLink && !['no-show', 'cancelled', 'completed'].includes(apt.status) ? (
                                <a href={apt.meetingLink} target="_blank" rel="noreferrer" className="text-xs text-blue-800 font-bold hover:underline truncate inline-block w-48">Join Call Here</a>
                             ) : (
-                               <p className="text-xs text-blue-800 font-medium">Link will be available soon.</p>
+                               <p className="text-xs text-gray-500 font-medium truncate w-48">
+                                 {apt.status === 'no-show' ? 'Expired' : (apt.status === 'completed' ? 'Meeting Ended' : 'Link will be available soon.')}
+                               </p>
                             )}
                           </div>
                        </div>

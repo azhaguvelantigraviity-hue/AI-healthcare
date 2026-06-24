@@ -36,43 +36,51 @@ const StatCard = ({ title, value, icon: Icon, trend, subtitle, colorClass, loadi
 
 const DoctorStatsGrid = ({ stats, loading, onCardClick }) => {
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-      <StatCard 
-        title="Today's Appointments" 
-        value={stats?.todaysAppointments || 0} 
-        icon={Calendar} 
-        colorClass="bg-blue-50 text-blue-600 dark:bg-blue-900/30 dark:text-blue-400"
-        subtitle={`${stats?.pendingAppointments || 0} pending`}
-        loading={loading}
-        onClick={() => onCardClick && onCardClick('today')}
-      />
-      <StatCard 
-        title="Pending Consultations" 
-        value={stats?.pendingAppointments || 0} 
-        icon={Clock} 
-        colorClass="bg-amber-50 text-amber-600 dark:bg-amber-900/30 dark:text-amber-400"
-        subtitle="Needs review"
-        loading={loading}
-        onClick={() => onCardClick && onCardClick('pending')}
-      />
+    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4">
       <StatCard 
         title="Total Appointments" 
         value={stats?.totalAppointments || 0} 
         icon={Calendar} 
-        colorClass="bg-teal-50 text-teal-600 dark:bg-teal-900/30 dark:text-teal-400"
+        colorClass="bg-indigo-50 text-indigo-600 dark:bg-indigo-900/30 dark:text-indigo-400"
         subtitle="All time"
         loading={loading}
         onClick={() => onCardClick && onCardClick('total')}
       />
       <StatCard 
-        title="Total Patients" 
-        value={stats?.totalPatients || 0} 
+        title="Completed" 
+        value={stats?.completedAppointments || 0} 
         icon={Users} 
-        colorClass="bg-purple-50 text-purple-600 dark:bg-purple-900/30 dark:text-purple-400"
-        trend={5.2}
-        subtitle="this month"
+        colorClass="bg-emerald-50 text-emerald-600 dark:bg-emerald-900/30 dark:text-emerald-400"
+        subtitle="Successfully finished"
         loading={loading}
-        onClick={() => onCardClick && onCardClick('patients')}
+        onClick={() => onCardClick && onCardClick('completed')}
+      />
+      <StatCard 
+        title="Upcoming" 
+        value={stats?.upcomingAppointments || 0} 
+        icon={Clock} 
+        colorClass="bg-blue-50 text-blue-600 dark:bg-blue-900/30 dark:text-blue-400"
+        subtitle="Pending/Confirmed"
+        loading={loading}
+        onClick={() => onCardClick && onCardClick('upcoming')}
+      />
+      <StatCard 
+        title="No-Show" 
+        value={stats?.noShowAppointments || 0} 
+        icon={TrendingUp} 
+        colorClass="bg-gray-100 text-gray-500 dark:bg-gray-800 dark:text-gray-400"
+        subtitle="Missed appointments"
+        loading={loading}
+        onClick={() => onCardClick && onCardClick('no-show')}
+      />
+      <StatCard 
+        title="Cancelled" 
+        value={stats?.cancelledAppointments || 0} 
+        icon={Calendar} 
+        colorClass="bg-red-50 text-red-600 dark:bg-red-900/30 dark:text-red-400"
+        subtitle="Cancelled by user"
+        loading={loading}
+        onClick={() => onCardClick && onCardClick('cancelled')}
       />
     </div>
   );

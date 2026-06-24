@@ -86,11 +86,17 @@ const DoctorDashboard = () => {
     ];
   }
 
+  const completedAppointments = appointments.filter(a => a.status?.toLowerCase() === 'completed');
+  const noShowAppointments = appointments.filter(a => a.status?.toLowerCase() === 'no-show');
+  const cancelledAppointments = appointments.filter(a => a.status?.toLowerCase() === 'cancelled');
+  const upcomingAppointments = appointments.filter(a => ['pending', 'confirmed'].includes(a.status?.toLowerCase()));
+
   const stats = {
-    todaysAppointments: todaysAppointments.length,
-    pendingAppointments: pendingAppointments.length,
     totalAppointments: appointments.length,
-    totalPatients: 142 // Mocked for display consistency, but drill down will show uniquePatients array
+    completedAppointments: completedAppointments.length,
+    upcomingAppointments: upcomingAppointments.length,
+    noShowAppointments: noShowAppointments.length,
+    cancelledAppointments: cancelledAppointments.length
   };
 
   const unreadCount = notifications.filter(n => !n.read).length;

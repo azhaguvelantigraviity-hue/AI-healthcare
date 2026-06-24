@@ -1548,3 +1548,71 @@
 2026-06-24 12:15:40 [info]: User 6a3b62bab2e30d762513f395 joined their room
 2026-06-24 12:15:40 [info]: Socket connected: g4ZM91dkbv6vPkEvAAAJ
 2026-06-24 12:15:40 [info]: User 6a3b62b8b2e30d762513f37f joined their room
+2026-06-24 12:27:55 [info]: Socket connected: Ax_Lc7mKj-B1cCXDAAAL
+2026-06-24 12:27:55 [info]: User 6a3b62bab2e30d762513f395 joined their room
+2026-06-24 12:33:47 [info]: Socket connected: pJuViDWLfX3vHNMZAAAN
+2026-06-24 12:33:47 [info]: User 6a3b62bab2e30d762513f395 joined their room
+2026-06-24 12:33:54 [info]: Socket connected: kZdja45EldC8saZRAAAP
+2026-06-24 12:33:54 [info]: User 6a3b62bab2e30d762513f395 joined their room
+2026-06-24 12:36:51 [error]: Email failed to james@email.com: connect ECONNREFUSED ::1:587
+2026-06-24 12:36:51 [error]: Appointment email error: connect ECONNREFUSED ::1:587
+2026-06-24 12:38:02 [info]: Socket connected: uVHhspH25NeuZe6cAAAR
+2026-06-24 12:38:03 [info]: User 6a3b62bab2e30d762513f395 joined their room
+2026-06-24 12:38:25 [info]: User 6a3b62bab2e30d762513f395 (patient) joined consultation room 428e724f-46b1-43f4-8f85-ab82f4573648
+2026-06-24 12:47:37 [info]: Socket connected: Zjoh431D3U0kQqD5AAAT
+2026-06-24 12:47:37 [error]: Role 'patient' is not authorized to access this route | GET /api/admin/users | IP: 127.0.0.1
+2026-06-24 12:47:37 [error]: Error: Role 'patient' is not authorized to access this route
+    at C:\Users\Admin\Desktop\AI healthcare\backend\middleware\auth.js:52:9
+    at Layer.handle [as handle_request] (C:\Users\Admin\Desktop\AI healthcare\backend\node_modules\express\lib\router\layer.js:95:5)
+    at next (C:\Users\Admin\Desktop\AI healthcare\backend\node_modules\express\lib\router\route.js:149:13)
+    at C:\Users\Admin\Desktop\AI healthcare\backend\middleware\auth.js:38:5
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+2026-06-24 12:47:37 [info]: User 6a3b62bab2e30d762513f395 joined their room
+2026-06-24 12:48:53 [info]: Connecting to MongoDB...
+2026-06-24 12:48:53 [info]: 
+==================================================
+2026-06-24 12:48:53 [info]: 🏥 HealthCare AI Backend
+2026-06-24 12:48:53 [info]: 🚀 Server: http://0.0.0.0:5000
+2026-06-24 12:48:53 [info]: 📡 Environment: development
+2026-06-24 12:48:53 [info]: ==================================================
+
+2026-06-24 12:48:53 [info]: Connecting to MongoDB...
+2026-06-24 12:48:53 [info]: Socket connected: e2JkwQtu8QGDaMPfAAAD
+2026-06-24 12:48:53 [info]: User 6a3b62b8b2e30d762513f37f joined their room
+2026-06-24 12:48:53 [info]: Socket connected: DbCqygGygWTucZGbAAAH
+2026-06-24 12:48:53 [info]: Socket connected: CdRxEb5vjZrPWK7AAAAI
+2026-06-24 12:48:53 [info]: Socket connected: 2ySrBykug5SfHXM6AAAJ
+2026-06-24 12:48:53 [info]: Socket connected: Qy-sGZbVVyBAlFf_AAAK
+2026-06-24 12:48:53 [info]: User 6a3b62bab2e30d762513f395 joined their room
+2026-06-24 12:48:53 [info]: User 6a3b62bab2e30d762513f395 joined their room
+2026-06-24 12:48:53 [info]: User 6a3b62b8b2e30d762513f37f joined their room
+2026-06-24 12:48:53 [info]: Socket connected: ln03W_EwxSNPQTl7AAAL
+2026-06-24 12:48:53 [info]: User 6a3b62bab2e30d762513f395 joined their room
+2026-06-24 12:48:53 [info]: ✅ MongoDB Connected: ac-hg05jo1-shard-00-00.t17ks7f.mongodb.net
+2026-06-24 12:48:53 [info]: ⏰ Starting scheduler service...
+2026-06-24 12:48:53 [info]: ✅ Scheduler service started
+2026-06-24 12:48:53 [info]: User 6a3b62bab2e30d762513f395 joined their room
+2026-06-24 12:49:10 [info]: Connecting to MongoDB...
+2026-06-24 12:49:10 [info]: 
+==================================================
+2026-06-24 12:49:10 [info]: 🏥 HealthCare AI Backend
+2026-06-24 12:49:10 [info]: 🚀 Server: http://0.0.0.0:5000
+2026-06-24 12:49:10 [info]: 📡 Environment: development
+2026-06-24 12:49:10 [info]: ==================================================
+
+2026-06-24 12:49:11 [info]: Connecting to MongoDB...
+2026-06-24 12:49:11 [info]: Socket connected: 2vE6Ug8u2cZIJPrJAAAB
+2026-06-24 12:49:11 [info]: User 6a3b62b8b2e30d762513f37f joined their room
+2026-06-24 12:49:11 [info]: Socket connected: u8YDBFPBzPSJR_2rAAAG
+2026-06-24 12:49:11 [info]: Socket connected: nDZ2K56N-DdK7KKYAAAI
+2026-06-24 12:49:11 [info]: Socket connected: poumDZ0tUBwha8_qAAAJ
+2026-06-24 12:49:11 [info]: Socket connected: pBGDRkhvrv-b_gOyAAAK
+2026-06-24 12:49:11 [info]: Socket connected: a3gZ9Ep1K2gF1zedAAAL
+2026-06-24 12:49:11 [info]: User 6a3b62bab2e30d762513f395 joined their room
+2026-06-24 12:49:11 [info]: User 6a3b62b8b2e30d762513f37f joined their room
+2026-06-24 12:49:11 [info]: User 6a3b62bab2e30d762513f395 joined their room
+2026-06-24 12:49:11 [info]: User 6a3b62bab2e30d762513f395 joined their room
+2026-06-24 12:49:11 [info]: ✅ MongoDB Connected: ac-hg05jo1-shard-00-00.t17ks7f.mongodb.net
+2026-06-24 12:49:11 [info]: ⏰ Starting scheduler service...
+2026-06-24 12:49:11 [info]: ✅ Scheduler service started
+2026-06-24 12:49:11 [info]: User 6a3b62bab2e30d762513f395 joined their room

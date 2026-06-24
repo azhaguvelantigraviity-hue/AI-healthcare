@@ -224,3 +224,12 @@
 2026-06-24 10:56:42 [error]: Uncaught Exception: listen EADDRINUSE: address already in use :::5000
 2026-06-24 10:57:03 [error]: Uncaught Exception: listen EADDRINUSE: address already in use :::5000
 2026-06-24 11:07:11 [error]: Uncaught Exception: listen EADDRINUSE: address already in use :::5000
+2026-06-24 12:36:51 [error]: Email failed to james@email.com: connect ECONNREFUSED ::1:587
+2026-06-24 12:36:51 [error]: Appointment email error: connect ECONNREFUSED ::1:587
+2026-06-24 12:47:37 [error]: Role 'patient' is not authorized to access this route | GET /api/admin/users | IP: 127.0.0.1
+2026-06-24 12:47:37 [error]: Error: Role 'patient' is not authorized to access this route
+    at C:\Users\Admin\Desktop\AI healthcare\backend\middleware\auth.js:52:9
+    at Layer.handle [as handle_request] (C:\Users\Admin\Desktop\AI healthcare\backend\node_modules\express\lib\router\layer.js:95:5)
+    at next (C:\Users\Admin\Desktop\AI healthcare\backend\node_modules\express\lib\router\route.js:149:13)
+    at C:\Users\Admin\Desktop\AI healthcare\backend\middleware\auth.js:38:5
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)

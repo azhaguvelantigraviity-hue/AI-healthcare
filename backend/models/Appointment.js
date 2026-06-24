@@ -45,6 +45,8 @@ const mongoose = require('mongoose');
       confirmedAt: Date,
       completedAt: Date,
       reminderSent: { type: Boolean, default: false },
+      patientJoined: { type: Boolean, default: false },
+      doctorJoined: { type: Boolean, default: false },
       meetingLink: String, // for video consultations
       queueNumber: Number,
       roomNumber: String,

@@ -3,7 +3,7 @@ import axios from 'axios';
 import { toast } from 'react-hot-toast';
 import { useAuth } from '../../context/AuthContext';
 import { colors } from '../../theme/colors';
-import { Card, Button, Input } from '../../components/ui/SharedUI';
+import { Card, Button } from '../../components/ui/SharedUI';
 import { Download, Search, Activity, Droplets, Clock, Calendar, CheckCircle } from 'lucide-react';
 import jsPDF from 'jspdf';
 import html2canvas from 'html2canvas';
@@ -32,32 +32,6 @@ const DiabetesDiet = () => {
   const quickDiseases = ['Diabetes', 'BP', 'Fever', 'Stomach Pain', 'Headache'];
   const diabetesTypes = ['Type 1', 'Type 2', 'Gestational Diabetes'];
   const severities = ['Mild', 'Moderate', 'High'];
-
-  useEffect(() => {
-    fetchDiseases();
-  }, []);
-
-  useEffect(() => {
-    if (selectedDisease) {
-      fetchDietPlans(selectedDisease._id);
-    }
-  }, [selectedDisease]);
-
-  useEffect(() => {
-    if (dietPlans.length > 0 && selectedType && selectedSeverity) {
-      // Find the best matching plan
-      const plan = dietPlans.find(p => p.diseaseType === selectedType && p.severity === selectedSeverity);
-      if (plan) {
-        setActivePlan(plan);
-      } else {
-        // Fallback to first plan if exact match not found
-        setActivePlan(dietPlans[0]);
-      }
-    } else if (dietPlans.length > 0 && !selectedType && !selectedSeverity) {
-       // Reset active plan if type/severity not fully selected
-       setActivePlan(null);
-    }
-  }, [selectedType, selectedSeverity, dietPlans]);
 
   const fetchDiseases = async (query = '') => {
     try {
@@ -88,6 +62,34 @@ const DiabetesDiet = () => {
       setIsLoading(false);
     }
   };
+
+  useEffect(() => {
+    fetchDiseases();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  useEffect(() => {
+    if (selectedDisease) {
+      fetchDietPlans(selectedDisease._id);
+    }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [selectedDisease]);
+
+  useEffect(() => {
+    if (dietPlans.length > 0 && selectedType && selectedSeverity) {
+      // Find the best matching plan
+      const plan = dietPlans.find(p => p.diseaseType === selectedType && p.severity === selectedSeverity);
+      if (plan) {
+        setActivePlan(plan);
+      } else {
+        // Fallback to first plan if exact match not found
+        setActivePlan(dietPlans[0]);
+      }
+    } else if (dietPlans.length > 0 && !selectedType && !selectedSeverity) {
+       // Reset active plan if type/severity not fully selected
+       setActivePlan(null);
+    }
+  }, [selectedType, selectedSeverity, dietPlans]);
 
   const handleSearch = (e) => {
     setSearchQuery(e.target.value);

@@ -40,11 +40,38 @@ const allowedOrigins = [
   'https://ai-healthcare-rosy.vercel.app'
 ].filter(Boolean);
 
+const corsOptions = {
+  origin: function (origin, callback) {
+    // Allow requests with no origin (like mobile apps or curl requests)
+    if (!origin) return callback(null, true);
+    
+    // Check if origin is in the explicitly allowed list
+    if (allowedOrigins.indexOf(origin) !== -1) {
+      return callback(null, true);
+    }
+    
+    // Dynamically allow any vercel preview deployments
+    if (origin.endsWith('.vercel.app')) {
+      return callback(null, true);
+    }
+    
+    // Dynamically allow Render frontend (if deployed there)
+    if (origin.endsWith('.onrender.com')) {
+      return callback(null, true);
+    }
+    
+    return callback(new Error('Not allowed by CORS'), false);
+  },
+  credentials: true,
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization'],
+};
+
 // ===========================
 // SOCKET.IO - Real-time
 // ===========================
 const io = new Server(server, {
-  cors: { origin: allowedOrigins, methods: ['GET', 'POST'], credentials: true },
+  cors: { origin: corsOptions.origin, methods: ['GET', 'POST'], credentials: true },
 });
 
 const connectedUsers = new Map();
@@ -115,12 +142,7 @@ app.use(helmet({
 }));
 
 // CORS
-app.use(cors({
-  origin: allowedOrigins,
-  credentials: true,
-  methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS'],
-  allowedHeaders: ['Content-Type', 'Authorization'],
-}));
+app.use(cors(corsOptions));
 
 // Compression
 app.use(compression());

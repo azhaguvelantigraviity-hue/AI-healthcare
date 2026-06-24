@@ -233,3 +233,5 @@
     at next (C:\Users\Admin\Desktop\AI healthcare\backend\node_modules\express\lib\router\route.js:149:13)
     at C:\Users\Admin\Desktop\AI healthcare\backend\middleware\auth.js:38:5
     at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+2026-06-24 14:23:26 [error]: Email failed to james@email.com: connect ECONNREFUSED ::1:587
+2026-06-24 14:23:26 [error]: Appointment email error: connect ECONNREFUSED ::1:587

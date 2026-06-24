@@ -1616,3 +1616,145 @@
 2026-06-24 12:49:11 [info]: ⏰ Starting scheduler service...
 2026-06-24 12:49:11 [info]: ✅ Scheduler service started
 2026-06-24 12:49:11 [info]: User 6a3b62bab2e30d762513f395 joined their room
+2026-06-24 13:00:00 [info]: Marked 1 appointments as no-show
+2026-06-24 13:04:43 [info]: Socket connected: K6murtr2PbOpjkSPAAAN
+2026-06-24 13:04:43 [info]: User 6a3b62bab2e30d762513f395 joined their room
+2026-06-24 13:07:07 [info]: MongoDB reconnected
+2026-06-24 13:07:08 [info]: Socket connected: sxYnXtoY9YYkK9GIAAAQ
+2026-06-24 13:07:08 [info]: User 6a3b62bab2e30d762513f395 joined their room
+2026-06-24 13:07:08 [info]: Socket connected: B6wLV3GxL5ePzGH-AAAR
+2026-06-24 13:07:08 [info]: User 6a3b62bab2e30d762513f395 joined their room
+2026-06-24 13:07:08 [info]: Socket connected: 2LTqOyRYRL3CSd6-AAAU
+2026-06-24 13:07:09 [info]: User 6a3b62bab2e30d762513f395 joined their room
+2026-06-24 13:07:09 [info]: Socket connected: hXof2eiICAs2Hog6AAAV
+2026-06-24 13:07:09 [info]: User 6a3b62b8b2e30d762513f37f joined their room
+2026-06-24 13:07:09 [info]: Socket connected: S-9YKo_TJelgEcYdAAAX
+2026-06-24 13:07:09 [info]: Socket connected: XFXXYBJP5-mf8FhWAAAZ
+2026-06-24 13:07:09 [info]: User 6a3b62b8b2e30d762513f37f joined their room
+2026-06-24 13:07:09 [info]: User 6a3b62bab2e30d762513f395 joined their room
+2026-06-24 13:07:28 [warn]: MongoDB disconnected. Attempting to reconnect...
+2026-06-24 13:07:28 [info]: MongoDB reconnected
+2026-06-24 13:08:22 [info]: Socket connected: 9WsBQ9rk8m8hqMXmAAAd
+2026-06-24 13:08:22 [info]: Socket connected: OFnj0Z9-OLYAseUpAAAe
+2026-06-24 13:08:22 [info]: Socket connected: VUuAXtDs7iwltoyAAAAf
+2026-06-24 13:08:22 [info]: User 6a3b62bab2e30d762513f395 joined their room
+2026-06-24 13:08:22 [info]: User 6a3b62b8b2e30d762513f37f joined their room
+2026-06-24 13:08:22 [info]: User 6a3b62bab2e30d762513f395 joined their room
+2026-06-24 13:08:22 [info]: Socket connected: VHRbD9mpH63XWCU4AAAi
+2026-06-24 13:08:22 [info]: Socket connected: 37z-wrYsJEOOakT-AAAj
+2026-06-24 13:08:22 [info]: User 6a3b62bab2e30d762513f395 joined their room
+2026-06-24 13:08:22 [info]: User 6a3b62bab2e30d762513f395 joined their room
+2026-06-24 13:08:24 [info]: Socket connected: -1vBh8rle4haOMT5AAAl
+2026-06-24 13:08:24 [info]: User 6a3b62bab2e30d762513f395 joined their room
+2026-06-24 13:08:25 [info]: Socket connected: 08M8KEZiUtfYtBSkAAAq
+2026-06-24 13:08:25 [info]: Socket connected: 6FEbco7SjouE7sjUAAAr
+2026-06-24 13:08:25 [info]: Socket connected: LuFPJrWq55NBOgzzAAAs
+2026-06-24 13:08:25 [info]: Socket connected: GZXsTFjP7jSFJg23AAAt
+2026-06-24 13:08:25 [info]: User 6a3b62bab2e30d762513f395 joined their room
+2026-06-24 13:08:25 [info]: User 6a3b62bab2e30d762513f395 joined their room
+2026-06-24 13:08:25 [info]: User 6a3b62bab2e30d762513f395 joined their room
+2026-06-24 13:08:26 [info]: User 6a3b62b8b2e30d762513f37f joined their room
+2026-06-24 13:08:27 [info]: Socket connected: 8AzSzCw2NsbYY9ZMAAAv
+2026-06-24 13:08:27 [info]: User 6a3b62b8b2e30d762513f37f joined their room
+2026-06-24 13:09:30 [info]: Socket connected: Y2J3FW1VhBgyPHrxAAA1
+2026-06-24 13:09:30 [info]: Socket connected: qnNfoRKV3FIHhL9_AAA2
+2026-06-24 13:09:30 [info]: Socket connected: eXoCtoPIZPZwiyQNAAA3
+2026-06-24 13:09:30 [info]: Socket connected: SIT_R6aMJXJw9eqlAAA4
+2026-06-24 13:09:30 [info]: Socket connected: mt9BwLjI6hjpl5xVAAA5
+2026-06-24 13:09:30 [info]: User 6a3b62bab2e30d762513f395 joined their room
+2026-06-24 13:09:30 [info]: User 6a3b62bab2e30d762513f395 joined their room
+2026-06-24 13:09:30 [info]: User 6a3b62b8b2e30d762513f37f joined their room
+2026-06-24 13:09:30 [info]: User 6a3b62b8b2e30d762513f37f joined their room
+2026-06-24 13:09:30 [info]: User 6a3b62bab2e30d762513f395 joined their room
+2026-06-24 13:09:32 [info]: Socket connected: WhRTsc8CfKf4G3W3AAA7
+2026-06-24 13:09:32 [info]: User 6a3b62bab2e30d762513f395 joined their room
+2026-06-24 13:09:32 [info]: Socket connected: 8bihnbEmUFpw_ixRAAA_
+2026-06-24 13:09:32 [info]: Socket connected: 8G2lwAVeI9R--xYqAABA
+2026-06-24 13:09:32 [info]: Socket connected: hqG9JP21iXYVEAKNAABB
+2026-06-24 13:09:32 [info]: User 6a3b62bab2e30d762513f395 joined their room
+2026-06-24 13:09:32 [info]: User 6a3b62bab2e30d762513f395 joined their room
+2026-06-24 13:09:32 [info]: User 6a3b62b8b2e30d762513f37f joined their room
+2026-06-24 13:09:33 [info]: Socket connected: ctVOlB2tCPrULf9VAABD
+2026-06-24 13:09:33 [info]: User 6a3b62bab2e30d762513f395 joined their room
+2026-06-24 13:09:34 [info]: Socket connected: WwCxambI6YXYfLY_AABF
+2026-06-24 13:09:34 [info]: User 6a3b62b8b2e30d762513f37f joined their room
+2026-06-24 14:02:20 [info]: MongoDB reconnected
+2026-06-24 14:02:20 [info]: MongoDB reconnected
+2026-06-24 14:02:21 [info]: Socket connected: xSC5wkB1H0Y9Qf0FAABH
+2026-06-24 14:02:21 [info]: User 6a3b62bab2e30d762513f395 joined their room
+2026-06-24 14:02:21 [info]: Socket connected: MgFLnunXdgmxNKKhAABL
+2026-06-24 14:02:22 [info]: Socket connected: I9vG92c3m9sQ_udqAABN
+2026-06-24 14:02:22 [info]: User 6a3b62bab2e30d762513f395 joined their room
+2026-06-24 14:02:22 [info]: Socket connected: f9yqJQXqLHWkgNuDAABO
+2026-06-24 14:02:22 [info]: Socket connected: srFy04moW-85lbRTAABP
+2026-06-24 14:02:22 [info]: User 6a3b62bab2e30d762513f395 joined their room
+2026-06-24 14:02:22 [info]: User 6a3b62bab2e30d762513f395 joined their room
+2026-06-24 14:02:22 [info]: User 6a3b62b8b2e30d762513f37f joined their room
+2026-06-24 14:02:22 [info]: Socket connected: -dBvJe92fkXK6-sNAABR
+2026-06-24 14:02:22 [info]: User 6a3b62b8b2e30d762513f37f joined their room
+2026-06-24 14:02:30 [warn]: MongoDB disconnected. Attempting to reconnect...
+2026-06-24 14:02:30 [info]: MongoDB reconnected
+2026-06-24 14:09:10 [info]: Socket connected: 6U2TB-5RmG-3n70SAABX
+2026-06-24 14:09:10 [info]: Socket connected: CMIUjZsIJDnh6FJFAABY
+2026-06-24 14:09:10 [info]: Socket connected: 49Y94vpBfzjfATJZAABZ
+2026-06-24 14:09:10 [info]: Socket connected: HlbXqPtElSrYVoTIAABa
+2026-06-24 14:09:10 [info]: Socket connected: 269JxDDLRr915nfdAABb
+2026-06-24 14:09:10 [info]: User 6a3b62bab2e30d762513f395 joined their room
+2026-06-24 14:09:10 [info]: User 6a3b62bab2e30d762513f395 joined their room
+2026-06-24 14:09:10 [info]: User 6a3b62b8b2e30d762513f37f joined their room
+2026-06-24 14:09:10 [info]: User 6a3b62bab2e30d762513f395 joined their room
+2026-06-24 14:09:10 [info]: User 6a3b62b8b2e30d762513f37f joined their room
+2026-06-24 14:09:10 [info]: Socket connected: 8gA7fZHqzolRSPZLAABd
+2026-06-24 14:09:10 [info]: User 6a3b62bab2e30d762513f395 joined their room
+2026-06-24 14:22:19 [info]: User logged in: sarah@healthsys.com
+2026-06-24 14:22:19 [info]: Socket connected: 1JEGobZULjv2Grt8AABf
+2026-06-24 14:22:19 [info]: User 6a3b62b8b2e30d762513f37f joined their room
+2026-06-24 14:23:26 [error]: Email failed to james@email.com: connect ECONNREFUSED ::1:587
+2026-06-24 14:23:26 [error]: Appointment email error: connect ECONNREFUSED ::1:587
+2026-06-24 14:30:00 [info]: Marked 1 appointments as no-show
+2026-06-24 14:35:03 [info]: Socket connected: 5bCBhnEKA7vTDbyKAABh
+2026-06-24 14:35:03 [info]: User 6a3b62b8b2e30d762513f37f joined their room
+2026-06-24 14:36:11 [info]: Socket connected: wANa2oD8V8-1fd11AABj
+2026-06-24 14:36:11 [info]: User 6a3b62b8b2e30d762513f37f joined their room
+2026-06-24 14:36:14 [info]: Socket connected: 9QJMrgQ-y9xKCM9XAABl
+2026-06-24 14:36:14 [info]: User 6a3b62b8b2e30d762513f37f joined their room
+2026-06-24 14:45:37 [info]: Connecting to MongoDB...
+2026-06-24 14:45:37 [info]: 
+==================================================
+2026-06-24 14:45:37 [info]: 🏥 HealthCare AI Backend
+2026-06-24 14:45:37 [info]: 🚀 Server: http://0.0.0.0:5000
+2026-06-24 14:45:37 [info]: 📡 Environment: development
+2026-06-24 14:45:37 [info]: ==================================================
+
+2026-06-24 14:45:37 [info]: Connecting to MongoDB...
+2026-06-24 14:45:37 [info]: Socket connected: In-aZMmgh4O3YojlAAAE
+2026-06-24 14:45:37 [info]: Socket connected: KAQ3HpGnaZo5sbNzAAAF
+2026-06-24 14:45:37 [info]: Socket connected: fr2aFKnjF6FAGxGHAAAG
+2026-06-24 14:45:37 [info]: Socket connected: ndBUWGnXIMBVXqheAAAH
+2026-06-24 14:45:37 [info]: User 6a3b62bab2e30d762513f395 joined their room
+2026-06-24 14:45:37 [info]: User 6a3b62b8b2e30d762513f37f joined their room
+2026-06-24 14:45:37 [info]: User 6a3b62bab2e30d762513f395 joined their room
+2026-06-24 14:45:37 [info]: Socket connected: 2lZIRlJ2lDohX5DRAAAJ
+2026-06-24 14:45:37 [info]: User 6a3b62b8b2e30d762513f37f joined their room
+2026-06-24 14:45:37 [info]: User 6a3b62b8b2e30d762513f37f joined their room
+2026-06-24 14:45:37 [info]: ✅ MongoDB Connected: ac-hg05jo1-shard-00-00.t17ks7f.mongodb.net
+2026-06-24 14:45:37 [info]: ⏰ Starting scheduler service...
+2026-06-24 14:45:38 [info]: ✅ Scheduler service started
+2026-06-24 14:45:45 [info]: Connecting to MongoDB...
+2026-06-24 14:45:45 [info]: 
+==================================================
+2026-06-24 14:45:45 [info]: 🏥 HealthCare AI Backend
+2026-06-24 14:45:45 [info]: 🚀 Server: http://0.0.0.0:5000
+2026-06-24 14:45:45 [info]: 📡 Environment: development
+2026-06-24 14:45:45 [info]: ==================================================
+
+2026-06-24 14:45:45 [info]: Connecting to MongoDB...
+2026-06-24 14:45:46 [info]: ✅ MongoDB Connected: ac-hg05jo1-shard-00-00.t17ks7f.mongodb.net
+2026-06-24 14:45:46 [info]: ⏰ Starting scheduler service...
+2026-06-24 14:45:46 [info]: ✅ Scheduler service started
+2026-06-24 14:45:46 [info]: Socket connected: VamUjSgwA9Wcs7g8AAAD
+2026-06-24 14:45:46 [info]: Socket connected: Wn-IqjVuhkwCRKOiAAAE
+2026-06-24 14:45:46 [info]: Socket connected: TU_4Xxbb7TRVE24KAAAF
+2026-06-24 14:45:46 [info]: User 6a3b62bab2e30d762513f395 joined their room
+2026-06-24 14:45:46 [info]: User 6a3b62b8b2e30d762513f37f joined their room
+2026-06-24 14:45:46 [info]: User 6a3b62b8b2e30d762513f37f joined their room

@@ -11,11 +11,17 @@ export const AuthProvider = ({ children }) => {
 
   useEffect(() => {
     // Check if user is logged in from localStorage
-    const userInfo = localStorage.getItem('userInfo');
-    if (userInfo) {
-      setUser(JSON.parse(userInfo));
+    try {
+      const userInfo = localStorage.getItem('userInfo');
+      if (userInfo && userInfo !== 'undefined' && userInfo !== 'null') {
+        setUser(JSON.parse(userInfo));
+      }
+    } catch (error) {
+      console.error('Failed to parse user info from localStorage', error);
+      localStorage.removeItem('userInfo');
+    } finally {
+      setLoading(false);
     }
-    setLoading(false);
   }, []);
 
   const login = async (email, password) => {

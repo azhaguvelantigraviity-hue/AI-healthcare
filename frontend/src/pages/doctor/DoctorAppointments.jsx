@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { useAuth } from '../../context/AuthContext';
 import { Calendar, Clock, Video, CheckCircle, XCircle, RefreshCw, Plus, Video as VideoIcon, Building2, Ticket, FileText, UserCircle, Users } from 'lucide-react';
@@ -13,6 +14,7 @@ const DoctorAppointments = () => {
   const [loading, setLoading] = useState(true);
   const [filter, setFilter] = useState('All');
   const { socket } = useSocket();
+  const navigate = useNavigate();
 
   // Modal States
   const [rescheduleModalOpen, setRescheduleModalOpen] = useState(false);
@@ -286,10 +288,10 @@ const DoctorAppointments = () => {
                   )}
                   {['confirmed', 'rescheduled'].includes(apt.status) && (
                      <>
-                       <button className="px-4 py-2 bg-white border border-gray-200 hover:bg-gray-100 rounded-xl text-sm font-bold text-gray-700 flex items-center gap-2 transition-all">
+                       <button onClick={() => navigate('/dashboard/prescriptions')} className="px-4 py-2 bg-white border border-gray-200 hover:bg-gray-100 rounded-xl text-sm font-bold text-gray-700 flex items-center gap-2 transition-all">
                          <FileText className="w-4 h-4" /> Prescribe
                        </button>
-                       <button className="px-4 py-2 bg-white border border-gray-200 hover:bg-gray-100 rounded-xl text-sm font-bold text-gray-700 flex items-center gap-2 transition-all">
+                       <button onClick={() => navigate('/dashboard/doctor-patients')} className="px-4 py-2 bg-white border border-gray-200 hover:bg-gray-100 rounded-xl text-sm font-bold text-gray-700 flex items-center gap-2 transition-all">
                          <UserCircle className="w-4 h-4" /> View History
                        </button>
                        {isOnline ? (
@@ -304,7 +306,7 @@ const DoctorAppointments = () => {
                      </>
                   )}
                   {['completed', 'no-show', 'cancelled'].includes(apt.status) && (
-                     <button className="px-4 py-2 bg-white border border-gray-200 hover:bg-gray-100 rounded-xl text-sm font-bold text-gray-700 flex items-center gap-2 transition-all">
+                     <button onClick={() => navigate('/dashboard/doctor-patients')} className="px-4 py-2 bg-white border border-gray-200 hover:bg-gray-100 rounded-xl text-sm font-bold text-gray-700 flex items-center gap-2 transition-all">
                        <UserCircle className="w-4 h-4" /> View History
                      </button>
                   )}

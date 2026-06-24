@@ -207,15 +207,17 @@ const PORT = process.env.PORT || 5000;
 
 const startServer = async () => {
   try {
-    await connectDB();
-
-    server.listen(PORT, () => {
+    // Bind to port first so Render's port scanner passes immediately
+    server.listen(PORT, '0.0.0.0', () => {
       logger.info(`\n${'='.repeat(50)}`);
       logger.info(`🏥 HealthCare AI Backend`);
-      logger.info(`🚀 Server: http://localhost:${PORT}`);
+      logger.info(`🚀 Server: http://0.0.0.0:${PORT}`);
       logger.info(`📡 Environment: ${process.env.NODE_ENV}`);
       logger.info(`${'='.repeat(50)}\n`);
     });
+
+    logger.info('Connecting to MongoDB...');
+    await connectDB();
 
     // Start scheduler (only in production/staging)
     if (process.env.NODE_ENV !== 'test') {

@@ -30,7 +30,8 @@ const connectDB = async () => {
 
   } catch (error) {
     logger.error(`MongoDB connection failed: ${error.message}`);
-    process.exit(1);
+    // DO NOT exit process. Let the server run so Render port scanner passes and user can see logs.
+    // process.exit(1);
   }
 };
 

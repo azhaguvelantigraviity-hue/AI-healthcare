@@ -242,7 +242,11 @@ const DoctorAppointments = () => {
                         <div className="p-2 bg-blue-100 text-blue-600 rounded-lg shrink-0"><Video className="w-4 h-4" /></div>
                         <div>
                           <p className="text-[10px] font-bold text-blue-500 uppercase tracking-wider mb-0.5">Meeting Link Generated</p>
-                          <p className="text-xs text-blue-800 font-medium truncate w-48" title={apt.meetingLink}>{apt.meetingLink || 'Waiting for creation...'}</p>
+                          {apt.meetingLink ? (
+                             <a href={apt.meetingLink} target="_blank" rel="noreferrer" className="text-xs text-blue-800 font-bold hover:underline truncate inline-block w-48">Join Call Here</a>
+                          ) : (
+                             <p className="text-xs text-blue-800 font-medium truncate w-48">Waiting for creation...</p>
+                          )}
                         </div>
                      </div>
                   ) : (

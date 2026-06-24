@@ -8,9 +8,6 @@ import { Download, Search, Activity, Droplets, Clock, Calendar, CheckCircle } fr
 import jsPDF from 'jspdf';
 import html2canvas from 'html2canvas';
 
-// Hardcoded API URL fallback just in case
-const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000';
-
 const DiabetesDiet = () => {
   const { user } = useAuth();
   const [diseases, setDiseases] = useState([]);
@@ -35,7 +32,7 @@ const DiabetesDiet = () => {
 
   const fetchDiseases = async (query = '') => {
     try {
-      const res = await axios.get(`${API_URL}/api/diet/diseases${query ? `?q=${query}` : ''}`, {
+      const res = await axios.get(`/api/diet/diseases${query ? `?q=${query}` : ''}`, {
         headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
       });
       if (res.data.success) {
@@ -49,7 +46,7 @@ const DiabetesDiet = () => {
   const fetchDietPlans = async (diseaseId) => {
     setIsLoading(true);
     try {
-      const res = await axios.get(`${API_URL}/api/diet/plans/${diseaseId}`, {
+      const res = await axios.get(`/api/diet/plans/${diseaseId}`, {
         headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
       });
       if (res.data.success) {
@@ -126,7 +123,7 @@ const DiabetesDiet = () => {
       pdf.save(`Diet_Report_${user.name.replace(/\s+/g, '_')}.pdf`);
       
       // Save report to backend
-      await axios.post(`${API_URL}/api/diet/reports`, {
+      await axios.post(`/api/diet/reports`, {
         disease: selectedDisease._id,
         dietPlan: activePlan._id,
         patientName: user.name,

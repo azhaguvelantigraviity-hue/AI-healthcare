@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { colors } from '../../theme/colors';
 import { Button, Input } from '../../components/ui/SharedUI';
@@ -6,23 +6,16 @@ import { useAuth } from '../../context/AuthContext';
 
 const DoctorLogin = () => {
   const navigate = useNavigate();
-  const { login, user } = useAuth();
+  const { login } = useAuth();
   
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [form, setForm] = useState({ email: "", password: "" });
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
+  
+  const set = (k, v) => setForm(f => ({ ...f, [k]: v }));
 
-  // If already logged in as doctor, redirect to doctor dashboard
-  useEffect(() => {
-    if (user && user.role === 'doctor') {
-      navigate('/doctor-dashboard');
-    }
-  }, [user, navigate]);
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    if (!email || !password) { 
+  const handleSubmit = async () => {
+    if (!form.email || !form.password) { 
       setError("Please fill all fields"); 
       return; 
     }
@@ -30,13 +23,15 @@ const DoctorLogin = () => {
     setError("");
     
     try {
-      const response = await login(email, password);
-      if (response.success) {
-        // Successful authentication
-        navigate('/doctor-dashboard');
+      const res = await login(form.email, form.password);
+      if (res.success) {
+        if (res.user.role === 'doctor' || res.user.role === 'admin') {
+          navigate('/doctor-dashboard');
+        } else {
+          setError("Access denied. Doctor privileges required.");
+        }
       } else {
-        // Invalid credentials
-        setError(response.message || "Invalid email or password");
+        setError(res.message || "Authentication failed");
       }
     } catch (err) {
       setError(err.message || "Authentication failed");
@@ -52,31 +47,27 @@ const DoctorLogin = () => {
         <div style={{ textAlign: "center", marginBottom: 32 }}>
           <div style={{ fontSize: 48, marginBottom: 12 }}>👨‍⚕️</div>
           <h1 style={{ fontSize: 24, fontWeight: 800, color: colors.text, margin: "0 0 6px" }}>Doctor Login</h1>
-          <p style={{ fontSize: 14, color: colors.textMuted, margin: 0 }}>Access your Doctor Dashboard</p>
+          <p style={{ fontSize: 14, color: colors.textMuted, margin: 0 }}>Secure Portal Access</p>
         </div>
 
-        <form onSubmit={handleSubmit}>
-          <Input 
-            label="Email Address" 
-            type="email" 
-            value={email} 
-            onChange={e => setEmail(e.target.value)} 
-            placeholder="doctor@example.com" 
-            icon="📧" 
-          />
-          <Input 
-            label="Password" 
-            type="password" 
-            value={password} 
-            onChange={e => setPassword(e.target.value)} 
-            placeholder="••••••••" 
-            icon="🔒" 
-          />
-          {error && <div style={{ background: `${colors.danger}15`, color: colors.danger, borderRadius: 8, padding: "10px 14px", fontSize: 13, marginBottom: 16 }}>⚠️ {error}</div>}
-          <Button type="submit" variant="primary" disabled={loading} style={{ width: "100%", padding: "13px", fontSize: 15 }}>
-            {loading ? "Authenticating..." : "Login to Dashboard →"}
-          </Button>
-        </form>
+        <div style={{ marginBottom: 24 }}>
+          <div style={{ fontSize: 12, color: colors.textMuted, marginBottom: 10, textAlign: "center" }}>Quick Demo Login</div>
+          <div style={{ display: "flex", gap: 8 }}>
+            <button onClick={() => { set("email", "sarah@healthsys.com"); set("password", "Doctor@123"); }} style={{ flex: 1, padding: "8px 4px", borderRadius: 8, border: `1px solid ${colors.border}`, background: colors.surfaceAlt, cursor: "pointer", fontSize: 12, color: colors.text, display: "flex", flexDirection: "column", alignItems: "center", gap: 4 }}>
+              <span style={{ fontSize: 20 }}>🩺</span>
+              <span style={{ fontWeight: 600 }}>Doctor</span>
+            </button>
+          </div>
+        </div>
+
+        <Input label="Email Address" type="email" value={form.email} onChange={e => set("email", e.target.value)} placeholder="doctor@healthsys.com" icon="📧" />
+        <Input label="Password" type="password" value={form.password} onChange={e => set("password", e.target.value)} placeholder="••••••••" icon="🔒" />
+        
+        {error && <div style={{ background: `${colors.danger}15`, color: colors.danger, borderRadius: 8, padding: "10px 14px", fontSize: 13, marginBottom: 16 }}>⚠️ {error}</div>}
+        
+        <Button variant="primary" onClick={handleSubmit} disabled={loading} style={{ width: "100%", padding: "13px", fontSize: 15 }}>
+          {loading ? "Authenticating..." : "Login to Portal →"}
+        </Button>
       </div>
     </div>
   );

@@ -30,6 +30,7 @@ import DoctorPatientProfile from './pages/doctor/DoctorPatientProfile';
 import Diagnosis from './pages/doctor/Diagnosis';
 import LabRecommendations from './pages/doctor/LabRecommendations';
 import FollowUpSchedule from './pages/doctor/FollowUpSchedule';
+import ConsultationWizard from './pages/doctor/ConsultationWizard';
 import AdminDashboard from './pages/admin/AdminDashboard';
 import DoctorManagement from './pages/admin/DoctorManagement';
 import AnalyticsReports from './pages/admin/AnalyticsReports';
@@ -122,6 +123,7 @@ function App() {
               {/* Doctor Routes */}
               <Route path="doctor-patients" element={<PatientManagement />} />
               <Route path="doctor-patients/:id" element={<DoctorPatientProfile />} />
+              <Route path="consultation/:appointmentId/:patientId" element={<ConsultationWizard />} />
               <Route path="diagnosis" element={<Diagnosis />} />
               <Route path="lab-recommendations" element={<LabRecommendations />} />
               <Route path="follow-up" element={<FollowUpSchedule />} />

@@ -92,6 +92,36 @@ exports.getAppointments = asyncHandler(async (req, res) => {
   });
 });
 
+// @desc    Get today's appointments for doctor
+// @route   GET /api/appointments/today
+// @access  Private/Doctor
+exports.getTodayAppointments = asyncHandler(async (req, res, next) => {
+  if (req.user.role !== 'doctor') {
+    return next(new ErrorResponse('Not authorized', 403));
+  }
+
+  const today = new Date();
+  today.setHours(0, 0, 0, 0);
+  const tomorrow = new Date(today);
+  tomorrow.setDate(tomorrow.getDate() + 1);
+
+  const appointments = await Appointment.find({
+    doctor: req.user.id,
+    appointmentDate: {
+      $gte: today,
+      $lt: tomorrow
+    }
+  })
+    .populate('patient', 'name email avatar phone dateOfBirth gender')
+    .sort({ appointmentTime: 1 });
+
+  res.status(200).json({
+    success: true,
+    count: appointments.length,
+    data: appointments,
+  });
+});
+
 // @desc    Get single appointment
 // @route   GET /api/appointments/:id
 // @access  Private

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import API from '../../api/api';
 import { useAuth } from '../../context/AuthContext';
-import { Calendar, Clock, Video, CheckCircle, XCircle, RefreshCw, Plus, Video as VideoIcon, Building2, Ticket, FileText, UserCircle, Users } from 'lucide-react';
+import { Calendar, Clock, Video, CheckCircle, XCircle, RefreshCw, Plus, Video as VideoIcon, Building2, Ticket, FileText, UserCircle, Users, Stethoscope } from 'lucide-react';
 import toast from 'react-hot-toast';
 import { useSocket } from '../../context/SocketContext';
 
@@ -288,11 +288,11 @@ const DoctorAppointments = () => {
                   )}
                   {['confirmed', 'rescheduled'].includes(apt.status) && (
                      <>
-                       <button onClick={() => navigate('/dashboard/prescriptions')} className="px-4 py-2 bg-white border border-gray-200 hover:bg-gray-100 rounded-xl text-sm font-bold text-gray-700 flex items-center gap-2 transition-all">
-                         <FileText className="w-4 h-4" /> Prescribe
+                       <button onClick={() => navigate(`/dashboard/consultation/${apt._id}/${apt.patient?._id}`)} className="px-4 py-2 bg-indigo-600 hover:bg-indigo-700 text-white shadow-md rounded-xl text-sm font-bold flex items-center gap-2 transition-all">
+                         <Stethoscope className="w-4 h-4" /> Start Consultation
                        </button>
-                       <button onClick={() => navigate('/dashboard/doctor-patients')} className="px-4 py-2 bg-white border border-gray-200 hover:bg-gray-100 rounded-xl text-sm font-bold text-gray-700 flex items-center gap-2 transition-all">
-                         <UserCircle className="w-4 h-4" /> View History
+                       <button onClick={() => navigate(`/dashboard/doctor-patients/${apt.patient?._id}`)} className="px-4 py-2 bg-white border border-gray-200 hover:bg-gray-100 rounded-xl text-sm font-bold text-gray-700 flex items-center gap-2 transition-all">
+                         <UserCircle className="w-4 h-4" /> View Profile
                        </button>
                        {isOnline ? (
                          <a href={apt.meetingLink} target="_blank" rel="noreferrer" className="px-4 py-2 bg-indigo-600 hover:bg-indigo-700 text-white rounded-xl text-sm font-bold flex items-center gap-2 transition-all shadow-sm">

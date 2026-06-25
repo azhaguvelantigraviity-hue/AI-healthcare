@@ -146,3 +146,71 @@ exports.getAllFollowUps = asyncHandler(async (req, res, next) => {
   
   res.status(200).json({ success: true, count: followups.length, data: followups });
 });
+
+// @desc    Save complete consultation workflow
+// @route   POST /api/medical/consultation
+// @access  Private/Doctor
+exports.saveConsultation = asyncHandler(async (req, res, next) => {
+  const { appointmentId, patientId, symptoms, vitals, diagnosis, prescriptions, labRecommendations, followUp, notes } = req.body;
+  const doctor = await Doctor.findOne({ user: req.user._id });
+
+  if (!doctor) {
+    return next(new ErrorResponse('Doctor profile not found', 404));
+  }
+
+  // 1. Save Diagnosis
+  if (diagnosis && diagnosis.primaryDiagnosis) {
+    await Diagnosis.create({
+      patient: patientId,
+      doctor: doctor._id,
+      ...diagnosis
+    });
+  }
+
+  // 2. Save Lab Recommendations
+  if (labRecommendations && labRecommendations.length > 0) {
+    const labDocs = labRecommendations.map(lab => ({
+      patient: patientId,
+      doctor: doctor._id,
+      ...lab
+    }));
+    await LabRecommendation.insertMany(labDocs);
+  }
+
+  // 3. Save Prescriptions
+  if (prescriptions && prescriptions.length > 0) {
+    await Prescription.create({
+      patient: patientId,
+      doctor: doctor._id,
+      appointment: appointmentId,
+      medications: prescriptions,
+      instructions: notes
+    });
+  }
+
+  // 4. Save Follow-up
+  if (followUp && followUp.timeline) {
+    await FollowUp.create({
+      patient: patientId,
+      doctor: doctor._id,
+      ...followUp
+    });
+  }
+
+  // 5. Save Doctor Notes (Symptoms & Vitals)
+  await DoctorNote.create({
+    patient: patientId,
+    doctor: doctor._id,
+    note: `Chief Complaint/Symptoms: ${symptoms.complaint}\nDuration: ${symptoms.duration}\nNotes: ${notes}`,
+  });
+
+  // 6. Update Appointment Status
+  const Appointment = require('../models/Appointment');
+  const appointment = await Appointment.findById(appointmentId);
+  if (appointment) {
+    appointment.status = 'completed';
+    await appointment.save();
+  }
+
+  res.status(201).json({ success: true, message: 'Consultation saved successfully' });
+});

@@ -9,7 +9,8 @@ const {
   addFollowUp,
   getAllFollowUps,
   addDoctorNote,
-  getPatientReport
+  getPatientReport,
+  saveConsultation
 } = require('../controllers/medicalController');
 
 const router = express.Router();
@@ -18,6 +19,7 @@ const router = express.Router();
 router.use(protect);
 router.use(authorize('doctor', 'admin'));
 
+router.post('/consultation', saveConsultation);
 router.get('/patients/:id', getPatientMedicalProfile);
 
 router.route('/diagnosis')

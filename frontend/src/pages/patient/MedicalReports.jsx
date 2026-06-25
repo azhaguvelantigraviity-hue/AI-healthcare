@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import axios from 'axios';
+import API from '../../api/api';
 import { useAuth } from '../../context/AuthContext';
 import { FileText, UploadCloud, File, Trash2, Eye, Download, AlertCircle, Loader, Activity, Filter } from 'lucide-react';
 import { Badge, Button, Card } from '../../components/ui/SharedUI';
@@ -34,7 +34,7 @@ const MedicalReports = () => {
     try {
       setLoading(true);
       const config = { headers: { Authorization: `Bearer ${user.token}` } };
-      const { data } = await axios.get('/api/reports', config);
+      const { data } = await API.get('/api/reports', config);
       const fetchedReports = data.data || [];
       if (fetchedReports.length === 0) {
         setReports(mockReports);
@@ -106,7 +106,7 @@ const MedicalReports = () => {
       formData.append('reportType', typeMap[category] || 'other');
 
       const config = { headers: { 'Content-Type': 'multipart/form-data', Authorization: `Bearer ${user.token}` } };
-      const { data } = await axios.post('/api/reports/upload', formData, config);
+      const { data } = await API.post('/api/reports/upload', formData, config);
       
       toast.success('Report uploaded! AI is analyzing...');
       
@@ -120,7 +120,7 @@ const MedicalReports = () => {
 
       // Trigger analysis asynchronously
       try {
-        const analysisRes = await axios.post(`/api/reports/${newReport._id}/analyze`, {}, { headers: { Authorization: `Bearer ${user.token}` } });
+        const analysisRes = await API.post(`/api/reports/${newReport._id}/analyze`, {}, { headers: { Authorization: `Bearer ${user.token}` } });
         const analyzedReport = analysisRes.data.data.report;
         setReports(prev => prev.map(r => r._id === newReport._id ? analyzedReport : r));
         toast.success('AI Analysis complete!');
@@ -146,7 +146,7 @@ const MedicalReports = () => {
             toast.success('Mock report removed');
             return;
         }
-        await axios.delete(`/api/reports/${id}`, config);
+        await API.delete(`/api/reports/${id}`, config);
         setReports(reports.filter(r => r._id !== id));
         toast.success('Report deleted successfully');
       } catch (error) {

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import axios from 'axios';
+import API from '../../api/api';
 import { useAuth } from '../../context/AuthContext';
 import { useSocket } from '../../context/SocketContext';
 import toast from 'react-hot-toast';
@@ -32,7 +32,7 @@ const VideoConsultation = () => {
       try {
         // Fetch all appointments and find the one matching this room ID
         const config = { headers: { Authorization: `Bearer ${user.token}` } };
-        const res = await axios.get('/api/appointments', config);
+        const res = await API.get('/api/appointments', config);
         const apts = res.data.data || res.data || [];
         const currentApt = apts.find(a => a.meetingLink && a.meetingLink.includes(roomId));
         
@@ -75,7 +75,7 @@ const VideoConsultation = () => {
     if (isDoctor) {
       try {
         const config = { headers: { Authorization: `Bearer ${user.token}` } };
-        await axios.post('/api/consultations/end', {
+        await API.post('/api/consultations/end', {
           appointmentId: appointment._id,
           doctorNotes,
           diagnosis,

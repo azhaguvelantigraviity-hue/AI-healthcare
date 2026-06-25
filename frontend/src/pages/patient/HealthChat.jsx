@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import axios from 'axios';
+import API from '../../api/api';
 import { useAuth } from '../../context/AuthContext';
 import { colors } from '../../theme/colors';
 import { Avatar, Button, Card } from '../../components/ui/SharedUI';
@@ -43,7 +43,7 @@ const HealthChat = () => {
         message: text,
         chatHistory: messages.filter(m => m.id !== 1).map(m => ({ role: m.role, content: m.text }))
       };
-      const { data } = await axios.post('/api/ai/chat', requestData, config);
+      const { data } = await API.post('/api/ai/chat', requestData, config);
       
       const responseText = data.data.message || "I couldn't process your request.";
       

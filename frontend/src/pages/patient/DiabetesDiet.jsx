@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import axios from 'axios';
+import API from '../../api/api';
 import { toast } from 'react-hot-toast';
 import { useAuth } from '../../context/AuthContext';
 import { colors } from '../../theme/colors';
@@ -30,7 +30,7 @@ const DiabetesDiet = () => {
 
   const fetchDiseases = async (query = '') => {
     try {
-      const res = await axios.get(`/api/diet/diseases${query ? `?q=${query}` : ''}`, {
+      const res = await API.get(`/api/diet/diseases${query ? `?q=${query}` : ''}`, {
         headers: { Authorization: `Bearer ${user?.token}` }
       });
       if (res.data.success) {
@@ -44,7 +44,7 @@ const DiabetesDiet = () => {
   const fetchDietPlans = async (diseaseId) => {
     setIsLoading(true);
     try {
-      const res = await axios.get(`/api/diet/plans/${diseaseId}`, {
+      const res = await API.get(`/api/diet/plans/${diseaseId}`, {
         headers: { Authorization: `Bearer ${user?.token}` }
       });
       if (res.data.success) {
@@ -138,7 +138,7 @@ const DiabetesDiet = () => {
       pdf.save(`Diet_Report_${user.name.replace(/\s+/g, '_')}.pdf`);
       
       // Save report to backend
-      await axios.post(`/api/diet/reports`, {
+      await API.post(`/api/diet/reports`, {
         disease: selectedDisease._id,
         dietPlan: activePlan._id,
         patientName: user.name,

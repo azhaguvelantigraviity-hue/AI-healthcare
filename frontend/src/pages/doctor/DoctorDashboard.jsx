@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useAuth } from '../../context/AuthContext';
 import { Bell, XCircle, Clock, Calendar, Users } from 'lucide-react';
-import axios from 'axios';
+import API from '../../api/api';
 import toast from 'react-hot-toast';
 
 // Services
@@ -34,7 +34,7 @@ const DoctorDashboard = () => {
     const fetchAppointments = async () => {
       try {
         const config = { headers: { Authorization: `Bearer ${user.token}` } };
-        const { data } = await axios.get('/api/appointments', config);
+        const { data } = await API.get('/api/appointments', config);
         setAppointments(data.data || []);
       } catch (error) {
         console.error("Error fetching appointments:", error);

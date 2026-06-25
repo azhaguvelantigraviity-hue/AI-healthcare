@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { CreditCard, Shield, Download, FileText, CheckCircle, Clock, Plus, Activity, ChevronRight, X, Loader2, Landmark, Smartphone, UploadCloud, Building, RefreshCw } from 'lucide-react';
 import toast from 'react-hot-toast';
-import axios from 'axios';
+import API from '../../api/api';
 import domtoimage from 'dom-to-image-more';
 import { jsPDF } from 'jspdf';
 import { useAuth } from '../../context/AuthContext';
@@ -44,7 +44,7 @@ const Billing = () => {
       const config = { headers: { Authorization: `Bearer ${user.token}` } };
       
       // Fetch appointments to generate pending invoices (appointments with pending payment)
-      const aptsRes = await axios.get('/api/appointments', config);
+      const aptsRes = await API.get('/api/appointments', config);
       const allApts = aptsRes.data.data || [];
       
       const pendingInvoices = allApts
@@ -62,7 +62,7 @@ const Billing = () => {
       setInvoices(pendingInvoices);
 
       // Fetch actual payment history
-      const paymentsRes = await axios.get('/api/payments/history', config);
+      const paymentsRes = await API.get('/api/payments/history', config);
       setPaymentHistory(paymentsRes.data.data || []);
       
     } catch (error) {
@@ -157,7 +157,7 @@ const Billing = () => {
       // Also submit to insurance claim endpoint
       try {
         const config = { headers: { Authorization: `Bearer ${user.token}` } };
-        await axios.post('/api/insurance/claims', {
+        await API.post('/api/insurance/claims', {
           insuranceProvider: insuranceForm.provider,
           policyNumber: insuranceForm.policyNumber,
           claimAmount: selectedInvoiceForPayment.amount,
@@ -172,7 +172,7 @@ const Billing = () => {
 
     try {
       const config = { headers: { Authorization: `Bearer ${user.token}` } };
-      await axios.post('/api/payments/process', payload, config);
+      await API.post('/api/payments/process', payload, config);
       
       setIsProcessing(false);
       setIsPaid(true);

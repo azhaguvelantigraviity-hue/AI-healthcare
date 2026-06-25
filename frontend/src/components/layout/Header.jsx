@@ -4,7 +4,7 @@ import { useAuth } from '../../context/AuthContext';
 import { useSocket } from '../../context/SocketContext';
 import toast from 'react-hot-toast';
 import { Bell, Menu, CheckCircle2, XCircle, Info, CheckCheck } from 'lucide-react';
-import axios from 'axios';
+import API from '../../api/api';
 
 const Header = ({ onToggleSidebar }) => {
   const { user } = useAuth();
@@ -31,7 +31,7 @@ const Header = ({ onToggleSidebar }) => {
       try {
         if (!user || !user.token) return;
         const config = { headers: { Authorization: `Bearer ${user.token}` } };
-        const { data } = await axios.get('/api/notifications', config);
+        const { data } = await API.get('/api/notifications', config);
         
         if (data.success && data.data) {
           const formatted = data.data.map(n => ({
@@ -99,7 +99,7 @@ const Header = ({ onToggleSidebar }) => {
     try {
       if (!user || !user.token) return;
       const config = { headers: { Authorization: `Bearer ${user.token}` } };
-      await axios.put('/api/notifications/read-all', {}, config);
+      await API.put('/api/notifications/read-all', {}, config);
       setNotifications(prev => prev.map(n => ({ ...n, read: true })));
     } catch (error) {
       console.error("Error marking all as read", error);

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Users, Plus, Search, Edit2, Trash2, CheckCircle, XCircle, Eye, List, EyeOff } from 'lucide-react';
-import axios from 'axios';
+import API from '../../api/api';
 import { useAuth } from '../../context/AuthContext';
 import toast from 'react-hot-toast';
 import { Spinner, Modal, Badge } from '../../components/ui/SharedUI';
@@ -33,7 +33,7 @@ const DoctorManagement = () => {
     try {
       setLoading(true);
       const config = { headers: { Authorization: `Bearer ${user.token}` } };
-      const { data } = await axios.get('/api/admin/doctors', config);
+      const { data } = await API.get('/api/admin/doctors', config);
       setDoctors(data.data || []);
     } catch (error) {
       console.error("Error fetching doctors:", error);
@@ -74,7 +74,7 @@ const DoctorManagement = () => {
     }
     try {
       const config = { headers: { Authorization: `Bearer ${user.token}` } };
-      await axios.post('/api/admin/doctors', formData, config);
+      await API.post('/api/admin/doctors', formData, config);
       toast.success("Doctor account created successfully!");
       setFormData({
         name: '', email: '', phone: '', password: '', gender: 'male', dateOfBirth: '', address: '',
@@ -91,7 +91,7 @@ const DoctorManagement = () => {
   const handleApprove = async (id, approve) => {
     try {
       const config = { headers: { Authorization: `Bearer ${user.token}` } };
-      await axios.put(`/api/admin/doctors/${id}/approve`, { approve }, config);
+      await API.put(`/api/admin/doctors/${id}/approve`, { approve }, config);
       toast.success(approve ? "Doctor approved!" : "Doctor rejected!");
       fetchDoctors();
     } catch (error) {
@@ -104,7 +104,7 @@ const DoctorManagement = () => {
     if (window.confirm("Are you sure you want to permanently delete this doctor account?")) {
       try {
         const config = { headers: { Authorization: `Bearer ${user.token}` } };
-        await axios.delete(`/api/admin/doctors/${id}`, config);
+        await API.delete(`/api/admin/doctors/${id}`, config);
         toast.success("Doctor deleted successfully");
         fetchDoctors();
       } catch (error) {
@@ -136,7 +136,7 @@ const DoctorManagement = () => {
     }
     try {
       const config = { headers: { Authorization: `Bearer ${user.token}` } };
-      await axios.put(`/api/admin/doctors/${selectedDoctor._id}`, editFormData, config);
+      await API.put(`/api/admin/doctors/${selectedDoctor._id}`, editFormData, config);
       toast.success("Doctor profile updated");
       setIsEditModalOpen(false);
       fetchDoctors();

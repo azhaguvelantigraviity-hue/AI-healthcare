@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+import API from '../../api/api';
 import { useAuth } from '../../context/AuthContext';
 import { Users, FileText, Activity, Search, Eye, X } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
@@ -19,7 +19,7 @@ const PatientManagement = () => {
     const fetchPatients = async () => {
       try {
         const config = { headers: { Authorization: `Bearer ${user.token}` } };
-        const { data } = await axios.get('/api/appointments', config);
+        const { data } = await API.get('/api/appointments', config);
         
         const appointmentsData = data.data || [];
         const uniquePatientsMap = new Map();

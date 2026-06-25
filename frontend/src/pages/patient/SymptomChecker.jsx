@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Search, Thermometer, Droplets, Utensils, AlertTriangle, Coffee, Sun, Moon, Info, HeartPulse, Stethoscope, Loader } from 'lucide-react';
 import toast from 'react-hot-toast';
-import axios from 'axios';
+import API from '../../api/api';
 import { useAuth } from '../../context/AuthContext';
 
 const SymptomChecker = () => {
@@ -19,7 +19,7 @@ const SymptomChecker = () => {
     const fetchSymptoms = async () => {
       try {
         const config = { headers: { Authorization: `Bearer ${user.token}` } };
-        const { data } = await axios.get('/api/symptoms', config);
+        const { data } = await API.get('/api/symptoms', config);
         setSymptomsData(data.data || []);
       } catch (error) {
         console.error('Error fetching symptoms', error);

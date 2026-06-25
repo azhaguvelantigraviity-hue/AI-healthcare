@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Calendar, Search, Edit2, Trash2, Eye } from 'lucide-react';
-import axios from 'axios';
+import API from '../../api/api';
 import { useAuth } from '../../context/AuthContext';
 import toast from 'react-hot-toast';
 import { Spinner, Modal, Badge } from '../../components/ui/SharedUI';
@@ -22,7 +22,7 @@ const AdminAppointments = () => {
     try {
       const config = { headers: { Authorization: `Bearer ${user.token}` } };
       // Adding limit=100 or something if pagination exists, but usually default is enough for demo
-      const { data } = await axios.get('/api/appointments?limit=100', config);
+      const { data } = await API.get('/api/appointments?limit=100', config);
       setAppointments(data.data || []);
     } catch (error) {
       console.error("Error fetching appointments:", error);
@@ -42,7 +42,7 @@ const AdminAppointments = () => {
     if (window.confirm("Are you sure you want to delete this appointment?")) {
       try {
         const config = { headers: { Authorization: `Bearer ${user.token}` } };
-        await axios.delete(`/api/appointments/${id}`, config);
+        await API.delete(`/api/appointments/${id}`, config);
         toast.success("Appointment deleted successfully");
         fetchAppointments();
       } catch (error) {
@@ -56,7 +56,7 @@ const AdminAppointments = () => {
     if (!editStatus) return;
     try {
       const config = { headers: { Authorization: `Bearer ${user.token}` } };
-      await axios.put(`/api/appointments/${selectedApt._id}/status`, { status: editStatus }, config);
+      await API.put(`/api/appointments/${selectedApt._id}/status`, { status: editStatus }, config);
       toast.success("Appointment status updated");
       setIsEditModalOpen(false);
       fetchAppointments();

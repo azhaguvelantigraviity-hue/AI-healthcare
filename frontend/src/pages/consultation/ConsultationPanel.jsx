@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { FileText, Activity, Brain, CheckCircle2, ChevronRight, Stethoscope } from 'lucide-react';
-import axios from 'axios';
+import API from '../../api/api';
 import toast from 'react-hot-toast';
 
 const ConsultationPanel = ({ appointment, onNotesUpdate, onDiagnosisUpdate }) => {
@@ -34,7 +34,7 @@ const ConsultationPanel = ({ appointment, onNotesUpdate, onDiagnosisUpdate }) =>
       // but typically we summarize on end. For real-time, let's hit a temporary ai endpoint or mock it.
       // Assuming we have `/api/ai/summarize-consultation` - I will add it to routes if needed.
       // For now, simulate the AI process since the requirement says "AI Features: Add AI assistant features"
-      const res = await axios.post('/api/ai/analyze-symptoms', { symptoms: [notes] }); 
+      const res = await API.post('/api/ai/analyze-symptoms', { symptoms: [notes] }); 
       // Fallback to analyzing symptoms if a specific summarize endpoint isn't built yet,
       // but let's mock it beautifully here to represent the UI before the End Consultation triggers the actual DB save.
       

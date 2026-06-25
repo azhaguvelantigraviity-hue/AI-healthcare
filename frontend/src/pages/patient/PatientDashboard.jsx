@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import axios from 'axios';
+import API from '../../api/api';
 import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
 import { useAuth } from '../../context/AuthContext';
 import { colors } from '../../theme/colors';
@@ -46,9 +46,9 @@ const PatientDashboard = () => {
         
         // Fetch all data in parallel
         const [apptsRes, reportsRes, presRes] = await Promise.allSettled([
-          axios.get('/api/appointments', config),
-          axios.get('/api/reports', config),
-          axios.get('/api/prescriptions', config)
+          API.get('/api/appointments', config),
+          API.get('/api/reports', config),
+          API.get('/api/prescriptions', config)
         ]);
 
         if (apptsRes.status === 'fulfilled') setAppointments(apptsRes.value.data.data || []);

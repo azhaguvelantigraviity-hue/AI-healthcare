@@ -5,6 +5,9 @@ const Appointment = require('../models/Appointment');
 const MedicalReport = require('../models/MedicalReport');
 const Prescription = require('../models/Prescription');
 const { Notification } = require('../models/index');
+const LabRecommendation = require('../models/LabRecommendation');
+const Diagnosis = require('../models/Diagnosis');
+const FollowUp = require('../models/FollowUp');
 
 exports.seedDatabase = async (req, res) => {
   try {
@@ -17,6 +20,7 @@ exports.seedDatabase = async (req, res) => {
       User.deleteMany({}), Patient.deleteMany({}), Doctor.deleteMany({}),
       Appointment.deleteMany({}), MedicalReport.deleteMany({}),
       Prescription.deleteMany({}), Notification.deleteMany({}),
+      LabRecommendation.deleteMany({}), Diagnosis.deleteMany({}), FollowUp.deleteMany({}),
     ]);
 
     // Create admin
@@ -93,6 +97,25 @@ exports.seedDatabase = async (req, res) => {
         instructions: 'Monitor blood glucose daily. Follow diabetic diet.',
         status: 'active',
       },
+    ]);
+
+    // Create lab recommendations
+    await LabRecommendation.create([
+      { patient: patientUsers[0]._id, doctor: doctorUsers[0]._id, testName: 'Complete Blood Count (CBC)', reason: 'Routine checkup', priority: 'Low', status: 'Pending' },
+      { patient: patientUsers[0]._id, doctor: doctorUsers[0]._id, testName: 'Lipid Panel', reason: 'High cholesterol risk', priority: 'Medium', status: 'Completed' },
+      { patient: patientUsers[2]._id, doctor: doctorUsers[2]._id, testName: 'HbA1c', reason: 'Diabetes monitoring', priority: 'High', status: 'Pending' }
+    ]);
+
+    // Create diagnoses
+    await Diagnosis.create([
+      { patient: patientUsers[0]._id, doctor: doctorUsers[0]._id, condition: 'Hypertension', status: 'Active', notes: 'Stage 1 hypertension, manageable with diet and light medication.' },
+      { patient: patientUsers[2]._id, doctor: doctorUsers[2]._id, condition: 'Type 2 Diabetes', status: 'Chronic', notes: 'Requires regular monitoring.' }
+    ]);
+
+    // Create follow-ups
+    await FollowUp.create([
+      { patient: patientUsers[0]._id, doctor: doctorUsers[0]._id, type: 'In-person', reason: 'Blood pressure check', dueDate: nextWeek, status: 'Pending' },
+      { patient: patientUsers[2]._id, doctor: doctorUsers[2]._id, type: 'Video', reason: 'Review HbA1c results', dueDate: nextWeek, status: 'Pending' }
     ]);
 
     // Create notifications

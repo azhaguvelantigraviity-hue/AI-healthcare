@@ -6,12 +6,18 @@ import {
   Filter, ChevronLeft, ChevronRight, User, AlertCircle
 } from 'lucide-react';
 import toast from 'react-hot-toast';
+import { Modal } from '../../components/ui/SharedUI';
+import { colors } from '../../theme/colors';
 
 const AdminReports = () => {
   const { user } = useAuth();
   const [reports, setReports] = useState([]);
   const [loading, setLoading] = useState(true);
   
+  // View Modal state
+  const [isViewModalOpen, setIsViewModalOpen] = useState(false);
+  const [selectedReport, setSelectedReport] = useState(null);
+
   // Pagination & Filtering
   const [searchTerm, setSearchTerm] = useState('');
   const [statusFilter, setStatusFilter] = useState('all');
@@ -46,11 +52,19 @@ const AdminReports = () => {
   };
 
   const handleAction = (action, report) => {
-    if (report && report.fileUrl) {
-      toast.success(`Opening report...`);
-      window.open(report.fileUrl, '_blank');
-    } else {
-      toast.error('File not available for this report.');
+    if (action === 'View') {
+      setSelectedReport(report);
+      setIsViewModalOpen(true);
+      return;
+    }
+
+    if (action === 'Download') {
+      if (report && report.fileUrl) {
+        toast.success(`Opening report...`);
+        window.open(report.fileUrl, '_blank');
+      } else {
+        toast.error('File not available for this report.');
+      }
     }
   };
 
@@ -265,6 +279,54 @@ const AdminReports = () => {
           </div>
         )}
       </div>
+
+      {/* View Report Modal */}
+      <Modal open={isViewModalOpen} onClose={() => setIsViewModalOpen(false)} title="Report Details" width={550}>
+        {selectedReport && (
+          <div className="space-y-2 pt-2">
+            <div className="flex justify-between items-center border-b border-gray-100 py-3">
+              <span className="text-sm font-medium text-gray-500">Patient</span>
+              <span className="font-semibold text-gray-900">{selectedReport.patient?.name || 'Unknown Patient'}</span>
+            </div>
+            <div className="flex justify-between items-center border-b border-gray-100 py-3">
+              <span className="text-sm font-medium text-gray-500">Report Title</span>
+              <span className="font-semibold text-gray-900">{selectedReport.title}</span>
+            </div>
+            <div className="flex justify-between items-center border-b border-gray-100 py-3">
+              <span className="text-sm font-medium text-gray-500">Type</span>
+              <span className="font-semibold text-gray-900 uppercase">{selectedReport.reportType || 'General'}</span>
+            </div>
+            <div className="flex justify-between items-center border-b border-gray-100 py-3">
+              <span className="text-sm font-medium text-gray-500">Date</span>
+              <span className="font-semibold text-gray-900">{new Date(selectedReport.reportDate || selectedReport.createdAt).toDateString()}</span>
+            </div>
+            <div className="flex justify-between items-center border-b border-gray-100 py-3">
+              <span className="text-sm font-medium text-gray-500">Uploaded By</span>
+              <span className="font-semibold text-gray-900">{selectedReport.uploadedBy?.name || 'System'} ({selectedReport.uploadedBy?.role || 'User'})</span>
+            </div>
+            <div className="flex justify-between items-center border-b border-gray-100 py-3">
+              <span className="text-sm font-medium text-gray-500">Status</span>
+              {getStatusBadge(selectedReport.status)}
+            </div>
+            <div className="py-4">
+              <span className="text-sm font-medium text-gray-500 block mb-2">Notes</span>
+              <p className="bg-gray-50 p-4 rounded-xl text-gray-800 border border-gray-100 leading-relaxed shadow-sm">
+                {selectedReport.notes || 'No notes available for this report.'}
+              </p>
+            </div>
+            {selectedReport.fileUrl && (
+              <div className="flex justify-end pt-2">
+                <button 
+                  onClick={() => handleAction('Download', selectedReport)}
+                  className="px-6 py-2 bg-indigo-600 hover:bg-indigo-700 text-white rounded-lg font-bold shadow-md transition-colors flex items-center"
+                >
+                  <Download className="w-4 h-4 mr-2" /> Download Document
+                </button>
+              </div>
+            )}
+          </div>
+        )}
+      </Modal>
 
     </div>
   );

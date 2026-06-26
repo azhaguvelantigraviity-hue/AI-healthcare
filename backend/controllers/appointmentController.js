@@ -34,9 +34,8 @@ const autoUpdateNoShows = async () => {
 
     for (let apt of activeAppointments) {
       // Calculate end time
-      const [hours, minutes] = apt.appointmentTime.split(':').map(Number);
-      const appointmentStart = new Date(apt.appointmentDate);
-      appointmentStart.setHours(hours, minutes, 0, 0);
+      const dateString = apt.appointmentDate.toISOString().split('T')[0];
+      const appointmentStart = new Date(`${dateString}T${apt.appointmentTime}:00`);
       
       const duration = apt.duration || 30;
       const appointmentEnd = new Date(appointmentStart.getTime() + duration * 60000);
@@ -58,7 +57,7 @@ const autoUpdateNoShows = async () => {
 exports.getAppointments = asyncHandler(async (req, res) => {
   await autoUpdateNoShows();
 
-  const { page = 1, limit = 10, status, startDate, endDate, type } = req.query;
+  const { page = 1, limit = 100, status, startDate, endDate, type } = req.query;
   const query = {};
 
   // Role-based filtering

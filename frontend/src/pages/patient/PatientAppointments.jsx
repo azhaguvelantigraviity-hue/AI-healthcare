@@ -43,7 +43,7 @@ const PatientAppointments = () => {
   const fetchAppointments = async () => {
     try {
       const config = { headers: { Authorization: `Bearer ${user.token}` } };
-      const { data } = await API.get('/api/appointments', config);
+      const { data } = await API.get('/api/appointments?limit=100', config);
       setAppointments(data.data || []);
     } catch (error) {
       console.error('Error fetching appointments', error);

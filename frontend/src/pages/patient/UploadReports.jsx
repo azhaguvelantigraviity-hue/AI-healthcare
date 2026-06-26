@@ -102,7 +102,7 @@ const UploadReports = () => {
       
       // Reset form or redirect
       setTimeout(() => {
-        navigate('/dashboard/medical-reports');
+        navigate('/dashboard/reports');
       }, 1500);
 
     } catch (error) {

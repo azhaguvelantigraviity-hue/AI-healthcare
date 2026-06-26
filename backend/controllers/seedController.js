@@ -51,7 +51,7 @@ exports.seedDatabase = async (req, res) => {
       { name: 'Robert Brown', email: 'robert@email.com', password: 'Patient@123', role: 'patient', phone: '+9876543212', gender: 'male', dateOfBirth: new Date('1978-03-10'), isEmailVerified: true, avatar: 'https://api.dicebear.com/7.x/avataaars/svg?seed=robert' },
     ]);
 
-    await Patient.create([
+    const patientProfiles = await Patient.create([
       { user: patientUsers[0]._id, bloodType: 'O+', height: 178, weight: 75, allergies: ['Penicillin', 'Dust'], chronicConditions: ['Hypertension'], currentMedications: [{ name: 'Amlodipine', dosage: '5mg', frequency: 'Once daily' }], emergencyContact: { name: 'Sarah Miller', relationship: 'Spouse', phone: '+9876543220' }, healthScore: 78, exerciseFrequency: 'moderate', smokingStatus: 'never', vitals: [{ date: new Date(), bloodPressure: { systolic: 135, diastolic: 85 }, heartRate: 72, temperature: 37.0, oxygenSaturation: 98 }] },
       { user: patientUsers[1]._id, bloodType: 'A-', height: 165, weight: 58, allergies: [], chronicConditions: [], currentMedications: [], emergencyContact: { name: 'John Davis', relationship: 'Spouse', phone: '+9876543221' }, healthScore: 92, exerciseFrequency: 'active', smokingStatus: 'never', vitals: [{ date: new Date(), bloodPressure: { systolic: 118, diastolic: 75 }, heartRate: 68, temperature: 36.8, oxygenSaturation: 99 }] },
       { user: patientUsers[2]._id, bloodType: 'B+', height: 182, weight: 88, allergies: ['Sulfa'], chronicConditions: ['Type 2 Diabetes', 'Obesity'], currentMedications: [{ name: 'Metformin', dosage: '500mg', frequency: 'Twice daily' }], emergencyContact: { name: 'Lisa Brown', relationship: 'Spouse', phone: '+9876543222' }, healthScore: 65, exerciseFrequency: 'light', smokingStatus: 'former', vitals: [{ date: new Date(), bloodPressure: { systolic: 145, diastolic: 92 }, heartRate: 84, temperature: 37.2, oxygenSaturation: 96, glucoseLevel: 185 }] },
@@ -101,21 +101,21 @@ exports.seedDatabase = async (req, res) => {
 
     // Create lab recommendations
     await LabRecommendation.create([
-      { patient: patientUsers[0]._id, doctor: doctorUsers[0]._id, testName: 'Complete Blood Count (CBC)', reason: 'Routine checkup', priority: 'Low', status: 'Pending' },
-      { patient: patientUsers[0]._id, doctor: doctorUsers[0]._id, testName: 'Lipid Panel', reason: 'High cholesterol risk', priority: 'Medium', status: 'Completed' },
-      { patient: patientUsers[2]._id, doctor: doctorUsers[2]._id, testName: 'HbA1c', reason: 'Diabetes monitoring', priority: 'High', status: 'Pending' }
+      { patient: patientProfiles[0]._id, doctor: doctorProfiles[0]._id, testName: 'Complete Blood Count (CBC)', reason: 'Routine checkup', priority: 'Low', status: 'Pending' },
+      { patient: patientProfiles[0]._id, doctor: doctorProfiles[0]._id, testName: 'Lipid Panel', reason: 'High cholesterol risk', priority: 'Medium', status: 'Completed' },
+      { patient: patientProfiles[2]._id, doctor: doctorProfiles[2]._id, testName: 'HbA1c', reason: 'Diabetes monitoring', priority: 'High', status: 'Pending' }
     ]);
 
     // Create diagnoses
     await Diagnosis.create([
-      { patient: patientUsers[0]._id, doctor: doctorUsers[0]._id, primaryDiagnosis: 'Hypertension Stage 1', possibleConditions: ['Essential Hypertension', 'Secondary Hypertension'], confidence: 95, riskLevel: 'Medium', symptoms: ['Headache', 'Dizziness'] },
-      { patient: patientUsers[2]._id, doctor: doctorUsers[2]._id, primaryDiagnosis: 'Type 2 Diabetes Mellitus', possibleConditions: ['Type 2 Diabetes', 'Prediabetes'], confidence: 98, riskLevel: 'High', symptoms: ['Increased thirst', 'Frequent urination'] }
+      { patient: patientProfiles[0]._id, doctor: doctorProfiles[0]._id, primaryDiagnosis: 'Hypertension Stage 1', possibleConditions: ['Essential Hypertension', 'Secondary Hypertension'], confidence: 95, riskLevel: 'Medium', symptoms: ['Headache', 'Dizziness'] },
+      { patient: patientProfiles[2]._id, doctor: doctorProfiles[2]._id, primaryDiagnosis: 'Type 2 Diabetes Mellitus', possibleConditions: ['Type 2 Diabetes', 'Prediabetes'], confidence: 98, riskLevel: 'High', symptoms: ['Increased thirst', 'Frequent urination'] }
     ]);
 
     // Create follow-ups
     await FollowUp.create([
-      { patient: patientUsers[0]._id, doctor: doctorUsers[0]._id, type: 'Blood Pressure Review', timeline: '7 Days', status: 'Scheduled', notes: 'Check blood pressure' },
-      { patient: patientUsers[2]._id, doctor: doctorUsers[2]._id, type: 'Diabetes Monitoring', timeline: '30 Days', status: 'Scheduled', notes: 'Review HbA1c results' }
+      { patient: patientProfiles[0]._id, doctor: doctorProfiles[0]._id, type: 'Blood Pressure Review', timeline: '7 Days', status: 'Scheduled', notes: 'Check blood pressure' },
+      { patient: patientProfiles[2]._id, doctor: doctorProfiles[2]._id, type: 'Diabetes Monitoring', timeline: '30 Days', status: 'Scheduled', notes: 'Review HbA1c results' }
     ]);
 
     // Create notifications

@@ -138,7 +138,7 @@ const AdminAppointments = () => {
               <tr key={apt._id} className="hover:bg-gray-50 transition-colors">
                 <td className="px-6 py-4 whitespace-nowrap">
                   <p className="text-sm font-bold text-gray-900">{apt.patient?.name || 'Unknown Patient'}</p>
-                  <p className="text-xs text-gray-500">with Dr. {apt.doctor?.name || 'Unknown'}</p>
+                  <p className="text-xs text-gray-500">with {apt.doctor?.name || 'Unknown Doctor'}</p>
                 </td>
                 <td className="px-6 py-4 whitespace-nowrap">
                   <p className="text-sm text-gray-900">{new Date(apt.appointmentDate).toDateString()}</p>
@@ -195,30 +195,32 @@ const AdminAppointments = () => {
       {/* View Appointment Modal */}
       <Modal open={isViewModalOpen} onClose={() => setIsViewModalOpen(false)} title="Appointment Details" width={500}>
         {selectedApt && (
-          <div className="space-y-4">
-            <div className="flex justify-between border-b pb-2">
-              <span className="font-semibold text-gray-500">Patient:</span>
-              <span className="font-bold">{selectedApt.patient?.name}</span>
+          <div className="space-y-2 pt-2">
+            <div className="flex justify-between items-center border-b border-gray-100 py-3">
+              <span className="text-sm font-medium text-gray-500">Patient</span>
+              <span className="font-semibold text-gray-900">{selectedApt.patient?.name || 'Unknown Patient'}</span>
             </div>
-            <div className="flex justify-between border-b pb-2">
-              <span className="font-semibold text-gray-500">Doctor:</span>
-              <span className="font-bold">Dr. {selectedApt.doctor?.name}</span>
+            <div className="flex justify-between items-center border-b border-gray-100 py-3">
+              <span className="text-sm font-medium text-gray-500">Doctor</span>
+              <span className="font-semibold text-gray-900">{selectedApt.doctor?.name || 'Unknown Doctor'}</span>
             </div>
-            <div className="flex justify-between border-b pb-2">
-              <span className="font-semibold text-gray-500">Date & Time:</span>
-              <span className="font-bold">{new Date(selectedApt.appointmentDate).toDateString()} at {selectedApt.appointmentTime}</span>
+            <div className="flex justify-between items-center border-b border-gray-100 py-3">
+              <span className="text-sm font-medium text-gray-500">Date & Time</span>
+              <span className="font-semibold text-gray-900">{new Date(selectedApt.appointmentDate).toDateString()} at {selectedApt.appointmentTime}</span>
             </div>
-            <div className="flex justify-between border-b pb-2">
-              <span className="font-semibold text-gray-500">Status:</span>
+            <div className="flex justify-between items-center border-b border-gray-100 py-3">
+              <span className="text-sm font-medium text-gray-500">Status</span>
               <Badge label={selectedApt.status} color={selectedApt.status === 'completed' ? colors.success : colors.primary} />
             </div>
-            <div className="flex justify-between border-b pb-2">
-              <span className="font-semibold text-gray-500">Mode:</span>
-              <span className="font-bold capitalize">{selectedApt.mode}</span>
+            <div className="flex justify-between items-center border-b border-gray-100 py-3">
+              <span className="text-sm font-medium text-gray-500">Mode</span>
+              <span className="font-semibold text-gray-900 capitalize">{selectedApt.mode}</span>
             </div>
-            <div className="pt-2">
-              <span className="font-semibold text-gray-500 block mb-1">Reason for Visit:</span>
-              <p className="bg-gray-50 p-3 rounded-lg text-sm text-gray-700">{selectedApt.reason || 'No reason provided'}</p>
+            <div className="py-4">
+              <span className="text-sm font-medium text-gray-500 block mb-2">Reason for Visit</span>
+              <p className="bg-gray-50 p-4 rounded-xl text-gray-800 border border-gray-100 leading-relaxed shadow-sm">
+                {selectedApt.reason || 'No reason provided.'}
+              </p>
             </div>
           </div>
         )}

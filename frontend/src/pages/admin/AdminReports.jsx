@@ -59,12 +59,42 @@ const AdminReports = () => {
     }
 
     if (action === 'Download') {
-      if (report && report.fileUrl) {
-        toast.success(`Opening report...`);
-        window.open(report.fileUrl, '_blank');
-      } else {
+      if (!report || !report.fileUrl) {
         toast.error('File not available for this report.');
+        return;
       }
+
+      toast.loading('Downloading report...', { id: 'download' });
+      
+      fetch(report.fileUrl)
+        .then(response => response.blob())
+        .then(blob => {
+          const url = window.URL.createObjectURL(blob);
+          const a = document.createElement('a');
+          a.style.display = 'none';
+          a.href = url;
+          
+          let extension = 'pdf';
+          if (report.fileUrl.match(/\.(png|jpg|jpeg|gif|webp)$/i)) {
+            extension = report.fileUrl.match(/\.(png|jpg|jpeg|gif|webp)$/i)[1];
+          }
+          
+          const safePatientName = (report.patient?.name || 'Unknown_Patient').replace(/\s+/g, '_');
+          const safeTitle = (report.title || 'Medical_Report').replace(/\s+/g, '_');
+          a.download = `${safePatientName}_${safeTitle}.${extension}`;
+          
+          document.body.appendChild(a);
+          a.click();
+          window.URL.revokeObjectURL(url);
+          document.body.removeChild(a);
+          
+          toast.success('Downloaded successfully!', { id: 'download' });
+        })
+        .catch(error => {
+          console.error('Download error:', error);
+          toast.error('Download failed. Opening in new tab instead.', { id: 'download' });
+          window.open(report.fileUrl, '_blank');
+        });
     }
   };
 
@@ -238,25 +268,13 @@ const AdminReports = () => {
                         >
                           <Eye className="w-5 h-5" />
                         </button>
-                        {report.fileUrl ? (
-                          <a 
-                            href={report.fileUrl}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="p-2 text-gray-600 hover:bg-gray-100 rounded-xl transition-colors tooltip-trigger flex items-center"
-                            title="Download PDF"
-                          >
-                            <Download className="w-5 h-5" />
-                          </a>
-                        ) : (
-                          <button 
-                            onClick={() => handleAction('Download', report)}
-                            className="p-2 text-gray-400 cursor-not-allowed rounded-xl transition-colors tooltip-trigger"
-                            title="No File Available"
-                          >
-                            <Download className="w-5 h-5" />
-                          </button>
-                        )}
+                        <button 
+                          onClick={() => handleAction('Download', report)}
+                          className={`p-2 rounded-xl transition-colors tooltip-trigger ${report.fileUrl ? 'text-gray-600 hover:bg-gray-100' : 'text-gray-400 cursor-not-allowed'}`}
+                          title={report.fileUrl ? "Download PDF" : "No File Available"}
+                        >
+                          <Download className="w-5 h-5" />
+                        </button>
                       </div>
                     </td>
                   </tr>
@@ -328,14 +346,12 @@ const AdminReports = () => {
             </div>
             {selectedReport.fileUrl && (
               <div className="flex justify-end pt-2">
-                <a 
-                  href={selectedReport.fileUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
+                <button 
+                  onClick={() => handleAction('Download', selectedReport)}
                   className="px-6 py-2 bg-indigo-600 hover:bg-indigo-700 text-white rounded-lg font-bold shadow-md transition-colors flex items-center"
                 >
                   <Download className="w-4 h-4 mr-2" /> Download Document
-                </a>
+                </button>
               </div>
             )}
           </div>

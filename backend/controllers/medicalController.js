@@ -12,7 +12,13 @@ const Doctor = require('../models/Doctor');
 // @route   GET /api/medical/patients/:id
 // @access  Private/Doctor
 exports.getPatientMedicalProfile = asyncHandler(async (req, res, next) => {
-  const patient = await Patient.findById(req.params.id).populate('user', 'name email dateOfBirth gender avatar phone');
+  let patient = await Patient.findById(req.params.id).populate('user', 'name email dateOfBirth gender avatar phone');
+  
+  if (!patient) {
+    // If not found by Patient ID, try searching by User ID
+    patient = await Patient.findOne({ user: req.params.id }).populate('user', 'name email dateOfBirth gender avatar phone');
+  }
+
   if (!patient) {
     return next(new ErrorResponse('Patient not found', 404));
   }

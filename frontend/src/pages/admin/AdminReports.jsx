@@ -322,7 +322,7 @@ const AdminReports = () => {
                   rel="noopener noreferrer"
                   className="px-6 py-2 bg-indigo-600 hover:bg-indigo-700 text-white rounded-lg font-bold shadow-md transition-colors flex items-center"
                 >
-                  <Eye className="w-4 h-4 mr-2" /> View Document
+                  <Download className="w-4 h-4 mr-2" /> Download Document
                 </a>
               </div>
             )}

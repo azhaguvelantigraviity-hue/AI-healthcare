@@ -238,13 +238,25 @@ const AdminReports = () => {
                         >
                           <Eye className="w-5 h-5" />
                         </button>
-                        <button 
-                          onClick={() => handleAction('Download', report)}
-                          className="p-2 text-gray-600 hover:bg-gray-100 rounded-xl transition-colors tooltip-trigger"
-                          title="Download PDF"
-                        >
-                          <Download className="w-5 h-5" />
-                        </button>
+                        {report.fileUrl ? (
+                          <a 
+                            href={report.fileUrl}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="p-2 text-gray-600 hover:bg-gray-100 rounded-xl transition-colors tooltip-trigger flex items-center"
+                            title="Download PDF"
+                          >
+                            <Download className="w-5 h-5" />
+                          </a>
+                        ) : (
+                          <button 
+                            onClick={() => handleAction('Download', report)}
+                            className="p-2 text-gray-400 cursor-not-allowed rounded-xl transition-colors tooltip-trigger"
+                            title="No File Available"
+                          >
+                            <Download className="w-5 h-5" />
+                          </button>
+                        )}
                       </div>
                     </td>
                   </tr>

@@ -1,30 +1,53 @@
 import React, { useState, useEffect } from 'react';
 import { Bell, CheckCircle } from 'lucide-react';
-import { realtimeService } from '../../services/realtimeService';
+import API from '../../api/api';
+import { useAuth } from '../../context/AuthContext';
+import toast from 'react-hot-toast';
 
 const DoctorNotifications = () => {
+  const { user } = useAuth();
   const [notifications, setNotifications] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    // Start listening to the realtime service we created earlier
-    realtimeService.startMocking();
-    const unsubscribe = realtimeService.subscribe('notification', (notif) => {
-      setNotifications(prev => [notif, ...prev]);
-    });
-
-    return () => {
-      unsubscribe();
-      realtimeService.stopMocking();
+    const fetchNotifications = async () => {
+      try {
+        const config = { headers: { Authorization: `Bearer ${user.token}` } };
+        const { data } = await API.get('/api/notifications', config);
+        setNotifications(data.data || []);
+      } catch (error) {
+        console.error('Error fetching notifications:', error);
+        toast.error('Failed to load notifications');
+      } finally {
+        setLoading(false);
+      }
     };
-  }, []);
+    
+    fetchNotifications();
+  }, [user.token]);
 
-  const markAllRead = () => {
-    setNotifications(notifications.map(n => ({ ...n, read: true })));
+  const markAllRead = async () => {
+    try {
+      const config = { headers: { Authorization: `Bearer ${user.token}` } };
+      await API.put('/api/notifications/read-all', {}, config);
+      setNotifications(notifications.map(n => ({ ...n, isRead: true })));
+      toast.success('All notifications marked as read');
+    } catch (error) {
+      toast.error('Failed to update notifications');
+    }
   };
 
-  const markAsRead = (id) => {
-    setNotifications(notifications.map(n => n.id === id ? { ...n, read: true } : n));
+  const markAsRead = async (id) => {
+    try {
+      const config = { headers: { Authorization: `Bearer ${user.token}` } };
+      await API.put(`/api/notifications/${id}/read`, {}, config);
+      setNotifications(notifications.map(n => n._id === id ? { ...n, isRead: true } : n));
+    } catch (error) {
+      toast.error('Failed to update notification');
+    }
   };
+
+  if (loading) return <div className="p-12 text-center text-gray-500">Loading notifications...</div>;
 
   return (
     <div className="space-y-6 animate-in fade-in duration-500">
@@ -32,7 +55,7 @@ const DoctorNotifications = () => {
         <h1 className="text-2xl font-bold text-gray-900 dark:text-white flex items-center">
           <Bell className="w-6 h-6 mr-3 text-primary-500" /> Notifications
         </h1>
-        {notifications.some(n => !n.read) && (
+        {notifications.some(n => !n.isRead) && (
           <button 
             onClick={markAllRead}
             className="flex items-center text-sm font-medium text-primary-600 dark:text-primary-400 hover:text-primary-700 dark:hover:text-primary-300 transition-colors bg-primary-50 dark:bg-primary-900/30 px-4 py-2 rounded-lg"
@@ -53,9 +76,9 @@ const DoctorNotifications = () => {
           <div className="divide-y divide-gray-100 dark:divide-slate-800">
             {notifications.map(notif => (
               <div 
-                key={notif.id} 
+                key={notif._id} 
                 className={`p-6 transition-colors flex items-start justify-between ${
-                  !notif.read ? 'bg-primary-50/50 dark:bg-primary-900/20' : 'hover:bg-gray-50 dark:hover:bg-slate-800/50'
+                  !notif.isRead ? 'bg-primary-50/50 dark:bg-primary-900/20' : 'hover:bg-gray-50 dark:hover:bg-slate-800/50'
                 }`}
               >
                 <div className="flex items-start gap-4">
@@ -67,56 +90,24 @@ const DoctorNotifications = () => {
                     {notif.type === 'appointment' ? '📅' : notif.type === 'report' ? '📄' : '🔔'}
                   </div>
                   <div>
-                    <h3 className={`font-semibold ${!notif.read ? 'text-gray-900 dark:text-white' : 'text-gray-700 dark:text-gray-300'}`}>
-                      {notif.type === 'appointment' ? 'Appointment Update' : notif.type === 'report' ? 'New Medical Report' : 'Notification'}
+                    <h3 className={`font-semibold ${!notif.isRead ? 'text-gray-900 dark:text-white' : 'text-gray-700 dark:text-gray-300'}`}>
+                      {notif.title}
                     </h3>
-                    <p className={`mt-1 text-sm ${!notif.read ? 'text-gray-800 dark:text-gray-200' : 'text-gray-500 dark:text-gray-400'}`}>
+                    <p className={`mt-1 text-sm ${!notif.isRead ? 'text-gray-800 dark:text-gray-200' : 'text-gray-500 dark:text-gray-400'}`}>
                       {notif.message}
                     </p>
-                    
-                    {/* Rich Details rendering */}
-                    {notif.details && (
-                      <div className="mt-3 bg-gray-50 dark:bg-slate-800/80 rounded-xl p-4 border border-gray-100 dark:border-slate-700 shadow-sm text-sm">
-                        <div className="grid grid-cols-2 gap-y-3 gap-x-6">
-                          <div>
-                            <p className="text-gray-500 dark:text-gray-400 text-xs uppercase tracking-wider mb-1">Patient</p>
-                            <p className="font-medium text-gray-900 dark:text-white flex items-center">
-                              👤 {notif.details.patientName}
-                            </p>
-                          </div>
-                          <div>
-                            <p className="text-gray-500 dark:text-gray-400 text-xs uppercase tracking-wider mb-1">Status</p>
-                            <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold bg-amber-100 text-amber-800 dark:bg-amber-900/30 dark:text-amber-400 border border-amber-200 dark:border-amber-800/50">
-                              {notif.details.status}
-                            </span>
-                          </div>
-                          <div>
-                            <p className="text-gray-500 dark:text-gray-400 text-xs uppercase tracking-wider mb-1">Date</p>
-                            <p className="font-medium text-gray-900 dark:text-white flex items-center">
-                              📅 {notif.details.date}
-                            </p>
-                          </div>
-                          <div>
-                            <p className="text-gray-500 dark:text-gray-400 text-xs uppercase tracking-wider mb-1">Time</p>
-                            <p className="font-medium text-gray-900 dark:text-white flex items-center">
-                              ⏰ {notif.details.time}
-                            </p>
-                          </div>
-                        </div>
-                      </div>
-                    )}
-
-                    <p className="text-xs text-gray-400 dark:text-gray-500 mt-3">
-                      {new Date(notif.timestamp).toLocaleString()}
+                    <p className="mt-2 text-xs text-gray-400">
+                      {new Date(notif.createdAt).toLocaleString()}
                     </p>
                   </div>
                 </div>
-                {!notif.read && (
+                
+                {!notif.isRead && (
                   <button 
-                    onClick={() => markAsRead(notif.id)}
-                    className="flex-shrink-0 text-xs font-medium text-primary-600 hover:text-primary-700 bg-white border border-gray-200 px-3 py-1.5 rounded-full shadow-sm hover:bg-gray-50 transition-colors"
+                    onClick={() => markAsRead(notif._id)}
+                    className="flex-shrink-0 text-sm font-medium text-primary-600 dark:text-primary-400 hover:text-primary-800 dark:hover:text-primary-300 bg-white dark:bg-slate-900 px-3 py-1.5 rounded border border-gray-200 dark:border-slate-700 hover:border-primary-300 transition-all"
                   >
-                    Mark read
+                    Mark as read
                   </button>
                 )}
               </div>

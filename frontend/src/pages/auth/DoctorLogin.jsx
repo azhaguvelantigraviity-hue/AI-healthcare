@@ -26,7 +26,7 @@ const DoctorLogin = () => {
       const res = await login(form.email, form.password);
       if (res.success) {
         if (res.user.role === 'doctor' || res.user.role === 'admin') {
-          navigate('/doctor-dashboard');
+          navigate('/dashboard/doctor-dashboard');
         } else {
           setError("Access denied. Doctor privileges required.");
         }

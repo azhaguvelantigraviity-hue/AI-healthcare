@@ -139,6 +139,7 @@ function App() {
               <Route path="patient-follow-ups" element={<PatientFollowUps />} />
 
               {/* Doctor Routes */}
+              <Route path="doctor-dashboard" element={<DoctorDashboard />} />
               <Route path="doctor-patients" element={<PatientManagement />} />
               <Route path="doctor-patients/:id" element={<DoctorPatientProfile />} />
               <Route path="consultation/:appointmentId/:patientId" element={<ConsultationWizard />} />

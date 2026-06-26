@@ -26,7 +26,7 @@ const navItems = {
     { id: "dashboard/profile", label: "Profile", icon: "👤" },
   ],
   doctor: [
-    { id: "doctor-dashboard", label: "Dashboard", icon: "🏠" },
+    { id: "dashboard/doctor-dashboard", label: "Dashboard", icon: "🏠" },
     { id: "dashboard/appointments", label: "Appointments", icon: "📅" },
     { id: "dashboard/doctor-patients", label: "My Patients", icon: "👥" },
     { id: "dashboard/review-reports", label: "Review Reports", icon: "📋" },

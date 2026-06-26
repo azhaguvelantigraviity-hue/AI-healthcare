@@ -359,7 +359,9 @@ const DoctorAppointments = () => {
                   >
                     <option value="">-- Choose a doctor --</option>
                     {doctors.map(d => (
-                      <option key={d._id || d.user?._id} value={d._id || d.user?._id}>{d.name || d.user?.name}</option>
+                      <option key={d.user?._id || d._id} value={d.user?._id || d._id}>
+                        {d.user?.name || d.name} {d.specialization ? `- ${d.specialization}` : ''}
+                      </option>
                     ))}
                   </select>
                 </div>

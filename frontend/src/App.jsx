@@ -79,10 +79,12 @@ const PrescriptionsRouter = () => {
 };
 
 import DoctorNotifications from './pages/doctor/DoctorNotifications';
+import PatientNotifications from './pages/patient/Notifications';
 const NotificationsRouter = () => {
   const { user } = useAuth();
   if (user?.role === 'admin') return <AdminNotifications />;
   if (user?.role === 'doctor') return <DoctorNotifications />;
+  if (user?.role === 'patient') return <PatientNotifications />;
   return <div className="p-6 bg-white rounded-xl shadow-sm"><h2 className="text-2xl font-bold">Notifications</h2><p className="mt-2 text-gray-500">Coming soon.</p></div>;
 };
 

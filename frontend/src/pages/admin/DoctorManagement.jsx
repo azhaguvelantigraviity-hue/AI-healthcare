@@ -147,8 +147,8 @@ const DoctorManagement = () => {
   };
 
   const filteredDoctors = doctors.filter(doc => 
-    doc.user?.name?.toLowerCase().includes(searchTerm.toLowerCase()) ||
-    doc.specialization?.toLowerCase().includes(searchTerm.toLowerCase())
+    (doc.user?.name || '').toLowerCase().includes(searchTerm.toLowerCase()) ||
+    (doc.specialization || '').toLowerCase().includes(searchTerm.toLowerCase())
   );
 
   return (
@@ -166,7 +166,7 @@ const DoctorManagement = () => {
             onClick={() => setActiveTab('list')}
             className={`px-4 py-2 rounded-md font-medium text-sm transition-colors flex items-center ${activeTab === 'list' ? 'bg-white text-teal-700 shadow-sm' : 'text-gray-600 hover:text-teal-600'}`}
           >
-            <List className="w-4 h-4 mr-2" /> List View
+            <List className="w-4 h-4 mr-2" /> List View ({doctors.length})
           </button>
           <button 
             onClick={() => setActiveTab('add')}

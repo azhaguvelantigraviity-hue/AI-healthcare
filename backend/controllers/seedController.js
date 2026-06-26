@@ -68,7 +68,7 @@ exports.seedDatabase = async (req, res) => {
 
     const appointments = await Appointment.create([
       { patient: patientUsers[0]._id, doctor: doctorUsers[0]._id, appointmentDate: tomorrow, appointmentTime: '10:00', reason: 'Blood pressure follow-up', type: 'follow-up', status: 'confirmed', mode: 'in-person', consultationFee: 150 },
-      { patient: patientUsers[0]._id, doctor: doctorUsers[2]._id, appointmentDate: nextWeek, appointmentTime: '14:30', reason: 'Annual checkup', type: 'checkup', status: 'pending', mode: 'in-person', consultationFee: 100 },
+      { patient: patientUsers[0]._id, doctor: doctorUsers[0]._id, appointmentDate: nextWeek, appointmentTime: '14:30', reason: 'Annual checkup', type: 'checkup', status: 'pending', mode: 'in-person', consultationFee: 100 },
       { patient: patientUsers[1]._id, doctor: doctorUsers[0]._id, appointmentDate: new Date(Date.now() - 7 * 24 * 60 * 60 * 1000), appointmentTime: '11:00', reason: 'Chest pain evaluation', type: 'specialist', status: 'completed', consultationFee: 150 },
       { patient: patientUsers[2]._id, doctor: doctorUsers[2]._id, appointmentDate: new Date(Date.now() - 3 * 24 * 60 * 60 * 1000), appointmentTime: '09:30', reason: 'Diabetes management', type: 'follow-up', status: 'completed', consultationFee: 100 },
     ]);

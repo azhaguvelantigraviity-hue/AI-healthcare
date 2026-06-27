@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext';
-import { Activity } from 'lucide-react';
+import { Activity, ArrowLeft } from 'lucide-react';
 import toast from 'react-hot-toast';
 
 const DoctorRegister = () => {
@@ -64,7 +64,12 @@ const DoctorRegister = () => {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
+    <div className="min-h-screen flex flex-col items-center justify-center bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
+      <div className="w-full max-w-3xl mb-4">
+        <button onClick={() => navigate('/')} className="flex items-center gap-2 text-gray-500 hover:text-teal-600 transition-colors font-medium">
+          <ArrowLeft className="w-4 h-4" /> Back to Home
+        </button>
+      </div>
       <div className="max-w-3xl w-full space-y-8 bg-white p-10 rounded-xl shadow-lg border border-gray-100">
         <div className="text-center">
           <div className="flex justify-center">

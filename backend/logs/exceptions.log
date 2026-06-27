@@ -481,3 +481,18 @@ Require stack:
     at listenInCluster (node:net:2065:12)
     at node:net:2274:7
     at process.processTicksAndRejections (node:internal/process/task_queues:90:21)
+2026-06-27 11:51:23 [error]: C:\Users\Admin\Desktop\AI healthcare\backend\controllers\authController.js:114
+});
+ ^
+
+SyntaxError: Unexpected token ')'
+    at wrapSafe (node:internal/modules/cjs/loader:1763:18)
+    at Module._compile (node:internal/modules/cjs/loader:1804:20)
+    at Object..js (node:internal/modules/cjs/loader:1961:10)
+    at Module.load (node:internal/modules/cjs/loader:1553:32)
+    at Module._load (node:internal/modules/cjs/loader:1355:12)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:255:19)
+    at Module.require (node:internal/modules/cjs/loader:1576:12)
+    at require (node:internal/modules/helpers:153:16)
+    at Object.<anonymous> (C:\Users\Admin\Desktop\AI healthcare\backend\routes\auth.js:4:133)
+    at Module._compile (node:internal/modules/cjs/loader:1830:14)

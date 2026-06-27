@@ -52,7 +52,7 @@ exports.register = asyncHandler(async (req, res, next) => {
   }
 
   // Handle location/address string to object mapping
-  const addressObj = location ? { city: location } : undefined;
+  const addressObj = typeof location === 'string' ? { city: location } : (location || undefined);
 
   // Create user
   let user;

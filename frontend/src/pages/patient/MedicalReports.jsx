@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import API from '../../api/api';
 import { useAuth } from '../../context/AuthContext';
 import { FileText, UploadCloud, File, Trash2, Eye, Download, AlertCircle, Loader, Activity, Filter } from 'lucide-react';
-import { Badge, Button, Card } from '../../components/ui/SharedUI';
+import { Badge, Button, Card, Modal } from '../../components/ui/SharedUI';
 import toast from 'react-hot-toast';
 
 const MedicalReports = () => {

@@ -34,7 +34,7 @@ const DoctorManagement = () => {
     try {
       setLoading(true);
       const config = { headers: { Authorization: `Bearer ${user.token}` } };
-      const { data } = await API.get('/api/admin/doctors', config);
+      const { data } = await API.get('/api/admin/doctors?isVerified=true', config);
       setDoctors(data.data || []);
     } catch (error) {
       console.error("Error fetching doctors:", error);
@@ -48,7 +48,7 @@ const DoctorManagement = () => {
     try {
       setLoading(true);
       const config = { headers: { Authorization: `Bearer ${user.token}` } };
-      const { data } = await API.get('/api/admin/pending-doctors', config);
+      const { data } = await API.get('/api/admin/doctors?isVerified=false', config);
       setPendingDoctors(data.data || []);
     } catch (error) {
       console.error("Error fetching pending doctors:", error);

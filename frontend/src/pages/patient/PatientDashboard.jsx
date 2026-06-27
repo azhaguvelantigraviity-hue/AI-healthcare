@@ -38,7 +38,7 @@ const PatientDashboard = () => {
     setIsSearchingDoctors(true);
     try {
       const config = { headers: { Authorization: `Bearer ${user.token}` } };
-      const { data } = await API.get(`/api/doctors/recommended?category=${query}`, config);
+      const { data } = await API.get(`/api/doctors?specialization=${query}`, config);
       setRecommendedDoctors(data.data || []);
     } catch (err) {
       console.error(err);

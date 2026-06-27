@@ -163,9 +163,9 @@ const DoctorAppointments = () => {
         </div>
         <button 
           onClick={() => setBookingModalOpen(true)}
-          className="bg-indigo-600 hover:bg-indigo-700 text-white px-5 py-2.5 rounded-xl font-bold flex items-center gap-2 shadow-md shadow-indigo-200 transition-all hover:-translate-y-0.5"
+          className="bg-indigo-600 hover:bg-indigo-700 text-white px-4 py-2 w-full md:w-auto rounded-xl font-bold flex justify-center items-center gap-2 shadow-md shadow-indigo-200 transition-all hover:-translate-y-0.5 text-sm md:text-base"
         >
-          <Plus className="w-5 h-5" /> Add New Appointment
+          <Plus className="w-5 h-5" /> Add Appointment
         </button>
       </div>
 
@@ -175,7 +175,7 @@ const DoctorAppointments = () => {
           <button
             key={tab}
             onClick={() => setFilter(tab)}
-            className={`px-5 py-2 rounded-xl font-bold text-sm whitespace-nowrap transition-all border ${
+            className={`shrink-0 px-4 py-2 rounded-xl font-bold text-sm whitespace-nowrap transition-all border ${
               filter === tab 
                 ? 'bg-indigo-600 text-white border-indigo-600 shadow-md shadow-indigo-200' 
                 : 'bg-white text-gray-600 border-gray-200 hover:bg-gray-50 hover:border-gray-300'
@@ -206,11 +206,11 @@ const DoctorAppointments = () => {
                 
                 {/* Card Header (Mode Badge & Status) */}
                 <div className={`px-6 py-4 border-b flex justify-between items-center ${isOnline ? 'bg-indigo-50/50 border-indigo-50' : 'bg-emerald-50/50 border-emerald-50'}`}>
-                  <div className={`flex items-center gap-2 font-bold text-xs uppercase tracking-widest ${isOnline ? 'text-indigo-700' : 'text-emerald-700'}`}>
-                    {isOnline ? <VideoIcon className="w-4 h-4" /> : <Building2 className="w-4 h-4" />}
-                    {isOnline ? 'Online Consultation' : 'Offline Visit'}
+                  <div className={`flex items-center gap-1.5 font-bold text-[10px] sm:text-xs uppercase tracking-widest ${isOnline ? 'text-indigo-700' : 'text-emerald-700'}`}>
+                    {isOnline ? <VideoIcon className="w-4 h-4 shrink-0" /> : <Building2 className="w-4 h-4 shrink-0" />}
+                    <span className="truncate">{isOnline ? 'Online' : 'Offline'}</span>
                   </div>
-                  <span className={`px-3 py-1 rounded-full text-[10px] font-black uppercase tracking-widest border ${getStatusBadge(apt.status)}`}>
+                  <span className={`shrink-0 px-2.5 py-1 rounded-full text-[9px] sm:text-[10px] font-black uppercase tracking-widest border ${getStatusBadge(apt.status)}`}>
                     {statusLabel}
                   </span>
                 </div>

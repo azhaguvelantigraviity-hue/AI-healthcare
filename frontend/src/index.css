@@ -152,7 +152,6 @@
   button[style*="display: flex"],
   a[style*="display: flex"],
   .dashboard-sidebar-link,
-  .dashboard-sidebar-nav,
   .dashboard-sidebar div[style*="display: flex"],
   header[style*="display: flex"],
   [style*="align-items: center"] {
@@ -181,9 +180,11 @@
   .dashboard-sidebar-nav {
     display: flex !important;
     flex-direction: row !important;
+    flex-wrap: nowrap !important;
     overflow-x: auto !important;
     padding: 8px !important;
     gap: 8px !important;
+    -webkit-overflow-scrolling: touch;
   }
 
   .dashboard-sidebar-link {

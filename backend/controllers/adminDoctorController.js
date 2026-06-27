@@ -132,13 +132,15 @@ exports.approveDoctor = asyncHandler(async (req, res, next) => {
     doctor.isAcceptingPatients = true;
     await doctor.save();
 
-    await notificationService.createNotification({
-      user: doctor.user._id,
-      title: 'Account Approved',
-      message: 'Your account has been approved by the administrator. You can now accept patients.',
-      type: 'system',
-      priority: 'high'
-    });
+    if (doctor.user) {
+      await notificationService.createNotification({
+        user: doctor.user._id,
+        title: 'Account Approved',
+        message: 'Your account has been approved by the administrator. You can now accept patients.',
+        type: 'system',
+        priority: 'high'
+      });
+    }
 
     res.status(200).json({ success: true, message: 'Doctor approved', data: doctor });
   } else {
@@ -147,13 +149,15 @@ exports.approveDoctor = asyncHandler(async (req, res, next) => {
     doctor.isAcceptingPatients = false;
     await doctor.save();
 
-    await notificationService.createNotification({
-      user: doctor.user._id,
-      title: 'Account Rejected',
-      message: 'Your account approval has been rejected by the administrator.',
-      type: 'system',
-      priority: 'high'
-    });
+    if (doctor.user) {
+      await notificationService.createNotification({
+        user: doctor.user._id,
+        title: 'Account Rejected',
+        message: 'Your account approval has been rejected by the administrator.',
+        type: 'system',
+        priority: 'high'
+      });
+    }
 
     res.status(200).json({ success: true, message: 'Doctor rejected', data: doctor });
   }

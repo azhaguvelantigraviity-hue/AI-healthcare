@@ -107,7 +107,7 @@ const DoctorManagement = () => {
   const handleApprove = async (id) => {
     try {
       const config = { headers: { Authorization: `Bearer ${user.token}` } };
-      await API.put(`/api/admin/doctors/${id}/approve`, {}, config);
+      await API.put(`/api/admin/doctors/${id}/approve`, { approve: true }, config);
       toast.success("Doctor approved!");
       if (activeTab === 'pending') fetchPendingDoctors();
       else fetchDoctors();
@@ -123,7 +123,7 @@ const DoctorManagement = () => {
 
     try {
       const config = { headers: { Authorization: `Bearer ${user.token}` } };
-      await API.put(`/api/admin/doctors/${id}/reject`, { reason }, config);
+      await API.put(`/api/admin/doctors/${id}/approve`, { approve: false, reason }, config);
       toast.success("Doctor rejected!");
       if (activeTab === 'pending') fetchPendingDoctors();
       else fetchDoctors();

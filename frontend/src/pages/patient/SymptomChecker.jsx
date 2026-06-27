@@ -37,12 +37,91 @@ const SymptomChecker = () => {
     .map(s => s.name)
     .filter(s => s.toLowerCase().includes(searchTerm.toLowerCase()));
 
+  const fallbackSymptoms = [
+    {
+      name: 'Fever',
+      recommended: ['Clear broths', 'Boiled vegetables', 'Oatmeal', 'Fresh fruits (Watermelon, Oranges)'],
+      avoid: ['Fried food', 'Spicy meals', 'Caffeine', 'Heavy dairy products'],
+      hydration: ['Drink at least 3 liters of water', 'Coconut water', 'Electrolyte solutions'],
+      mealPlan: {
+        Morning: ['Warm oatmeal with honey', 'Herbal tea'],
+        Afternoon: ['Vegetable soup', 'Boiled rice with light dal'],
+        Evening: ['Fruit bowl (Melons/Papaya)', 'Coconut water'],
+        Night: ['Light chicken broth or vegetable clear soup', 'Toast']
+      },
+      warning: 'If fever exceeds 103°F or lasts more than 3 days, consult a doctor immediately.',
+      homeCare: ['Rest in a cool room', 'Apply cold compress to forehead', 'Wear light clothing']
+    },
+    {
+      name: 'Cold',
+      recommended: ['Warm soups', 'Ginger tea', 'Garlic', 'Citrus fruits'],
+      avoid: ['Cold beverages', 'Dairy (can thicken mucus)', 'Sugary snacks'],
+      hydration: ['Warm water with honey and lemon', 'Herbal teas', 'Warm broth'],
+      mealPlan: {
+        Morning: ['Ginger tea', 'Warm porridge'],
+        Afternoon: ['Chicken noodle soup or hot veg stew', 'Garlic bread'],
+        Evening: ['Green tea', 'Warm nuts'],
+        Night: ['Light vegetable soup', 'Steamed vegetables']
+      },
+      warning: 'If you experience severe chest pain or difficulty breathing, seek emergency care.',
+      homeCare: ['Steam inhalation', 'Gargle with warm salt water', 'Use a humidifier']
+    },
+    {
+      name: 'Cough',
+      recommended: ['Honey', 'Ginger', 'Warm soups', 'Turmeric milk'],
+      avoid: ['Cold drinks', 'Fried food', 'Excessive sugar'],
+      hydration: ['Warm water', 'Ginger tea', 'Warm lemon water'],
+      mealPlan: {
+        Morning: ['Warm water with honey', 'Oatmeal'],
+        Afternoon: ['Warm lentil soup', 'Soft cooked rice'],
+        Evening: ['Turmeric tea', 'Dry toast'],
+        Night: ['Turmeric milk (if tolerated)', 'Light soup']
+      },
+      warning: 'If you cough up blood or have persistent wheezing, see a doctor.',
+      homeCare: ['Use lozenges', 'Keep your head elevated while sleeping', 'Steam inhalation']
+    },
+    {
+      name: 'Headache',
+      recommended: ['Water-rich foods', 'Magnesium-rich foods (Spinach, Almonds)', 'Bananas'],
+      avoid: ['Aged cheese', 'Processed meats', 'Excessive caffeine', 'Alcohol'],
+      hydration: ['Drink plain water frequently', 'Electrolyte drinks', 'Peppermint tea'],
+      mealPlan: {
+        Morning: ['Banana smoothie', 'Handful of almonds'],
+        Afternoon: ['Spinach salad with grilled chicken/tofu', 'Quinoa'],
+        Evening: ['Peppermint tea', 'Fresh cucumber slices'],
+        Night: ['Baked salmon or lentil stew', 'Steamed broccoli']
+      },
+      warning: 'If the headache is sudden and incredibly severe ("thunderclap"), seek emergency care immediately.',
+      homeCare: ['Rest in a dark, quiet room', 'Apply a cold or warm compress', 'Massage neck and temples']
+    },
+    {
+      name: 'Stomach Pain',
+      recommended: ['BRAT diet (Bananas, Rice, Applesauce, Toast)', 'Ginger', 'Mint'],
+      avoid: ['Spicy foods', 'Dairy', 'High-fat foods', 'Caffeine'],
+      hydration: ['Sip water slowly', 'Ginger tea', 'Clear broths'],
+      mealPlan: {
+        Morning: ['Toast without butter', 'Applesauce'],
+        Afternoon: ['Plain white rice', 'Clear broth'],
+        Evening: ['Ginger tea', 'Plain crackers'],
+        Night: ['Mashed potatoes (no dairy)', 'Soft boiled carrots']
+      },
+      warning: 'If pain is localized to the lower right abdomen, or accompanied by severe vomiting, seek emergency help.',
+      homeCare: ['Use a heating pad on your stomach', 'Rest', 'Eat smaller, frequent meals']
+    }
+  ];
+
   const handleSelectSymptom = (symptomName) => {
-    const symptom = symptomsData.find(s => s.name === symptomName);
+    let symptom = symptomsData.find(s => s.name.toLowerCase() === symptomName.toLowerCase());
+    if (!symptom) {
+      symptom = fallbackSymptoms.find(s => s.name.toLowerCase() === symptomName.toLowerCase());
+    }
+    
     if (symptom) {
       setSelectedSymptom(symptom);
       setActiveTab('Recommended');
       toast.success(`Food recommendations generated for ${symptom.name}`);
+    } else {
+      toast.error('Details not available for this symptom yet.');
     }
   };
 

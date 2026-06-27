@@ -33,8 +33,8 @@ const LandingPage = () => {
           <span style={{ fontSize: 20, fontWeight: 800, color: colors.text }}>Health<span style={{ color: colors.primary }}>AI</span></span>
         </div>
         <div style={{ display: "flex", gap: 12 }}>
-          <Button variant="secondary" onClick={() => navigate('/login')} size="sm">Sign In</Button>
-          <Button variant="primary" onClick={() => navigate('/register')} size="sm">Get Started Free</Button>
+          <Button variant="secondary" onClick={() => navigate('/login')} size="sm">Patient Login</Button>
+          <Button variant="primary" onClick={() => navigate('/register')} size="sm">Patient Register</Button>
         </div>
       </nav>
 
@@ -50,7 +50,7 @@ const LandingPage = () => {
           Experience personalized healthcare with AI-driven symptom analysis, instant doctor appointments, and intelligent medical record management.
         </p>
         <div style={{ display: "flex", gap: 16, justifyContent: "center", flexWrap: "wrap" }}>
-          <Button variant="primary" onClick={() => navigate('/register')} size="lg">🚀 Start Free Today</Button>
+          <Button variant="primary" onClick={() => navigate('/register')} size="lg">👤 Patient Register</Button>
           <Button variant="ghost" onClick={() => navigate('/doctor-login')} size="lg">👨‍⚕️ Doctor Login</Button>
           <Button variant="secondary" onClick={() => navigate('/doctor-register')} size="lg">⚕️ Join as Doctor</Button>
         </div>
@@ -86,7 +86,7 @@ const LandingPage = () => {
         <h2 style={{ fontSize: 32, fontWeight: 800, color: "#fff", margin: "0 0 16px" }}>Ready to Transform Your Healthcare?</h2>
         <p style={{ fontSize: 16, color: "rgba(255,255,255,0.8)", margin: "0 0 32px" }}>Join thousands of patients and doctors already using HealthAI</p>
         <Button onClick={() => navigate('/register')} style={{ background: "#fff", color: colors.primary, padding: "14px 36px", fontSize: 16, fontWeight: 700, border: "none", borderRadius: 10, cursor: "pointer" }}>
-          Get Started — It's Free
+          Patient Register
         </Button>
       </section>
 

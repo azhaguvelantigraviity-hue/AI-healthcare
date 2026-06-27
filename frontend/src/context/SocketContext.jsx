@@ -12,24 +12,31 @@ export const SocketProvider = ({ children }) => {
 
   useEffect(() => {
     if (user && user._id) {
-      // Connect to the backend socket server
+      console.log('Initializing socket connection for user:', user._id);
+      
       const newSocket = io(import.meta.env.VITE_API_URL, {
         withCredentials: true,
+        reconnectionAttempts: 5,
+        reconnectionDelay: 1000,
       });
 
       setSocket(newSocket);
 
       newSocket.on('connect', () => {
         console.log('Socket connected:', newSocket.id);
-        // Join the user's specific room
         newSocket.emit('join', user._id);
       });
 
+      newSocket.on('disconnect', (reason) => {
+        console.log('Socket disconnected:', reason);
+      });
+
       return () => {
+        console.log('Cleaning up socket connection for user:', user._id);
         newSocket.disconnect();
       };
     }
-  }, [user]);
+  }, [user?._id]);
 
   return (
     <SocketContext.Provider value={{ socket }}>

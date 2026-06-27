@@ -2462,3 +2462,4 @@
 2026-06-27 11:24:03 [info]: ✅ MongoDB Connected: ac-hg05jo1-shard-00-00.t17ks7f.mongodb.net
 2026-06-27 11:24:03 [info]: ⏰ Starting scheduler service...
 2026-06-27 11:24:03 [info]: ✅ Scheduler service started
+2026-06-27 11:30:00 [info]: Marked 1 appointments as no-show

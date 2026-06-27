@@ -51,11 +51,15 @@ const DoctorRegister = () => {
       });
       const data = await response.json();
       
-      if (data.success) {
+      if (data.success || response.ok) {
         toast.success("Registration successful! Please wait for admin approval.");
         navigate('/doctor-login');
       } else {
-        toast.error(data.error || 'Failed to register as doctor');
+        let errorMessage = data.error || 'Failed to register as doctor';
+        if (data.details && data.details.length > 0) {
+          errorMessage = data.details.map(d => d.message).join(', ');
+        }
+        toast.error(errorMessage);
       }
     } catch (error) {
       toast.error('An error occurred during registration.');

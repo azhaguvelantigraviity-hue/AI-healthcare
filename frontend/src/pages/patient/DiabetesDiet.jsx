@@ -28,6 +28,47 @@ const DiabetesDiet = () => {
 
   const quickDiseases = ['Diabetes', 'BP', 'Fever', 'Stomach Pain', 'Headache'];
 
+  const fallbackDiseases = [
+    { _id: 'fallback-diabetes-id', name: 'Diabetes', category: 'Metabolic' },
+    { _id: 'fallback-bp-id', name: 'BP', category: 'General' },
+    { _id: 'fallback-fever-id', name: 'Fever', category: 'General' },
+    { _id: 'fallback-stomach-id', name: 'Stomach Pain', category: 'General' },
+    { _id: 'fallback-headache-id', name: 'Headache', category: 'General' }
+  ];
+
+  const fallbackDietPlans = [
+    {
+      _id: 'plan-1',
+      disease: 'fallback-diabetes-id',
+      diseaseType: 'Type 2',
+      severity: 'Moderate',
+      dailyPlan: {
+        morning: ['Warm water with lemon', 'Oats / millet porridge', 'Boiled egg or sprouts', 'Low sugar fruits'],
+        afternoon: ['2 Brown rice / chapati', '1 bowl Vegetables', '1 bowl Dal', 'Salad'],
+        evening: ['Green tea', 'Mixed nuts', 'Roasted chana'],
+        night: ['Light dinner', 'Vegetable soup', 'Green leafy vegetables']
+      },
+      monthlyPlan: ['Weekly diet rotation', 'Sugar monitoring reminders', 'Doctor follow-up'],
+      avoidFoods: ['White Sugar', 'Sweets', 'Fried foods', 'Soft drinks'],
+      warnings: ['Consult doctor before major diet change', 'Check blood sugar regularly', 'Do not skip meals']
+    },
+    {
+      _id: 'plan-2',
+      disease: 'fallback-diabetes-id',
+      diseaseType: 'Type 1',
+      severity: 'High',
+      dailyPlan: {
+        morning: ['Warm water with cinnamon', 'Protein-rich breakfast', 'Multigrain toast', 'Avocado'],
+        afternoon: ['Quinoa or Bajra roti', 'Large portion of greens', 'Grilled chicken', 'Salad'],
+        evening: ['Black coffee or Green tea', 'Boiled chana'],
+        night: ['Clear soup', 'Grilled tofu', 'Sautéed vegetables']
+      },
+      monthlyPlan: ['Strict carb counting', 'Insulin dose adjustment', 'CGM tracking'],
+      avoidFoods: ['All refined carbs', 'Sugary drinks', 'Trans fats'],
+      warnings: ['Strict insulin timing required', 'Carry emergency glucose']
+    }
+  ];
+
   const fetchDiseases = async (query = '') => {
     try {
       const res = await API.get(`/api/diet/diseases${query ? `?q=${query}` : ''}`, {
@@ -47,12 +88,19 @@ const DiabetesDiet = () => {
       const res = await API.get(`/api/diet/plans/${diseaseId}`, {
         headers: { Authorization: `Bearer ${user?.token}` }
       });
-      if (res.data.success) {
+      if (res.data.success && res.data.data.length > 0) {
         setDietPlans(res.data.data);
+      } else {
+        const plans = fallbackDietPlans.filter(p => p.disease === diseaseId);
+        setDietPlans(plans);
       }
     } catch (error) {
       console.error('Error fetching diet plans:', error);
-      toast.error('Failed to load diet plans');
+      const plans = fallbackDietPlans.filter(p => p.disease === diseaseId);
+      setDietPlans(plans);
+      if (plans.length === 0) {
+        toast.error('Failed to load diet plans');
+      }
     } finally {
       setIsLoading(false);
     }
@@ -109,7 +157,11 @@ const DiabetesDiet = () => {
   };
 
   const handleDiseaseSelect = (diseaseName) => {
-    const disease = diseases.find(d => d.name.toLowerCase() === diseaseName.toLowerCase());
+    let disease = diseases.find(d => d.name.toLowerCase() === diseaseName.toLowerCase());
+    if (!disease) {
+      disease = fallbackDiseases.find(d => d.name.toLowerCase() === diseaseName.toLowerCase());
+    }
+
     if (disease) {
       setSelectedDisease(disease);
       setSelectedType(null);

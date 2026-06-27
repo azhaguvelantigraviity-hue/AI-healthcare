@@ -3,6 +3,7 @@ import { AuthProvider, useAuth } from './context/AuthContext';
 
 import AuthPage from './pages/AuthPage';
 import DoctorLogin from './pages/auth/DoctorLogin';
+import DoctorRegister from './pages/auth/DoctorRegister';
 import LandingPage from './pages/Landing';
 
 import DashboardLayout from './components/layout/DashboardLayout';
@@ -110,6 +111,8 @@ function App() {
             <Route path="/login" element={<AuthPage />} />
             <Route path="/register" element={<AuthPage />} />
             <Route path="/doctor-login" element={<DoctorLogin />} />
+            <Route path="/doctor-register" element={<DoctorRegister />} />
+            <Route path="/admin-login" element={<AuthPage />} />
             
             <Route 
               path="/dashboard" 

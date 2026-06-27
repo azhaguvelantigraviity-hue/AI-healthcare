@@ -8,9 +8,10 @@ import { colors } from '../../theme/colors';
 
 const DoctorManagement = () => {
   const { user } = useAuth();
-  const [activeTab, setActiveTab] = useState('list'); // 'list' or 'add'
+  const [activeTab, setActiveTab] = useState('list'); // 'list', 'pending', or 'add'
   const [showPassword, setShowPassword] = useState(false);
   const [doctors, setDoctors] = useState([]);
+  const [pendingDoctors, setPendingDoctors] = useState([]);
   const [loading, setLoading] = useState(true);
   const [searchTerm, setSearchTerm] = useState('');
   
@@ -43,9 +44,24 @@ const DoctorManagement = () => {
     }
   };
 
+  const fetchPendingDoctors = async () => {
+    try {
+      setLoading(true);
+      const config = { headers: { Authorization: `Bearer ${user.token}` } };
+      const { data } = await API.get('/api/admin/pending-doctors', config);
+      setPendingDoctors(data.data || []);
+    } catch (error) {
+      console.error("Error fetching pending doctors:", error);
+      toast.error("Failed to load pending doctors");
+    } finally {
+      setLoading(false);
+    }
+  };
+
   useEffect(() => {
-    if (user && activeTab === 'list') {
-      fetchDoctors();
+    if (user) {
+      if (activeTab === 'list') fetchDoctors();
+      if (activeTab === 'pending') fetchPendingDoctors();
     }
   }, [user, activeTab]);
 
@@ -88,15 +104,32 @@ const DoctorManagement = () => {
     }
   };
 
-  const handleApprove = async (id, approve) => {
+  const handleApprove = async (id) => {
     try {
       const config = { headers: { Authorization: `Bearer ${user.token}` } };
-      await API.put(`/api/admin/doctors/${id}/approve`, { approve }, config);
-      toast.success(approve ? "Doctor approved!" : "Doctor rejected!");
-      fetchDoctors();
+      await API.put(`/api/admin/doctors/${id}/approve`, {}, config);
+      toast.success("Doctor approved!");
+      if (activeTab === 'pending') fetchPendingDoctors();
+      else fetchDoctors();
     } catch (error) {
       console.error("Error updating approval:", error);
-      toast.error("Failed to update approval status");
+      toast.error("Failed to approve doctor");
+    }
+  };
+
+  const handleReject = async (id) => {
+    const reason = prompt("Please enter a reason for rejection (optional):");
+    if (reason === null) return; // User cancelled prompt
+
+    try {
+      const config = { headers: { Authorization: `Bearer ${user.token}` } };
+      await API.put(`/api/admin/doctors/${id}/reject`, { reason }, config);
+      toast.success("Doctor rejected!");
+      if (activeTab === 'pending') fetchPendingDoctors();
+      else fetchDoctors();
+    } catch (error) {
+      console.error("Error rejecting doctor:", error);
+      toast.error("Failed to reject doctor");
     }
   };
 
@@ -151,6 +184,8 @@ const DoctorManagement = () => {
     (doc.specialization || '').toLowerCase().includes(searchTerm.toLowerCase())
   );
 
+  const displayedDoctors = activeTab === 'list' ? filteredDoctors : pendingDoctors;
+
   return (
     <div className="space-y-6">
       <div className="flex justify-between items-end">
@@ -161,36 +196,44 @@ const DoctorManagement = () => {
           <p className="text-gray-500 mt-1">Add, edit, and manage doctor profiles and specialties.</p>
         </div>
         
-        <div className="flex space-x-2 bg-gray-100 p-1 rounded-lg">
+        <div className="flex gap-2">
           <button 
-            onClick={() => setActiveTab('list')}
-            className={`px-4 py-2 rounded-md font-medium text-sm transition-colors flex items-center ${activeTab === 'list' ? 'bg-white text-teal-700 shadow-sm' : 'text-gray-600 hover:text-teal-600'}`}
+            onClick={() => setActiveTab('list')} 
+            className={`px-4 py-2 rounded-lg font-medium transition-colors ${activeTab === 'list' ? 'bg-teal-50 text-teal-700' : 'text-gray-600 hover:bg-gray-50'}`}
           >
-            <List className="w-4 h-4 mr-2" /> List View ({doctors.length})
+            <List className="w-4 h-4 inline mr-2" /> Active Doctors
           </button>
           <button 
-            onClick={() => setActiveTab('add')}
-            className={`px-4 py-2 rounded-md font-medium text-sm transition-colors flex items-center ${activeTab === 'add' ? 'bg-white text-teal-700 shadow-sm' : 'text-gray-600 hover:text-teal-600'}`}
+            onClick={() => setActiveTab('pending')} 
+            className={`px-4 py-2 rounded-lg font-medium transition-colors ${activeTab === 'pending' ? 'bg-orange-50 text-orange-700' : 'text-gray-600 hover:bg-gray-50'}`}
           >
-            <Plus className="w-4 h-4 mr-2" /> Add New Doctor
+            <CheckCircle className="w-4 h-4 inline mr-2" /> Pending Approvals {pendingDoctors.length > 0 && <span className="ml-1 bg-orange-600 text-white text-xs px-2 py-0.5 rounded-full">{pendingDoctors.length}</span>}
+          </button>
+          <button 
+            onClick={() => setActiveTab('add')} 
+            className={`px-4 py-2 rounded-lg font-medium transition-colors ${activeTab === 'add' ? 'bg-teal-600 text-white shadow-md' : 'bg-gray-900 text-white hover:bg-gray-800'}`}
+          >
+            <Plus className="w-4 h-4 inline mr-2" /> Add Doctor
           </button>
         </div>
       </div>
 
-      {activeTab === 'list' && (
+      {(activeTab === 'list' || activeTab === 'pending') && (
         <div className="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden animate-fade-in">
-          <div className="p-4 border-b border-gray-100 bg-gray-50 flex justify-between items-center">
-            <div className="relative w-64">
-              <Search className="w-5 h-5 text-gray-400 absolute left-3 top-2.5" />
-              <input 
-                type="text" 
-                placeholder="Search doctors..." 
-                className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-teal-500 focus:border-teal-500 text-sm"
-                value={searchTerm}
-                onChange={(e) => setSearchTerm(e.target.value)}
-              />
+          {activeTab === 'list' && (
+            <div className="p-4 border-b border-gray-100 bg-gray-50 flex justify-between items-center">
+              <div className="relative w-64">
+                <Search className="w-5 h-5 text-gray-400 absolute left-3 top-2.5" />
+                <input 
+                  type="text" 
+                  placeholder="Search doctors..." 
+                  className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-teal-500 focus:border-teal-500 text-sm"
+                  value={searchTerm}
+                  onChange={(e) => setSearchTerm(e.target.value)}
+                />
+              </div>
             </div>
-          </div>
+          )}
           
           {loading ? (
             <div className="p-10 flex justify-center"><Spinner size={40} /></div>
@@ -206,7 +249,7 @@ const DoctorManagement = () => {
                 </tr>
               </thead>
               <tbody className="bg-white divide-y divide-gray-100">
-                {filteredDoctors.map((doc) => (
+                {displayedDoctors.map((doc) => (
                   <tr key={doc._id} className="hover:bg-gray-50 transition-colors">
                     <td className="px-6 py-4 whitespace-nowrap">
                       <div className="flex items-center">
@@ -225,9 +268,9 @@ const DoctorManagement = () => {
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap">
                       <span className={`px-3 py-1 rounded-full text-xs font-bold ${
-                        doc.isVerified ? 'bg-green-100 text-green-800' : 'bg-yellow-100 text-yellow-800'
+                        doc.status === 'Approved' ? 'bg-green-100 text-green-800' : (doc.status === 'Rejected' ? 'bg-red-100 text-red-800' : 'bg-yellow-100 text-yellow-800')
                       }`}>
-                        {doc.isVerified ? 'Active' : 'Pending Approval'}
+                        {doc.status || (doc.isVerified ? 'Active' : 'Pending Approval')}
                       </span>
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-600 font-medium">
@@ -241,16 +284,16 @@ const DoctorManagement = () => {
                         <Eye className="w-4 h-4" />
                       </button>
                       
-                      {!doc.isVerified && (
+                      {activeTab === 'pending' && (
                         <>
                           <button 
-                            onClick={() => handleApprove(doc._id, true)}
+                            onClick={() => handleApprove(doc._id)}
                             className="p-1.5 bg-green-50 text-green-600 hover:bg-green-100 rounded-md transition-colors" title="Approve"
                           >
                             <CheckCircle className="w-4 h-4" />
                           </button>
                           <button 
-                            onClick={() => handleApprove(doc._id, false)}
+                            onClick={() => handleReject(doc._id)}
                             className="p-1.5 bg-orange-50 text-orange-600 hover:bg-orange-100 rounded-md transition-colors" title="Reject"
                           >
                             <XCircle className="w-4 h-4" />
@@ -258,25 +301,29 @@ const DoctorManagement = () => {
                         </>
                       )}
                       
-                      <button 
-                        onClick={() => openEditModal(doc)}
-                        className="p-1.5 bg-blue-50 text-blue-600 hover:bg-blue-100 rounded-md transition-colors" title="Edit"
-                      >
-                        <Edit2 className="w-4 h-4" />
-                      </button>
-                      <button 
-                        onClick={() => handleDelete(doc._id)}
-                        className="p-1.5 bg-red-50 text-red-600 hover:bg-red-100 rounded-md transition-colors" title="Delete"
-                      >
-                        <Trash2 className="w-4 h-4" />
-                      </button>
+                      {activeTab === 'list' && (
+                        <>
+                          <button 
+                            onClick={() => openEditModal(doc)}
+                            className="p-1.5 bg-blue-50 text-blue-600 hover:bg-blue-100 rounded-md transition-colors" title="Edit"
+                          >
+                            <Edit2 className="w-4 h-4" />
+                          </button>
+                          <button 
+                            onClick={() => handleDelete(doc._id)}
+                            className="p-1.5 bg-red-50 text-red-600 hover:bg-red-100 rounded-md transition-colors" title="Delete"
+                          >
+                            <Trash2 className="w-4 h-4" />
+                          </button>
+                        </>
+                      )}
                     </td>
                   </tr>
                 ))}
-                {filteredDoctors.length === 0 && (
+                {displayedDoctors.length === 0 && (
                   <tr>
                     <td colSpan="5" className="px-6 py-8 text-center text-gray-500">
-                      No doctors found.
+                      No doctors found in this category.
                     </td>
                   </tr>
                 )}
@@ -468,6 +515,19 @@ const DoctorManagement = () => {
                 <p className="text-gray-500">Rating</p>
                 <p className="font-medium">⭐ {selectedDoctor.rating || 0} ({selectedDoctor.totalRatings || 0} reviews)</p>
               </div>
+
+              {selectedDoctor.documents && selectedDoctor.documents.length > 0 && (
+                <div className="col-span-2 mt-4 pt-4 border-t">
+                  <p className="text-gray-500 font-bold mb-2">Uploaded Documents</p>
+                  <div className="flex gap-2 flex-wrap">
+                    {selectedDoctor.documents.map((d, idx) => (
+                       <a key={idx} href={d.fileUrl} target="_blank" rel="noreferrer" className="px-3 py-2 bg-gray-100 hover:bg-gray-200 text-gray-700 text-sm rounded-lg flex items-center gap-2 font-medium">
+                         📄 {d.title || 'Document'}
+                       </a>
+                    ))}
+                  </div>
+                </div>
+              )}
             </div>
           </div>
         )}

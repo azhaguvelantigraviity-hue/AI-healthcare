@@ -9,9 +9,9 @@ const notificationService = require('../services/notificationService');
 // @route   POST /api/admin/doctors
 // @access  Private (Admin)
 exports.createDoctor = asyncHandler(async (req, res, next) => {
-  const { 
+  const {
     name, email, phone, password, gender, dateOfBirth, address,
-    specialization, qualification, experience, registrationNumber, 
+    specialization, qualification, experience, registrationNumber,
     hospitalName, consultationFee, status // Default 'Pending' or 'Active' based on admin choice
   } = req.body;
 
@@ -83,7 +83,7 @@ exports.createDoctor = asyncHandler(async (req, res, next) => {
 // @access  Private (Admin)
 exports.getAllDoctors = asyncHandler(async (req, res, next) => {
   const { search, isVerified } = req.query;
-  
+
   let profileQuery = {};
   if (isVerified !== undefined) {
     profileQuery.isVerified = isVerified === 'true';
@@ -117,13 +117,14 @@ exports.getAllDoctors = asyncHandler(async (req, res, next) => {
 // @access  Private (Admin)
 exports.approveDoctor = asyncHandler(async (req, res, next) => {
   const { approve } = req.body; // true or false
-  
+
   const doctor = await Doctor.findById(req.params.id).populate('user');
   if (!doctor) {
     return next(new ErrorResponse('Doctor not found', 404));
   }
 
   if (approve) {
+    doctor.status = 'Approved';
     doctor.isVerified = true;
     doctor.isAcceptingPatients = true;
     await doctor.save();
@@ -138,7 +139,7 @@ exports.approveDoctor = asyncHandler(async (req, res, next) => {
 
     res.status(200).json({ success: true, message: 'Doctor approved', data: doctor });
   } else {
-    // If reject, we could set isVerified false, or delete the account. Let's just set isVerified = false for now.
+    doctor.status = 'Rejected';
     doctor.isVerified = false;
     doctor.isAcceptingPatients = false;
     await doctor.save();
@@ -159,10 +160,10 @@ exports.approveDoctor = asyncHandler(async (req, res, next) => {
 // @route   PUT /api/admin/doctors/:id
 // @access  Private (Admin)
 exports.updateDoctor = asyncHandler(async (req, res, next) => {
-  const { 
+  const {
     name, email, phone, gender, address,
-    specialization, qualification, experience, registrationNumber, 
-    hospitalName, consultationFee 
+    specialization, qualification, experience, registrationNumber,
+    hospitalName, consultationFee
   } = req.body;
 
   const doctor = await Doctor.findById(req.params.id);
@@ -206,7 +207,7 @@ exports.deleteDoctor = asyncHandler(async (req, res, next) => {
 
   // Delete associated user
   await User.findByIdAndDelete(doctor.user);
-  
+
   // Optionally delete appointments (omitted to keep history if needed, or handle it here)
   await Appointment.deleteMany({ doctor: doctor.user });
 

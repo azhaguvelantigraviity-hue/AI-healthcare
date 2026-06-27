@@ -27,6 +27,25 @@ const PatientDashboard = () => {
   
   const [loading, setLoading] = useState(true);
   const [selectedKPI, setSelectedKPI] = useState(null); // 'Appointments', 'Reports', 'Prescriptions', 'Notifications'
+  
+  // Doctor Recommendation State
+  const [symptomQuery, setSymptomQuery] = useState('');
+  const [recommendedDoctors, setRecommendedDoctors] = useState([]);
+  const [isSearchingDoctors, setIsSearchingDoctors] = useState(false);
+
+  const searchDoctors = async (query) => {
+    if (!query) return;
+    setIsSearchingDoctors(true);
+    try {
+      const config = { headers: { Authorization: `Bearer ${user.token}` } };
+      const { data } = await API.get(`/api/doctors/recommended?category=${query}`, config);
+      setRecommendedDoctors(data.data || []);
+    } catch (err) {
+      console.error(err);
+    } finally {
+      setIsSearchingDoctors(false);
+    }
+  };
 
   // Hardcoded for now until backend routes exist
   const vitals = [
@@ -94,6 +113,61 @@ const PatientDashboard = () => {
       </div>
 
       {/* Top 4 Stats */}
+
+      {/* NEW: Symptom & Doctor Matcher */}
+      <div className="bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-700 mb-6">
+        <h2 className="text-xl font-bold text-gray-900 dark:text-white mb-2">Describe Your Health Problem</h2>
+        <p className="text-gray-500 dark:text-gray-400 mb-4">Let our AI match you with the right specialist.</p>
+        
+        <div className="flex gap-2 mb-4">
+          <input 
+            type="text" 
+            value={symptomQuery}
+            onChange={(e) => setSymptomQuery(e.target.value)}
+            onKeyDown={(e) => e.key === 'Enter' && searchDoctors(symptomQuery)}
+            placeholder="e.g. Heart pain, Skin rash, Fever..." 
+            className="flex-1 px-4 py-3 rounded-xl border border-gray-200 focus:ring-2 focus:ring-blue-500 outline-none"
+          />
+          <Button variant="primary" onClick={() => searchDoctors(symptomQuery)}>
+            {isSearchingDoctors ? 'Searching...' : 'Find Doctor'}
+          </Button>
+        </div>
+        
+        <div className="flex gap-2 flex-wrap mb-4">
+          {['Heart', 'Skin', 'Eye', 'Bone', 'Dental', 'Mental Health', 'Fever'].map(cat => (
+            <button 
+              key={cat} 
+              onClick={() => { setSymptomQuery(cat); searchDoctors(cat); }}
+              className="px-3 py-1.5 bg-blue-50 text-blue-600 rounded-full text-sm font-medium hover:bg-blue-100 transition-colors"
+            >
+              {cat}
+            </button>
+          ))}
+        </div>
+
+        {recommendedDoctors.length > 0 && (
+          <div className="mt-6 pt-6 border-t border-gray-100 dark:border-gray-700">
+            <h3 className="text-lg font-bold mb-4">Recommended Specialists</h3>
+            <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4">
+              {recommendedDoctors.map(doc => (
+                <div key={doc._id} className="p-4 border rounded-xl flex items-center justify-between">
+                  <div className="flex items-center gap-3">
+                    <div className="w-10 h-10 bg-gray-200 rounded-full flex items-center justify-center text-xl">
+                      👨‍⚕️
+                    </div>
+                    <div>
+                      <div className="font-bold">{doc.user?.name}</div>
+                      <div className="text-xs text-gray-500">{doc.specialization}</div>
+                    </div>
+                  </div>
+                  <Button size="sm" onClick={() => navigate('/patient/recommendations')}>Book</Button>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
+      </div>
+
       <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-4">
         <StatCard 
           icon="📅" 

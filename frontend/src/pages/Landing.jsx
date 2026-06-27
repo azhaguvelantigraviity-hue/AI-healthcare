@@ -25,7 +25,7 @@ const LandingPage = () => {
   return (
     <div style={{ minHeight: "100vh", background: "#fff", fontFamily: "'Inter', sans-serif" }}>
       <style>{`@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap'); @keyframes spin{to{transform:rotate(360deg)}} @keyframes fadeIn{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}`}</style>
-      
+
       {/* Nav */}
       <nav style={{ position: "sticky", top: 0, background: "rgba(255,255,255,0.95)", backdropFilter: "blur(10px)", borderBottom: `1px solid ${colors.border}`, padding: "0 40px", height: 64, display: "flex", alignItems: "center", justifyContent: "space-between", zIndex: 100 }}>
         <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
@@ -52,6 +52,7 @@ const LandingPage = () => {
         <div style={{ display: "flex", gap: 16, justifyContent: "center", flexWrap: "wrap" }}>
           <Button variant="primary" onClick={() => navigate('/register')} size="lg">🚀 Start Free Today</Button>
           <Button variant="ghost" onClick={() => navigate('/doctor-login')} size="lg">👨‍⚕️ Doctor Login</Button>
+          <Button variant="secondary" onClick={() => navigate('/doctor-register')} size="lg">⚕️ Join as Doctor</Button>
         </div>
         <div style={{ display: "flex", gap: 32, justifyContent: "center", marginTop: 48, flexWrap: "wrap" }}>
           {stats.map(s => (
@@ -89,8 +90,13 @@ const LandingPage = () => {
         </Button>
       </section>
 
-      <footer style={{ padding: "32px 40px", background: colors.sidebar, textAlign: "center", color: colors.sidebarText, fontSize: 13 }}>
-        © 2026 HealthAI • Secure • HIPAA Compliant • Powered by Google Gemini
+      <footer style={{ padding: "32px 40px", background: colors.sidebar, textAlign: "center", color: colors.sidebarText, fontSize: 13, display: "flex", flexDirection: "column", gap: 12 }}>
+        <div>© 2026 HealthAI • Secure • HIPAA Compliant • Powered by Google Gemini</div>
+        <div>
+          <button onClick={() => navigate('/admin-login')} style={{ background: "none", border: "none", color: colors.textMuted, cursor: "pointer", fontSize: 12, textDecoration: "underline" }}>
+            Admin Login
+          </button>
+        </div>
       </footer>
     </div>
   );

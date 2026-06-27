@@ -13,6 +13,9 @@ const DoctorRecommendations = () => {
   const [loading, setLoading] = useState(true);
   const [searchTerm, setSearchTerm] = useState('');
   const [specialtyFilter, setSpecialtyFilter] = useState('All');
+  const [facilityFilter, setFacilityFilter] = useState('All');
+  const [locationFilter, setLocationFilter] = useState('');
+  const [maxFee, setMaxFee] = useState('');
 
   // Booking Modal State
   const [bookingModalOpen, setBookingModalOpen] = useState(false);
@@ -43,7 +46,15 @@ const DoctorRecommendations = () => {
     const matchesSearch = doc.user?.name?.toLowerCase().includes(searchTerm.toLowerCase()) || 
                           doc.specialization?.toLowerCase().includes(searchTerm.toLowerCase());
     const matchesSpecialty = specialtyFilter === 'All' || doc.specialization === specialtyFilter;
-    return matchesSearch && matchesSpecialty;
+    const matchesFacility = facilityFilter === 'All' || doc.facilityType === facilityFilter;
+    const docLocation = doc.clinicAddress || '';
+    const matchesLocation = typeof docLocation === 'object' 
+      ? Object.values(docLocation).join(' ').toLowerCase().includes(locationFilter.toLowerCase())
+      : String(docLocation).toLowerCase().includes(locationFilter.toLowerCase());
+    const docFee = doc.consultationFee || 0;
+    const matchesFee = !maxFee || docFee <= Number(maxFee);
+
+    return matchesSearch && matchesSpecialty && matchesFacility && matchesLocation && matchesFee;
   });
 
   const handleOpenBooking = (doc) => {
@@ -115,20 +126,53 @@ const DoctorRecommendations = () => {
         </div>
       </div>
 
-      {/* Search & Filters */}
-      <div className="bg-white p-4 md:p-6 rounded-3xl shadow-sm border border-gray-100 flex flex-col md:flex-row gap-4 items-center justify-between">
-        <div className="relative w-full md:w-96">
-          <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 w-5 h-5" />
-          <input 
-            type="text" 
-            placeholder="Search by doctor name or specialty..."
-            value={searchTerm}
-            onChange={(e) => setSearchTerm(e.target.value)}
-            className="w-full pl-12 pr-4 py-3 bg-gray-50 border border-gray-200 rounded-2xl focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 transition-all font-medium text-gray-700"
-          />
+      <div className="bg-white p-6 rounded-3xl shadow-sm border border-gray-100 flex flex-col gap-4">
+        <div className="flex flex-col md:flex-row gap-4">
+          <div className="relative w-full md:w-1/3">
+            <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 w-5 h-5" />
+            <input 
+              type="text" 
+              placeholder="Search by doctor name or specialty..."
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
+              className="w-full pl-12 pr-4 py-3 bg-gray-50 border border-gray-200 rounded-2xl focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 transition-all font-medium text-gray-700"
+            />
+          </div>
+          <div className="relative w-full md:w-1/4">
+            <MapPin className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 w-5 h-5" />
+            <input 
+              type="text" 
+              placeholder="Filter by location (City, State)..."
+              value={locationFilter}
+              onChange={(e) => setLocationFilter(e.target.value)}
+              className="w-full pl-12 pr-4 py-3 bg-gray-50 border border-gray-200 rounded-2xl focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 transition-all font-medium text-gray-700"
+            />
+          </div>
+          <div className="w-full md:w-1/4">
+            <select 
+              value={facilityFilter}
+              onChange={(e) => setFacilityFilter(e.target.value)}
+              className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-2xl focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 transition-all font-medium text-gray-700"
+            >
+              <option value="All">All Facilities</option>
+              <option value="Clinic">Clinic</option>
+              <option value="Hospital">Hospital</option>
+              <option value="Virtual">Virtual / Telemedicine</option>
+              <option value="Other">Other</option>
+            </select>
+          </div>
+          <div className="w-full md:w-1/6">
+            <input 
+              type="number" 
+              placeholder="Max Fee ($)"
+              value={maxFee}
+              onChange={(e) => setMaxFee(e.target.value)}
+              className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-2xl focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 transition-all font-medium text-gray-700"
+            />
+          </div>
         </div>
         
-        <div className="flex gap-2 overflow-x-auto w-full md:w-auto pb-2 md:pb-0 scrollbar-hide">
+        <div className="flex gap-2 overflow-x-auto w-full pb-2 scrollbar-hide">
           {specialties.map(spec => (
             <button
               key={spec}
@@ -190,7 +234,7 @@ const DoctorRecommendations = () => {
               <div className="px-6 py-4 mt-4 bg-gray-50/50 border-t border-gray-50 grid grid-cols-2 gap-y-3 gap-x-2 text-sm">
                 <div className="flex items-center gap-2 text-gray-600">
                   <MapPin className="w-4 h-4 text-gray-400" />
-                  <span className="truncate">{doc.clinicAddress || 'Virtual Only'}</span>
+                  <span className="truncate">{typeof doc.clinicAddress === 'object' ? Object.values(doc.clinicAddress).filter(Boolean).join(', ') : (doc.clinicAddress || 'Virtual Only')}</span>
                 </div>
                 <div className="flex items-center gap-2 text-gray-600">
                   <Activity className="w-4 h-4 text-gray-400" />

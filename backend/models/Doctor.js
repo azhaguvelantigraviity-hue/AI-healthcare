@@ -8,6 +8,15 @@ const doctorSchema = new mongoose.Schema(
     licenseNumber: { type: String, required: true, unique: true },
     licenseExpiry: Date,
     experience: { type: Number, default: 0 }, // years
+    qualification: { type: String }, // e.g., MBBS, MD
+    status: { type: String, enum: ['Pending', 'Approved', 'Rejected'], default: 'Pending' },
+    rejectionReason: { type: String },
+    documents: [{
+        title: String, // e.g., 'Medical License', 'Degree Certificate', 'Government ID'
+        fileUrl: String,
+        fileType: String,
+        uploadedAt: { type: Date, default: Date.now }
+    }],
     education: [
       {
         degree: String,
@@ -28,6 +37,7 @@ const doctorSchema = new mongoose.Schema(
       address: String,
       department: String,
     },
+    facilityType: { type: String, enum: ['Clinic', 'Hospital', 'Virtual', 'Other'], default: 'Clinic' },
     clinicAddress: {
       street: String,
       city: String,

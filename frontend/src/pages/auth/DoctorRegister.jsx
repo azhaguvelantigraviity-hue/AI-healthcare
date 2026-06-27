@@ -1,0 +1,180 @@
+import React, { useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import { useAuth } from '../../context/AuthContext';
+import { Activity } from 'lucide-react';
+import toast from 'react-hot-toast';
+
+const DoctorRegister = () => {
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    password: '',
+    phone: '',
+    specialization: '',
+    qualification: '',
+    experience: '',
+    hospitalName: '',
+    facilityType: 'Clinic',
+    location: {
+      street: '', city: '', state: '', zipCode: '', country: ''
+    },
+    consultationFee: '',
+    licenseNumber: ''
+  });
+
+  const [isLoading, setIsLoading] = useState(false);
+  const navigate = useNavigate();
+  // We'll call API directly if context register doesn't support complex objects out of box, or just adapt it.
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    if (['street', 'city', 'state', 'zipCode', 'country'].includes(name)) {
+      setFormData((prev) => ({
+        ...prev,
+        location: { ...prev.location, [name]: value }
+      }));
+    } else {
+      setFormData((prev) => ({ ...prev, [name]: value }));
+    }
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setIsLoading(true);
+
+    try {
+      const response = await fetch(`${import.meta.env.VITE_API_URL || 'http://localhost:5000'}/api/auth/register`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ ...formData, role: 'doctor' })
+      });
+      const data = await response.json();
+      
+      if (data.success) {
+        toast.success("Registration successful! Please wait for admin approval.");
+        navigate('/doctor-login');
+      } else {
+        toast.error(data.error || 'Failed to register as doctor');
+      }
+    } catch (error) {
+      toast.error('An error occurred during registration.');
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  return (
+    <div className="min-h-screen flex items-center justify-center bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
+      <div className="max-w-3xl w-full space-y-8 bg-white p-10 rounded-xl shadow-lg border border-gray-100">
+        <div className="text-center">
+          <div className="flex justify-center">
+            <div className="bg-teal-100 p-3 rounded-full">
+              <Activity className="h-10 w-10 text-teal-600" />
+            </div>
+          </div>
+          <h2 className="mt-6 text-3xl font-extrabold text-gray-900">Doctor Registration</h2>
+          <p className="mt-2 text-sm text-gray-600">
+            Already registered?{' '}
+            <Link to="/doctor-login" className="font-medium text-teal-600 hover:text-teal-500 transition-colors">
+              Sign in to Doctor Portal
+            </Link>
+          </p>
+        </div>
+
+        <form className="mt-8 space-y-6" onSubmit={handleSubmit}>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            {/* Personal Details */}
+            <div className="space-y-4">
+              <h3 className="font-semibold text-lg text-gray-800 border-b pb-2">Personal Details</h3>
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-1">Full Name</label>
+                <input name="name" type="text" required className="w-full px-3 py-2 border border-gray-300 rounded-lg" onChange={handleChange} value={formData.name} />
+              </div>
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-1">Email</label>
+                <input name="email" type="email" required className="w-full px-3 py-2 border border-gray-300 rounded-lg" onChange={handleChange} value={formData.email} />
+              </div>
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-1">Password</label>
+                <input name="password" type="password" required minLength={8} className="w-full px-3 py-2 border border-gray-300 rounded-lg" onChange={handleChange} value={formData.password} />
+              </div>
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-1">Phone Number</label>
+                <input name="phone" type="tel" required className="w-full px-3 py-2 border border-gray-300 rounded-lg" onChange={handleChange} value={formData.phone} />
+              </div>
+            </div>
+
+            {/* Professional Details */}
+            <div className="space-y-4">
+              <h3 className="font-semibold text-lg text-gray-800 border-b pb-2">Professional Details</h3>
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-1">Medical License Number</label>
+                <input name="licenseNumber" type="text" required className="w-full px-3 py-2 border border-gray-300 rounded-lg" onChange={handleChange} value={formData.licenseNumber} />
+              </div>
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-1">Specialization</label>
+                <input name="specialization" type="text" required className="w-full px-3 py-2 border border-gray-300 rounded-lg" onChange={handleChange} value={formData.specialization} placeholder="e.g. Cardiology" />
+              </div>
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-1">Qualification</label>
+                <input name="qualification" type="text" required className="w-full px-3 py-2 border border-gray-300 rounded-lg" onChange={handleChange} value={formData.qualification} placeholder="e.g. MBBS, MD" />
+              </div>
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-1">Experience (Years)</label>
+                <input name="experience" type="number" required className="w-full px-3 py-2 border border-gray-300 rounded-lg" onChange={handleChange} value={formData.experience} />
+              </div>
+            </div>
+
+            {/* Clinic / Facility Details */}
+            <div className="space-y-4 md:col-span-2">
+              <h3 className="font-semibold text-lg text-gray-800 border-b pb-2">Facility Details</h3>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-1">Clinic/Hospital Name</label>
+                  <input name="hospitalName" type="text" required className="w-full px-3 py-2 border border-gray-300 rounded-lg" onChange={handleChange} value={formData.hospitalName} />
+                </div>
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-1">Facility Type</label>
+                  <select name="facilityType" className="w-full px-3 py-2 border border-gray-300 rounded-lg bg-white" onChange={handleChange} value={formData.facilityType}>
+                    <option value="Clinic">Clinic</option>
+                    <option value="Hospital">Hospital</option>
+                    <option value="Virtual">Virtual / Telemedicine</option>
+                    <option value="Other">Other</option>
+                  </select>
+                </div>
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-1">Consultation Fee ($)</label>
+                  <input name="consultationFee" type="number" required className="w-full px-3 py-2 border border-gray-300 rounded-lg" onChange={handleChange} value={formData.consultationFee} />
+                </div>
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-1">City</label>
+                  <input name="city" type="text" required className="w-full px-3 py-2 border border-gray-300 rounded-lg" onChange={handleChange} value={formData.location.city} />
+                </div>
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-1">State</label>
+                  <input name="state" type="text" required className="w-full px-3 py-2 border border-gray-300 rounded-lg" onChange={handleChange} value={formData.location.state} />
+                </div>
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-1">Zip Code</label>
+                  <input name="zipCode" type="text" required className="w-full px-3 py-2 border border-gray-300 rounded-lg" onChange={handleChange} value={formData.location.zipCode} />
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div>
+            <button
+              type="submit"
+              disabled={isLoading}
+              className={`w-full flex justify-center py-3 px-4 border border-transparent text-sm font-medium rounded-lg text-white bg-teal-600 hover:bg-teal-700 transition-all ${isLoading ? 'opacity-70 cursor-not-allowed' : ''}`}
+            >
+              {isLoading ? 'Submitting Registration...' : 'Submit Registration Application'}
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  );
+};
+
+export default DoctorRegister;

@@ -17,7 +17,7 @@ const Login = () => {
     setIsLoading(true);
 
     const result = await login(email, password);
-    
+
     if (result.success) {
       navigate('/dashboard');
     } else {
@@ -43,7 +43,7 @@ const Login = () => {
             </Link>
           </p>
         </div>
-        
+
         {error && (
           <div className="bg-red-50 border-l-4 border-red-500 p-4 rounded-md">
             <p className="text-sm text-red-700">{error}</p>

@@ -38,7 +38,12 @@ const sendTokenResponse = (user, statusCode, res, message = 'Success') => {
 // @route   POST /api/auth/register
 // @access  Public
 exports.register = asyncHandler(async (req, res, next) => {
-  const { name, email, password, role = 'patient', phone, specialization, licenseNumber } = req.body;
+  const {
+    name, email, password, role = 'patient', phone,
+    specialization, licenseNumber, qualification, experience,
+    hospitalName, facilityType, location, consultationFee,
+    availability, documents
+  } = req.body;
 
   // Check existing user
   const existingUser = await User.findOne({ email });
@@ -47,7 +52,7 @@ exports.register = asyncHandler(async (req, res, next) => {
   }
 
   // Create user
-  const user = await User.create({ name, email, password, role, phone });
+  const user = await User.create({ name, email, password, role, phone, address: location });
 
   // Create role-specific profile
   if (role === 'patient') {
@@ -57,7 +62,21 @@ exports.register = asyncHandler(async (req, res, next) => {
       await User.findByIdAndDelete(user._id);
       return next(new ErrorResponse('Doctors require specialization and license number', 400));
     }
-    await Doctor.create({ user: user._id, specialization, licenseNumber });
+    await Doctor.create({
+      user: user._id,
+      specialization,
+      licenseNumber,
+      experience: experience || 0,
+      education: qualification ? [{ degree: qualification }] : [],
+      hospital: { name: hospitalName || '' },
+      facilityType: facilityType || 'Clinic',
+      clinicAddress: location || {},
+      consultationFee: consultationFee || 0,
+      availability: availability || [],
+      documents: documents || [],
+      status: 'Pending',
+      isVerified: false
+    });
   }
 
   // Send welcome email (non-blocking)
@@ -104,6 +123,13 @@ exports.login = asyncHandler(async (req, res, next) => {
   if (!isMatch) {
     await user.incrementLoginAttempts();
     return next(new ErrorResponse('Invalid credentials', 401));
+  }
+
+  if (user.role === 'doctor') {
+    const doctor = await Doctor.findOne({ user: user._id });
+    if (doctor && (!doctor.isVerified || doctor.status !== 'Approved')) {
+      return next(new ErrorResponse(`Account is ${doctor.status.toLowerCase()}. Please wait for admin approval.`, 403));
+    }
   }
 
   // Reset login attempts on success

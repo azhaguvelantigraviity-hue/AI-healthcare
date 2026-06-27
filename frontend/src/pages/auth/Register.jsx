@@ -7,7 +7,6 @@ const Register = () => {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [role, setRole] = useState('patient');
   const [error, setError] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
@@ -18,8 +17,8 @@ const Register = () => {
     setError('');
     setIsLoading(true);
 
-    const result = await register(name, email, password, role);
-    
+    const result = await register(name, email, password, 'patient');
+
     if (result.success) {
       navigate('/dashboard');
     } else {
@@ -45,7 +44,7 @@ const Register = () => {
             </Link>
           </p>
         </div>
-        
+
         {error && (
           <div className="bg-red-50 border-l-4 border-red-500 p-4 rounded-md">
             <p className="text-sm text-red-700">{error}</p>
@@ -94,24 +93,8 @@ const Register = () => {
                 onChange={(e) => setPassword(e.target.value)}
               />
             </div>
-            
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">I am a...</label>
-              <div className="grid grid-cols-2 gap-4">
-                <div 
-                  className={`border rounded-lg p-3 cursor-pointer text-center transition-colors ${role === 'patient' ? 'bg-teal-50 border-teal-500 text-teal-700 font-medium' : 'border-gray-300 hover:bg-gray-50'}`}
-                  onClick={() => setRole('patient')}
-                >
-                  Patient
-                </div>
-                <div 
-                  className={`border rounded-lg p-3 cursor-pointer text-center transition-colors ${role === 'doctor' ? 'bg-teal-50 border-teal-500 text-teal-700 font-medium' : 'border-gray-300 hover:bg-gray-50'}`}
-                  onClick={() => setRole('doctor')}
-                >
-                  Doctor
-                </div>
-              </div>
-            </div>
+
+
           </div>
 
           <div>

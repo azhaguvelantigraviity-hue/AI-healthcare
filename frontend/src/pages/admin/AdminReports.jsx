@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import API from '../../api/api';
+import API, { getCorrectUrl } from '../../api/api';
 import { useAuth } from '../../context/AuthContext';
 import { 
   FileText, Search, Download, Eye, ShieldCheck, 
@@ -64,9 +64,15 @@ const AdminReports = () => {
         return;
       }
 
+      const fixedUrl = getCorrectUrl(report.fileUrl);
+      if (!fixedUrl) {
+        toast.error('Invalid file URL.');
+        return;
+      }
+
       toast.loading('Downloading report...', { id: 'download' });
       
-      fetch(report.fileUrl)
+      fetch(fixedUrl)
         .then(response => response.blob())
         .then(blob => {
           const url = window.URL.createObjectURL(blob);
@@ -93,7 +99,7 @@ const AdminReports = () => {
         .catch(error => {
           console.error('Download error:', error);
           toast.error('Download failed. Opening in new tab instead.', { id: 'download' });
-          window.open(report.fileUrl, '_blank');
+          window.open(fixedUrl, '_blank');
         });
     }
   };

@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import API from '../../api/api';
+import React, { useState, useEffect, useMemo } from 'react';
+import API, { getCorrectUrl } from '../../api/api';
 import { useAuth } from '../../context/AuthContext';
 import { Users, FileText, Activity, Search, Eye, X } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
@@ -298,7 +298,7 @@ const PatientManagement = () => {
                      <div className="flex gap-2">
                        {selectedReport.fileUrl && (
                          <a 
-                           href={selectedReport.fileUrl}
+                           href={getCorrectUrl(selectedReport.fileUrl)}
                            download
                            target="_blank"
                            rel="noopener noreferrer"
@@ -317,11 +317,11 @@ const PatientManagement = () => {
                   </div>
                   <div className="bg-gray-100/80 rounded-xl flex justify-center items-center flex-1 border border-gray-200 shadow-inner overflow-hidden min-h-[400px]">
                      {selectedReport.fileUrl ? (
-                        selectedReport.fileUrl.match(/\.(jpeg|jpg|gif|png)$/i) || selectedReport.fileType?.includes('image') ? (
-                          <img src={selectedReport.fileUrl} alt={selectedReport.title} className="max-w-full max-h-full object-contain" />
+                        getCorrectUrl(selectedReport.fileUrl).match(/\.(jpeg|jpg|gif|png|webp)$/i) || selectedReport.fileType?.includes('image') ? (
+                          <img src={getCorrectUrl(selectedReport.fileUrl)} alt={selectedReport.title} className="max-w-full max-h-full object-contain" />
                         ) : (
                           <iframe 
-                            src={`${selectedReport.fileUrl}#view=FitH`} 
+                            src={`${getCorrectUrl(selectedReport.fileUrl)}#view=FitH`} 
                             title={selectedReport.title}
                             className="w-full h-full min-h-[500px] border-0"
                           />

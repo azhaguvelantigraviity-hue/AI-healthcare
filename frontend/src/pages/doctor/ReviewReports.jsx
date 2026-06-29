@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Card, Button } from '../../components/ui/SharedUI';
 import { colors } from '../../theme/colors';
-import API from '../../api/api';
+import API, { getCorrectUrl } from '../../api/api';
 import { useAuth } from '../../context/AuthContext';
 import toast from 'react-hot-toast';
 import { FileText, CheckCircle, Clock, X, ExternalLink } from 'lucide-react';
@@ -124,7 +124,11 @@ const ReviewReports = () => {
                 <Button 
                   variant="outline" 
                   style={{ flex: 1, padding: '8px 0' }}
-                  onClick={() => window.open(report.fileUrl, '_blank')}
+                  onClick={() => {
+                    const fixedUrl = getCorrectUrl(report.fileUrl);
+                    if (fixedUrl) window.open(fixedUrl, '_blank');
+                    else toast.error('File not available.');
+                  }}
                 >
                   <ExternalLink size={16} style={{ marginRight: 8 }} />
                   View File

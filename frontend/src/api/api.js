@@ -21,4 +21,19 @@ API.interceptors.response.use(
   }
 );
 
+export const getCorrectUrl = (url) => {
+  if (!url) return null;
+  let backendUrl = import.meta.env.VITE_API_URL || 'http://localhost:5000';
+  if (backendUrl.endsWith('/')) {
+    backendUrl = backendUrl.slice(0, -1);
+  }
+  if (url.includes('http://localhost:5000')) {
+    return url.replace('http://localhost:5000', backendUrl);
+  }
+  if (url.startsWith('/uploads/')) {
+    return `${backendUrl}${url}`;
+  }
+  return url;
+};
+
 export default API;

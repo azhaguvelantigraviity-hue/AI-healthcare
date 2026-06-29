@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import API from '../../api/api';
+import API, { getCorrectUrl } from '../../api/api';
 import { useAuth } from '../../context/AuthContext';
 import { FileText, UploadCloud, File, Trash2, Eye, Download, AlertCircle, Loader, Activity, Filter } from 'lucide-react';
 import { Badge, Button, Card, Modal } from '../../components/ui/SharedUI';
@@ -157,22 +157,6 @@ const MedicalReports = () => {
     }
   };
 
-  const getCorrectUrl = (url) => {
-    if (!url) return null;
-    let backendUrl = import.meta.env.VITE_API_URL || 'http://localhost:5000';
-    if (backendUrl.endsWith('/')) {
-      backendUrl = backendUrl.slice(0, -1);
-    }
-    // If the URL was hardcoded to localhost by the backend, replace it with the actual backend URL
-    if (url.includes('http://localhost:5000')) {
-      return url.replace('http://localhost:5000', backendUrl);
-    }
-    // If it's a relative URL, prepend the backend URL
-    if (url.startsWith('/uploads/')) {
-      return `${backendUrl}${url}`;
-    }
-    return url;
-  };
 
   const handlePreview = (report) => {
     const fixedUrl = getCorrectUrl(report.fileUrl);

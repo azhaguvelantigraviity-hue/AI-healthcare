@@ -6,11 +6,13 @@ import {
   User, Stethoscope, Calendar, Clock, MonitorPlay
 } from 'lucide-react';
 import toast from 'react-hot-toast';
+import { useNavigate } from 'react-router-dom';
 
 const AdminVideoConsults = () => {
   const { user } = useAuth();
   const [consults, setConsults] = useState([]);
   const [loading, setLoading] = useState(true);
+  const navigate = useNavigate();
 
   // Mock Data
   const mockConsults = [
@@ -83,8 +85,8 @@ const AdminVideoConsults = () => {
     }
   };
 
-  const handleAction = (id) => {
-    toast.success(`Monitoring interface initiated for Room ID: ${id}`);
+  const handleAction = (roomId) => {
+    navigate(`/consultation/${roomId}`);
   };
 
   // Client-side search filtering
@@ -271,7 +273,10 @@ const AdminVideoConsults = () => {
                     <td className="py-4 px-6 text-right">
                       {['confirmed', 'in-progress'].includes(consult.status) ? (
                         <button 
-                          onClick={() => handleAction(consult._id)}
+                          onClick={() => {
+                            const roomId = consult.meetingLink ? consult.meetingLink.split('/').pop() : consult._id.slice(-8);
+                            handleAction(roomId);
+                          }}
                           className="px-3 py-1.5 text-teal-600 hover:bg-teal-50 hover:border-teal-200 border border-transparent rounded-xl transition-all inline-flex items-center gap-2 font-bold text-sm"
                         >
                           <MonitorPlay className="w-4 h-4" /> Monitor

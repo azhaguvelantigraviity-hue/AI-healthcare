@@ -68,10 +68,14 @@ const AdminVideoConsults = () => {
 
       const { data } = await API.get(url, config);
       const fetchedConsults = data.data || [];
-      if (fetchedConsults.length === 0 && page === 1 && statusFilter === 'all') {
-        setConsults(mockConsults);
+      if (fetchedConsults.length === 0) {
+        let filteredMock = mockConsults;
+        if (statusFilter !== 'all') {
+          filteredMock = mockConsults.filter(c => c.status === statusFilter);
+        }
+        setConsults(filteredMock);
         setTotalPages(1);
-        setTotalConsults(mockConsults.length);
+        setTotalConsults(filteredMock.length);
       } else {
         setConsults(fetchedConsults);
         setTotalPages(data.pages || 1);
